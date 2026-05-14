@@ -1,0 +1,5 @@
+kt-vvs/
+.playwright-mcp/
+*.tar.gz
+*.zip
+images/*.mp4
