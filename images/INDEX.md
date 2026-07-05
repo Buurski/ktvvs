@@ -11,7 +11,7 @@ Fiktivt demo-galleri. Billedfiler er placeholders og skal erstattes.
 - `projekt-industri-ventilation-02.jpeg` — Fødevarevirksomhed (ventilation)
 - `projekt-industri-hydraulik.jpg` — Fødevarevirksomhed – Hydraulik (specialopgave)
 
-## Herning Vand / Herning Kommune
+## Forsyning / kommune
 - `projekt-fjernvarme-01.jpg` — Forsyningsselskab (VVS)
 - `projekt-fjernvarme-02.jpeg` — Forsyningsselskab – ny fjernvarmeinstallation
 - `ventilation-aagaarden-herning-kommune-01.jpeg` — Ventilation Ågården, Herning Kommune
