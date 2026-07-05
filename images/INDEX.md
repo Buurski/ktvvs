@@ -14,8 +14,8 @@ Fiktivt demo-galleri. Billedfiler er placeholders og skal erstattes.
 ## Forsyning / kommune
 - `projekt-fjernvarme-01.jpg` — Forsyningsselskab (VVS)
 - `projekt-fjernvarme-02.jpeg` — Forsyningsselskab – ny fjernvarmeinstallation
-- `ventilation-aagaarden-herning-kommune-01.jpeg` — Ventilation Ågården, Herning Kommune
-- `ventilation-aagaarden-herning-kommune-02.jpeg` — Ventilation Ågården, Herning Kommune
+- `projekt-ventilation-offentlig-01.jpeg` — Ventilation, offentlig institution
+- `projekt-ventilation-offentlig-02.jpeg` — Ventilation, offentlig institution
 
 ## Erhverv / industri
 - `projekt-ventilation-industri.jpg` — Ventilation – industrivirksomhed

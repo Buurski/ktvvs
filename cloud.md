@@ -69,7 +69,7 @@ Requires Vercel CLI installed and authenticated. `.vercel/` directory in project
 
 Currently served on `ktvvs.vercel.app` (Vercel default domain).
 
-To add a custom domain (e.g. `ktvvs.dk`):
+To add a custom domain (e.g. `nordvangvvs.dk (fiktivt)`):
 1. Go to https://vercel.com/buurskis-projects/ktvvs/settings/domains
 2. Add the domain
 3. Point DNS: `A 76.76.21.21` (or CNAME `cname.vercel-dns.com` for subdomains)
