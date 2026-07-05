@@ -1,5 +1,5 @@
 /* =========================================================
-   KT VVS — Demo site
+   Nordvang VVS — Demo site
    Design tokens
    ========================================================= */
 :root{
@@ -854,6 +854,8 @@ p{margin:0;text-wrap:pretty}
   padding-top:28px;flex-wrap:wrap;gap:18px;
   font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;color:#7c8a9c;font-weight:500;
 }
+.footer .bottom a{color:#a7b4c4;text-decoration:underline}
+.footer .bottom a:hover{color:#fff}
 
 /* =========================================================
    REVEAL ON SCROLL

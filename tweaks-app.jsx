@@ -1,4 +1,4 @@
-// Tweaks app for KT VVS front page
+// Tweaks app for Nordvang VVS front page
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "logoHeight": 70,

@@ -1,5 +1,5 @@
 /* =========================================================
-   KT VVS — Demo site interactions
+   Nordvang VVS — Demo site interactions
    ========================================================= */
 
 /* Logo → scroll to top */

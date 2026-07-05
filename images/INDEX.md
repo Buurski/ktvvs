@@ -1,15 +1,15 @@
-# KT VVS — Referencer / Galleri
+# Nordvang VVS (demo) — Referencer / Galleri
 
-Billeder hentet fra http://ktvvs.dk/?page_id=510 — 40 stk.
+Fiktivt demo-galleri. Billedfiler er placeholders og skal erstattes.
 
-## Danish Crown
-- `danish-crown-olieudskiller.jpeg` — Danish Crown – Olieudskiller (ventilation)
-- `danish-crown-rf-drypbakke.jpeg` — Danish Crown – RF drypbakke (specialopgave)
-- `danish-crown-trykluft-01.jpg` — Danish Crown – Trykluft (specialopgave)
-- `danish-crown-trykluft-02.jpg` — Danish Crown – Trykluft (specialopgave)
-- `danish-crown-herning-ventilation-01.jpeg` — Danish Crown Herning (ventilation)
-- `danish-crown-herning-ventilation-02.jpeg` — Danish Crown Herning (ventilation)
-- `danish-crown-hydraulik.jpg` — Danish Crown – Hydraulik (specialopgave)
+## Fødevarevirksomhed, Midtjylland
+- `danish-crown-olieudskiller.jpeg` — Fødevarevirksomhed – Olieudskiller (ventilation)
+- `danish-crown-rf-drypbakke.jpeg` — Fødevarevirksomhed – RF drypbakke (specialopgave)
+- `danish-crown-trykluft-01.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
+- `danish-crown-trykluft-02.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
+- `danish-crown-herning-ventilation-01.jpeg` — Fødevarevirksomhed (ventilation)
+- `danish-crown-herning-ventilation-02.jpeg` — Fødevarevirksomhed (ventilation)
+- `danish-crown-hydraulik.jpg` — Fødevarevirksomhed – Hydraulik (specialopgave)
 
 ## Herning Vand / Herning Kommune
 - `herning-vand-01.jpg` — Herning Vand (VVS)
