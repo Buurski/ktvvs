@@ -3,31 +3,31 @@
 Fiktivt demo-galleri. Billedfiler er placeholders og skal erstattes.
 
 ## Fødevarevirksomhed, Midtjylland
-- `danish-crown-olieudskiller.jpeg` — Fødevarevirksomhed – Olieudskiller (ventilation)
-- `danish-crown-rf-drypbakke.jpeg` — Fødevarevirksomhed – RF drypbakke (specialopgave)
-- `danish-crown-trykluft-01.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
-- `danish-crown-trykluft-02.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
-- `danish-crown-herning-ventilation-01.jpeg` — Fødevarevirksomhed (ventilation)
-- `danish-crown-herning-ventilation-02.jpeg` — Fødevarevirksomhed (ventilation)
-- `danish-crown-hydraulik.jpg` — Fødevarevirksomhed – Hydraulik (specialopgave)
+- `projekt-industri-olieudskiller.jpeg` — Fødevarevirksomhed – Olieudskiller (ventilation)
+- `projekt-industri-drypbakke.jpeg` — Fødevarevirksomhed – RF drypbakke (specialopgave)
+- `projekt-industri-trykluft-01.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
+- `projekt-industri-trykluft-02.jpg` — Fødevarevirksomhed – Trykluft (specialopgave)
+- `projekt-industri-ventilation-01.jpeg` — Fødevarevirksomhed (ventilation)
+- `projekt-industri-ventilation-02.jpeg` — Fødevarevirksomhed (ventilation)
+- `projekt-industri-hydraulik.jpg` — Fødevarevirksomhed – Hydraulik (specialopgave)
 
 ## Herning Vand / Herning Kommune
-- `herning-vand-01.jpg` — Herning Vand (VVS)
-- `herning-vand-fjernvarmeinstallation.jpeg` — Herning Vand A/S – Ny fjernvarmeinstallation
+- `projekt-fjernvarme-01.jpg` — Forsyningsselskab (VVS)
+- `projekt-fjernvarme-02.jpeg` — Forsyningsselskab – ny fjernvarmeinstallation
 - `ventilation-aagaarden-herning-kommune-01.jpeg` — Ventilation Ågården, Herning Kommune
 - `ventilation-aagaarden-herning-kommune-02.jpeg` — Ventilation Ågården, Herning Kommune
 
 ## Erhverv / industri
-- `ventilation-hydratech-industries.jpg` — Ventilation – HydratechIndustries
+- `projekt-ventilation-industri.jpg` — Ventilation – industrivirksomhed
 - `ventilation-toftegaarden-lind.jpeg` — Ventilation Toftegården, Lind
-- `mkf-herning-ventilation.jpg` — MKF Herning (ventilation)
+- `projekt-ventilation-erhverv.jpg` — Erhvervsejendom (ventilation)
 - `elas-as-straalevarme.jpg` — Elas A/S – Strålevarme
 - `industri-gaskedler-kaskade.jpg` — Industri gaskedler i kaskade
 - `bosted-satellitten-ringkoebing.jpg` — Bosted Satellitten, Ringkøbing
 - `tandlaegerne-vildbjerg-blikkenslager.jpeg` — Tandlægerne i Vildbjerg (blikkenslager)
 - `bording-kirkehus-01.jpg` — Bording Kirkehus (blikkenslager)
 - `bording-kirkehus-02.jpg` — Bording Kirkehus (blikkenslager)
-- `hjem-as-solroed-strand.jpg` — Hjem A/S, Solrød Strand (VVS)
+- `projekt-gulvvarme.jpg` — Privat villa (VVS)
 
 ## Privat — badeværelse
 - `privat-badevaerelse-ny-villa.jpeg` — Privat, badeværelse ny villa
