@@ -2,25 +2,25 @@
 name: KT VVS
 description: Anlægstavlen — et installationsfirmas hjemmeside sat som et teknisk anlægsskema
 colors:
-  frem: "#ef4035"
-  frem-deep: "#c2291f"
-  frem-deeper: "#9e2118"
-  label-ink: "#5b6773"
-  retur: "#0079c2"
-  retur-deep: "#005a8c"
+  varme: "#ef4035"
+  varme-deep: "#c2291f"
+  varme-deeper: "#9e2118"
+  label: "#5b6773"
+  vand: "#0079c2"
+  vand-deep: "#005a8c"
   luft: "#00857e"
   luft-deep: "#00615c"
   gas: "#e39400"
   gas-deep: "#a66a00"
   metal: "#5c6670"
   metal-deep: "#3d454d"
-  steel-950: "#0d1117"
-  steel-900: "#161c24"
-  steel-800: "#212a34"
-  steel-600: "#47535f"
-  steel-400: "#7e8b98"
-  steel-200: "#c9d1d8"
-  steel-100: "#dfe4e9"
+  s950: "#0d1117"
+  s900: "#161c24"
+  s800: "#212a34"
+  s600: "#47535f"
+  s400: "#7e8b98"
+  s200: "#c9d1d8"
+  s100: "#dfe4e9"
   paper: "#eef1f4"
   surface: "#fbfcfd"
 typography:
@@ -83,6 +83,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "0"
+  band-name:
+    fontFamily: "Azeret Mono, ui-monospace, monospace"
+    fontSize: "clamp(22px, 1.6vw, 26px)"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.1em"
   label:
     fontFamily: "Azeret Mono, ui-monospace, monospace"
     fontSize: "11px"
@@ -99,40 +105,36 @@ rounded:
   sharp: "0"
   chip: "2px"
 spacing:
-  xs: "6px"
-  sm: "12px"
-  md: "20px"
-  lg: "36px"
-  xl: "64px"
   section: "clamp(72px, 9vw, 132px)"
+  pad: "clamp(18px, 4vw, 72px)"
 components:
   button-primary:
-    backgroundColor: "{colors.frem-deep}"
+    backgroundColor: "{colors.varme-deep}"
     textColor: "{colors.surface}"
     rounded: "{rounded.sharp}"
     padding: "17px 30px"
     typography: "{typography.title}"
   button-primary-hover:
-    backgroundColor: "{colors.frem-deeper}"
+    backgroundColor: "{colors.varme-deeper}"
     textColor: "{colors.surface}"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.steel-950}"
+    textColor: "{colors.s950}"
     rounded: "{rounded.sharp}"
     padding: "16px 29px"
   medium-band:
-    backgroundColor: "{colors.steel-900}"
+    backgroundColor: "{colors.s900}"
     textColor: "{colors.surface}"
     rounded: "{rounded.sharp}"
     padding: "22px 28px"
   spec-row:
     backgroundColor: "transparent"
-    textColor: "{colors.steel-950}"
+    textColor: "{colors.s950}"
     rounded: "{rounded.sharp}"
     padding: "14px 0"
   input-field:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.steel-950}"
+    textColor: "{colors.s950}"
     rounded: "{rounded.sharp}"
     padding: "14px 14px"
 ---
@@ -183,6 +185,8 @@ En kølig stål-grundflade med fem mættede medie-farver, hvoraf de to vigtigste
 ### Named Rules
 **Medie-reglen.** En farve betyder ét medie og altid det samme medie. Rød er varme, blå er vand, grøn er luft, okker er gas, grå er metal. En farve må aldrig bruges dekorativt et sted hvor dens medie ikke er på tale. Test: peg på et vilkårligt farvet element og sig hvilket medie det tilhører. Kan du ikke det, er farven forkert.
 
+**Den ene undtagelse**, og den er navngiven: varme-rød har også rollen som *handling og advarsel* — den primære knap, telefon-fladen og den ene advarsel i tilskudssektionen. Rødt betyder handling og fare i enhver dansk brugsflade, og at nægte det ville koste mere klarhed end reglen vinder. Ingen anden medie-farve har en tilsvarende undtagelse: karakterer, kvitteringer, navigationslinks og beløb er ikke medier og males derfor i stål.
+
 **Flade-reglen.** Medie-farve optræder som flade — et bånd, et felt, en fyldt chip — aldrig som en 4px kant eller et lille badge på en ellers grå komponent. Signalfarve er flade, gråt er struktur. Bruges farven som accent, kollapser hele industri-logikken og siden læses som en generisk SaaS-side.
 
 **Den store-røde-regel.** Logoets fremrød (`#ef4035`) må kun bære tekst der er stor: mindst 24px, eller 19px i vægt 700. Hvid på fremrød giver 3,85:1 og består derfor kun kravet for stor tekst. Flader der bærer små etiketter — knapper, telefon-pladen, mobilbjælken — bruger **frem-dyb** (`#c2291f`, 5,75:1) med **frem-dybere** (`#9e2118`) som hover. Konsekvensen er et gode: den rene logo-rød optræder kun i mærket og i varme-båndet, og bliver derved sjælden.
@@ -224,7 +228,9 @@ Værdier som 15,5 · 14,5 · 13,5 · 20 · 23 · 31 er drift, ikke design.
 ### Named Rules
 **Mærkeplade-reglen.** Ethvert tal siden viser, sættes i Data-rollen med tabulære cifre og sin enhed som separat, mindre etiket — `11.500` stort, `m³/h` småt. Et tal sat som brødtekst er en spildt mulighed.
 
-**Etiket-reglen.** Mono bruges udelukkende til etiketter under 13px i versaler, og til cifre i tabelkolonner. Aldrig til brødtekst, aldrig til overskrifter. Forholdet grotesk:mono skal være mindst 4:1 i anvendelser. Mono som brødtekst gør siden til en terminal-parodi og dræber læsbarheden på mobil.
+**Etiket-reglen.** Mono er en *rolle*, ikke en stemning: felt-etiketter, enheder, meta og tabel-enheder. Aldrig brødtekst, aldrig sektionsoverskrifter, aldrig en overskrift der bærer indhold. Mono som brødtekst gør siden til en terminal-parodi og dræber læsbarheden på mobil.
+
+Én dokumenteret undtagelse fra 13px-loftet: **medie-navnet i farvefeltet** sættes i mono ved mindst 22px/700. Det er ikke en etiket der beskriver et felt — det *er* pladens stemplede tekst, og det er den ene mono-forekomst der skal kunne læses på afstand. Størrelsen er samtidig et tilgængelighedskrav, se Den store-røde-regel.
 
 ## Layout
 
@@ -234,7 +240,13 @@ Sidens tilbagevendende spatiale figur er **båndet**: en fuldbredde-vandret stri
 
 Tætheden skifter bevidst: anlægsskemaet og referencelisten er tætte og datatunge; om-os og kontakt er åbne og rolige. Et tæt afsnit efterfølges af et roligt.
 
-Brydepunkter: **1180px** — hero'ens billedspalte falder under teksten. **860px** — medie-bånd går fra to-kolonne til én; referencetabellen bliver til stablede rækker med etiketter. **560px** — display-skala reduceres, sidepolstring til 18px, telefon-handlingen bliver fast i bunden.
+Brydepunkter:
+- **1180px** — hero'ens billedspalte falder under teksten; medie-båndets fotokolonne falder bort.
+- **960px** — navigationen kollapser til hamburger; om- og kontaktsektionerne bliver enkeltspaltede.
+- **860px** — medie-båndet bliver til én kolonne med farvefeltet som header; referencetabellen bliver et to-kolonne-grid pr. række.
+- **560px** — display-skala reduceres, sidepolstring til 18px, telefon-handlingen bliver en fast bjælke i bunden.
+
+**Skjul-reglen.** Rækker og lister der kan filtreres, skal have en eksplicit `[hidden]{display:none}` i hvert brydepunkt hvor de får `display:grid` eller `display:flex`. En layout-display slår `[hidden]` fra UA-arket, og resultatet er et filter der ser ud til at virke og ikke gør noget.
 
 ## Elevation & Depth
 
@@ -263,8 +275,11 @@ Retningspile tegnes som trekanter afledt af logoets pileform: spids top, flad ba
 - **Telefon-handlingen:** Behandles som en dataværdi, ikke en knap — mono-etiket `TELEFON` over nummeret sat i Data-rollen. Det er sidens vigtigste handling og må ikke se ud som en generisk CTA.
 
 ### Chips
-- **Style:** Fyldt med mediets farve, plade-hvid tekst, `2px` radius, Label-rolle. Fyldt, ikke omridset — se Flade-reglen.
-- **State:** Ikke-valgt i filterrækker står med 1px stål-200 kant og stål-600 tekst; valgt fylder med mediets farve.
+To slags, og de må ikke forveksles.
+
+- **Medie-chip** (i tabellen): fyldt med mediets farve, plade-hvid tekst, `2px` radius, Label-sm. Fyldt, ikke omridset — se Flade-reglen. Den mærker et medie.
+- **Filter-chip** (over tabellen): 1px stål-200 kant og stål-600 tekst; valgt fylder med **maskinsort**, ikke med en medie-farve. Et filter er ikke et medie, og at farve det som ét ville bryde Medie-reglen.
+- **Valg-chip** (i formularen): som filter-chippen, men her *er* valget et medie, så den valgte fylder med mediets farve. "Noget andet" fylder med maskinsort.
 
 ### Cards / Containers
 - **Corner Style:** Skarp (`0`).
@@ -284,9 +299,21 @@ Retningspile tegnes som trekanter afledt af logoets pileform: spids top, flad ba
 - Under 860px: mærke og telefon bliver stående, resten går i et fuldskærms-panel i maskinsort.
 
 ### Medie-båndet (signaturkomponent)
-Systemets definerende komponent. En fuldbredde-række der repræsenterer ét medie, delt i to felter. **Venstre felt** er en massiv flade i mediets farve i fast bredde (`clamp(120px, 16vw, 230px)`) og bærer mediets navn i mono-versaler i plade-hvid. **Højre felt** er stål-900 og bærer de fagområder mediet dækker sat i Title, plus én rigtig mængde fra referencelisten i Data-rollen med enheden som etiket. Bånd stables kant mod kant uden mellemrum, så de danner ét sammenhængende skema.
+Systemets definerende komponent. En fuldbredde-række der repræsenterer ét medie, bygget som fire kolonner: **farvefelt · krop · tal · foto**.
+
+1. **Farvefeltet** (`clamp(120px, 14vw, 205px)`) er en massiv flade i mediets farve. Det bløder ud i venstre skærmkant via negativ margen — et mærkningsbånd stopper ikke ved en margen. Bærer mediets navn i mono-versaler, mindst 22px i vægt 700.
+2. **Kroppen** bærer de fagområder mediet dækker (Title) og en beskrivelse (Body-sm).
+3. **Talkolonnen** bærer én rigtig mængde fra referencelisten i Data-sm med enheden som mono-etiket.
+4. **Fotokolonnen** bærer ét ægte projektfoto. Falder bort under 1180px, hvor pladsen er vigtigere end billedet.
+
+Bånd stables kant mod kant uden mellemrum, så de danner ét sammenhængende skema. Under 860px bliver rækken til én kolonne med farvefeltet som fuldbredde-header.
 
 Farven er en flade der fylder et helt felt — aldrig en `border-left`-stribe på en ellers grå række. En farvet venstrekant over 1px er kategoriens standardgreb og gør mediet til dekoration i stedet for struktur.
+
+### Signaturforklaringen (signaturkomponent)
+Tegningens eget greb, og det der gør tesen synlig i stedet for påstået. En vandret liste med de ni fagområder, hvert med et 15px fyldt farvefelt i sit medies farve. Den står mellem sektionsoverskriften og medie-båndene, så læseren ser kortlægningen ni→fem, før hun møder de fem.
+
+Uden den er overskriften "Ni fagområder. Fem medier." en påstand siden aldrig indfrier.
 
 ### Spec-rækken (signaturkomponent)
 Referencelistens grundform: en vandret række med projektnavn til venstre, mediets chip i midten og mængden højrestillet i tabulære cifre. Rækker adskilles af 1px linjer, ikke af kort. Hele referencelisten er én sammenhængende tabel, ikke et galleri.

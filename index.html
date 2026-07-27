@@ -94,10 +94,13 @@
 <section class="hero" id="top">
   <div class="hero-in">
     <div class="hero-text">
-      <h1 class="display">11.500&nbsp;m³/h.<br>Og ét badeværelse.</h1>
+      <h1 class="display hero-h1">
+        <span class="hero-tal"><span class="n">11.500</span><span class="u">m³/h</span></span>
+        <span class="hero-l2">Og ét badeværelse.</span>
+      </h1>
       <p class="lede">KT VVS har lavet begge dele. Autoriseret VVS-installatør på Platanvej i
-        Herning siden 1963. Vand, varme, luft, gas og metal, for kommuner, virksomheder og
-        private i hele Midtjylland.</p>
+        Herning, grundlagt 1963. Vand, varme, luft, gas og metal, for kommuner, virksomheder
+        og private.</p>
 
       <div class="hero-act">
         <a class="tlf-plate" href="tel:+4597124755">
@@ -131,9 +134,21 @@
     <header class="sec-head sec-head--dark">
       <h2 class="headline">Ni fagområder.<br>Fem medier.</h2>
       <p>Vi sorterer ikke efter ydelser, men efter hvad der løber i røret. Det er også sådan
-        en opgave bliver planlagt, og sådan logoet har set ud siden 1963: rød op er frem og
-        varme, blå ned er retur og vand.</p>
+        en opgave bliver planlagt. Det er også det firmaets eget logo viser: rød pil op er frem
+        og varme, blå pil ned med bølge er retur og vand.</p>
     </header>
+
+    <ul class="legende" aria-label="Signaturforklaring: ni fagområder fordelt på fem medier">
+      <li data-medie="vand"><i></i>VVS</li>
+      <li data-medie="vand"><i></i>Badeværelser</li>
+      <li data-medie="varme"><i></i>Jordvarme og varmepumper</li>
+      <li data-medie="varme"><i></i>Solvarme</li>
+      <li data-medie="varme"><i></i>Stoker og brændekedel</li>
+      <li data-medie="varme"><i></i>Energioptimering</li>
+      <li data-medie="luft"><i></i>Ventilation</li>
+      <li data-medie="gas"><i></i>Gas- og oliekedel</li>
+      <li data-medie="metal"><i></i>Blikkenslager</li>
+    </ul>
   </div>
 
   <div class="baand-liste" id="baand">
@@ -173,14 +188,13 @@
       <div class="baand-krop">
         <h3>Ventilation, køling og procesudsug</h3>
         <p>Bolig- og komfortventilation, køling, industri- og procesventilation samt
-          udsugningsanlæg. Service, drift og vedligehold på anlæg vi selv har sat op, og
-          på dem vi har overtaget.</p>
+          udsugningsanlæg. Service, drift og vedligehold indgår som en fast del af arbejdet.</p>
       </div>
       <div class="baand-tal">
         <span class="data">11.500</span>
         <span class="lbl">m³/h · største<br>anlæg på listen</span>
       </div>
-      <img class="baand-foto" src="images/web/m-luft.jpg" alt="Stort isoleret ventilationskanalforløb i en offentlig institution" width="1000" height="750" loading="lazy">
+      <img class="baand-foto" src="images/web/m-luft.jpg" alt="Isoleret ventilationskanalforløb ført gennem et teknikrum" width="1000" height="750" loading="lazy">
     </article>
 
     <article class="baand" data-medie="gas">
@@ -195,7 +209,7 @@
         <span class="data">6</span>
         <span class="lbl">kedelløsninger ·<br>gas, olie, flaskegas</span>
       </div>
-      <img class="baand-foto" src="images/web/m-gas.jpg" alt="Tre gaskedler opsat i kaskade i et teknikrum" width="912" height="684" loading="lazy">
+      <img class="baand-foto" src="images/web/m-gas.jpg" alt="Gaskedler opsat i kaskade i et teknikrum" width="912" height="684" loading="lazy">
     </article>
 
     <article class="baand" data-medie="metal">
@@ -210,7 +224,7 @@
         <span class="data">4</span>
         <span class="lbl">zinkvarianter · natur,<br>quartz, anthra, lakeret</span>
       </div>
-      <img class="baand-foto" src="images/web/m-metal.jpg" alt="Nyt zinktag med stående false på et kirkehus" width="1000" height="750" loading="lazy">
+      <img class="baand-foto" src="images/web/m-metal.jpg" alt="Nyt skifertag under opsætning, set fra stilladset langs tagfoden" width="1000" height="750" loading="lazy">
     </article>
 
   </div>
@@ -220,7 +234,7 @@
 <section class="ref" id="referencer">
   <div class="wrap">
     <header class="sec-head">
-      <h2 class="headline">32 projekter, med navn og mængde.</h2>
+      <h2 class="headline">32 projekter. Med navn.</h2>
       <p>Vi har udført mange forskellige opgaver for mange forskellige kunder. Her er et
         udpluk, ført sådan som vi selv fører listen: kunde, opgave og størrelse.</p>
     </header>
@@ -272,8 +286,8 @@
         <tr data-medie="vand"><td><b>CEU Herning</b> · ny elevbygning</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
       </tbody>
     </table>
-    <p class="ref-fod">Kilde: KT VVS' egen referenceliste. Enkelte projekter står uden
-      mængde, fordi opgaven ikke blev opgjort i m² eller m³/h.</p>
+    <p class="ref-fod">Gengivet fra KT VVS' egen referenceliste. Fem projekter står uden
+      mængde, fordi listen ikke angiver en.</p>
   </div>
 </section>
 
@@ -307,14 +321,17 @@
     <div class="galleri">
       <figure class="g g-stor"><img src="images/web/g-trykluft.jpg" alt="Blå trykluftinstallation med ventiler og tanke i en industrivirksomhed" width="1100" height="825" loading="lazy"><figcaption>Trykluftanlæg, industri</figcaption></figure>
       <figure class="g"><img src="images/web/g-fjernvarme.jpg" alt="Nedgravede fjernvarmerør i en udgravning" width="1100" height="825" loading="lazy"><figcaption>Fjernvarmeinstallation</figcaption></figure>
-      <figure class="g"><img src="images/web/g-gulvvarme.jpg" alt="Gulvvarmeslanger udlagt på armeringsnet før støbning" width="1100" height="825" loading="lazy"><figcaption>Gulvvarme, nybyggeri</figcaption></figure>
+      <figure class="g"><img src="images/web/g-gulvvarme.jpg" alt="Gulvvarmeslanger udlagt på armeringsnet før støbning" width="1100" height="825" loading="lazy"><figcaption>Gulvvarme før støbning</figcaption></figure>
       <figure class="g"><img src="images/web/g-varmepumpe.jpg" alt="Teknikrum med varmepumpe, beholder og rørføring" width="1100" height="825" loading="lazy"><figcaption>Varmepumpe, enfamiliehus</figcaption></figure>
       <figure class="g"><img src="images/web/g-vent2.jpg" alt="Store isolerede ventilationskanaler under montage" width="900" height="675" loading="lazy"><figcaption>Ventilation, industri</figcaption></figure>
       <figure class="g g-stor"><img src="images/web/g-trykluft2.jpg" alt="Blåt rørforløb ført over tag på erhvervsbygning" width="1100" height="825" loading="lazy"><figcaption>Rørføring over tag, erhverv</figcaption></figure>
-      <figure class="g"><img src="images/web/g-tandlaeger.jpg" alt="Bygning med facadebeklædning i zink" width="900" height="675" loading="lazy"><figcaption>Blikkenslagerarbejde, klinik</figcaption></figure>
+      <figure class="g"><img src="images/web/g-tandlaeger.jpg" alt="Erhvervsbygning med facade- og udhængsbeklædning i zink" width="900" height="675" loading="lazy"><figcaption>Facadebeklædning i zink</figcaption></figure>
       <figure class="g"><img src="images/web/g-bad.jpg" alt="Renoveret badeværelse med væghængt håndvask" width="1100" height="825" loading="lazy"><figcaption>Badeværelsesrenovering</figcaption></figure>
-      <figure class="g"><img src="images/web/g-satellitten.jpg" alt="Ventilationsanlæg på tag af bosted" width="1100" height="825" loading="lazy"><figcaption>Ventilation, bosted</figcaption></figure>
-      <figure class="g"><img src="images/web/g-elas.jpg" alt="Strålevarmepaneler monteret i produktionshal" width="1100" height="825" loading="lazy"><figcaption>Strålevarme, produktionshal</figcaption></figure>
+      <figure class="g"><img src="images/web/g-satellitten.jpg" alt="Metalinddækning monteret på en murkrone, med håndværker i baggrunden" width="1100" height="825" loading="lazy"><figcaption>Inddækning af murkrone</figcaption></figure>
+      <figure class="g"><img src="images/web/g-elas.jpg" alt="Strålevarmepaneler monteret under loftet i en produktionshal" width="1100" height="825" loading="lazy"><figcaption>Varmeanlæg, produktionshal</figcaption></figure>
+      <figure class="g"><img src="images/web/g-jordvarme.jpg" alt="Teknikrum i enfamiliehus med jordvarmeanlæg, beholder og rørføring" width="1100" height="1467" loading="lazy"><figcaption>Jordvarme, enfamiliehus</figcaption></figure>
+      <figure class="g g-stor"><img src="images/web/g-villatag.jpg" alt="Skorstensinddækning og tagrende på en villa" width="1024" height="768" loading="lazy"><figcaption>Blikarbejde, villa</figcaption></figure>
+      <figure class="g"><img src="images/web/g-badny.jpg" alt="Nyt badeværelse i villa med flisemønster og indbygget cisterne" width="1100" height="1467" loading="lazy"><figcaption>Nyt badeværelse, villa</figcaption></figure>
     </div>
   </div>
 </section>
@@ -406,8 +423,7 @@
   <div class="wrap kontakt-in">
     <div class="kontakt-info">
       <h2 class="headline">Ring, eller skriv hvad opgaven er.</h2>
-      <p>Er du i tvivl om, hvor stor den er, så ring. Vi kigger gerne forbi og ser på det,
-        før der bliver skrevet noget ned.</p>
+      <p>Er du i tvivl om, hvor stor opgaven er, så ring. Så finder vi ud af det sammen.</p>
 
       <a class="tlf-plate tlf-plate--stor" href="tel:+4597124755">
         <span class="lbl">Telefon</span>

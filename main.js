@@ -31,6 +31,8 @@
       burger.setAttribute('aria-expanded', 'true');
       burger.setAttribute('aria-label', 'Luk menu');
       document.body.style.overflow = 'hidden';
+      var foerste = sheet.querySelector('a');
+      if (foerste) foerste.focus();
     });
     sheet.addEventListener('click', function (e) {
       if (e.target.closest('a')) lukSheet();
@@ -102,6 +104,13 @@
     besked: function (v) { return v.trim().length >= 5 ? '' : 'Skriv kort hvad opgaven går ud på.'; }
   };
 
+  // Fejlteksten kobles til feltet, så en skærmlæser hører hvad der er galt,
+  // ikke bare at noget er galt.
+  Object.keys(regler).forEach(function (navn) {
+    var ud = form.querySelector('.fejl[data-for="' + navn + '"]');
+    if (ud) ud.id = 'fejl-' + navn;
+  });
+
   function vis(navn) {
     var felt = form.elements[navn];
     if (!felt) return true;
@@ -110,6 +119,8 @@
     if (ud) ud.textContent = besked;
     felt.closest('.felt').classList.toggle('har-fejl', !!besked);
     felt.setAttribute('aria-invalid', besked ? 'true' : 'false');
+    if (besked) felt.setAttribute('aria-describedby', 'fejl-' + navn);
+    else felt.removeAttribute('aria-describedby');
     return !besked;
   }
 

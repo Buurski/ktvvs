@@ -49,8 +49,10 @@ button,input,textarea{font:inherit;color:inherit}
 .skip:focus{left:8px;top:8px}
 
 :where(a,button,input,textarea,summary):focus-visible{
-  outline:2px solid var(--s950);outline-offset:2px;
+  outline:2px solid var(--fokus,var(--s950));outline-offset:2px;
 }
+/* Ringen skal kunne ses paa den flade den ligger paa. */
+.nav,.sheet,.skema,.tilskud,.fod,.mobil-tlf,.tlf-plate,.sheet-tlf,.btn{--fokus:#fff}
 
 /* ---------- roller ---------- */
 .display{
@@ -90,11 +92,7 @@ button,input,textarea{font:inherit;color:inherit}
   padding:6px 0;border-bottom:2px solid transparent;transition:color .14s,border-color .14s;
 }
 .nav-links a:hover{color:var(--surface)}
-.nav-links a[data-medie=vand]:hover{border-color:var(--vand)}
-.nav-links a[data-medie=varme]:hover{border-color:var(--varme)}
-.nav-links a[data-medie=luft]:hover{border-color:var(--luft)}
-.nav-links a[data-medie=gas]:hover{border-color:var(--gas)}
-.nav-links a[data-medie=metal]:hover{border-color:var(--s400)}
+.nav-links a:hover,.nav-links a:focus-visible{border-color:var(--surface)}
 
 .nav-tlf{
   display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--surface);
@@ -137,7 +135,21 @@ button,input,textarea{font:inherit;color:inherit}
 }
 .hero-text{padding-bottom:clamp(40px,5vw,76px)}
 .hero .display{font-size:clamp(34px,5vw,76px)}
-.hero .display :where(br){display:block}
+
+/* Sidens vigtigste tal sættes som en mærkepladeværdi, ikke som overskriftstekst:
+   tabulære cifre i udvidet bredde, enheden som separat mono-etiket. */
+.hero-h1{display:flex;flex-direction:column;gap:2px}
+.hero-tal{display:flex;align-items:baseline;gap:clamp(8px,1vw,16px);flex-wrap:wrap}
+.hero-tal .n{
+  font-variation-settings:'wdth' 118;font-feature-settings:'tnum' 1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.hero-tal .u{
+  font-family:var(--mono);font-weight:500;font-size:clamp(11px,1.1vw,15px);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--label);
+  align-self:center;padding-bottom:.35em;
+}
+.hero-l2{display:block}
 .hero .lede{max-width:52ch;margin-top:26px;color:var(--s600);font-size:clamp(17px,1.25vw,19px)}
 
 .hero-act{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:stretch}
@@ -190,6 +202,23 @@ button,input,textarea{font:inherit;color:inherit}
 .sec-head{max-width:var(--maxw);margin:0 auto}
 .sec-head p{max-width:60ch;margin-top:20px;color:var(--s600);font-size:17px}
 .sec-head--dark p{color:var(--s400)}
+
+/* Signaturforklaring — de ni fagområder og hvilket medie hvert hører til.
+   Overskriften lover kortlægningen; det er her den bliver vist. */
+.legende{
+  list-style:none;margin:clamp(28px,3vw,44px) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:11px clamp(16px,1.8vw,26px);
+}
+.legende li{
+  display:flex;align-items:center;gap:9px;
+  font-size:15px;color:var(--s200);
+}
+.legende i{width:15px;height:15px;flex:0 0 auto;background:var(--m)}
+.legende li[data-medie=vand]{--m:var(--vand)}
+.legende li[data-medie=varme]{--m:var(--varme)}
+.legende li[data-medie=luft]{--m:var(--luft)}
+.legende li[data-medie=gas]{--m:var(--gas)}
+.legende li[data-medie=metal]{--m:var(--metal)}
 
 .baand-liste{margin-top:clamp(40px,5vw,70px);border-top:1px solid rgba(255,255,255,.1)}
 .baand{
@@ -295,8 +324,8 @@ button,input,textarea{font:inherit;color:inherit}
   width:64px;height:64px;display:grid;place-items:center;
   font-weight:800;font-size:34px;color:#fff;font-variation-settings:'wdth' 112;
 }
-.kar-a{background:var(--luft)}
-.kar-b{background:var(--vand)}
+.kar-a{background:var(--s950)}
+.kar-b{background:var(--s600)}
 .karakterer .lbl{color:var(--s600)}
 
 /* =========================================================
@@ -319,14 +348,14 @@ button,input,textarea{font:inherit;color:inherit}
    ========================================================= */
 .tilskud{background:var(--s900);color:var(--surface);padding-block:var(--sec)}
 .tk-grid{margin-top:clamp(36px,4.5vw,60px);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.13)}
-.tk{background:var(--s900);padding:clamp(24px,2.6vw,38px)}
-.tk .lbl{color:var(--s400);display:block}
-.tk .data{margin:16px 0 14px;color:var(--luft)}
-.tk .data i{font-style:normal;font-family:var(--mono);font-size:.26em;letter-spacing:.1em;text-transform:uppercase;margin-left:8px;color:var(--s400);vertical-align:.5em}
+.tk{background:var(--s800);padding:clamp(24px,2.6vw,38px)}
+.tk .lbl{color:var(--s200);display:block}
+.tk .data{margin:16px 0 14px;color:var(--surface)}
+.tk .data i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-left:8px;color:var(--s200);vertical-align:.5em}
 .tk p{color:var(--s200);font-size:15px}
 .tk-advar .data{color:var(--varme)}
 .tk-ord{font-size:clamp(26px,2.7vw,34px);font-variation-settings:'wdth' 104;letter-spacing:-.025em}
-.tk-fod{margin-top:30px;max-width:78ch;color:var(--s400);font-size:13px}
+.tk-fod{margin-top:30px;max-width:70ch;color:var(--s400);font-size:13px}
 
 /* =========================================================
    OM
@@ -412,7 +441,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
 }
 .btn:hover{background:var(--varme-deeper)}
 .form-note{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--label)}
-.kvittering{margin-top:20px;border-left:none;background:var(--luft);color:#fff;padding:18px 20px}
+.kvittering{margin-top:20px;background:var(--s950);color:#fff;padding:18px 20px}
 .kvittering .lbl{color:rgba(255,255,255,.8);display:block;margin-bottom:7px}
 .kvittering p{font-weight:600}
 
@@ -440,7 +469,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
   .hero-in{grid-template-columns:1fr;gap:0}
   .hero-text{padding-bottom:36px}
   .hero-fig img{aspect-ratio:16/9}
-  .baand{grid-template-columns:clamp(110px,14vw,180px) minmax(0,1fr) 170px}
+  .baand{grid-template-columns:clamp(110px,14vw,180px) minmax(0,1fr) 205px}
   .baand-foto{display:none}
   .rating-in{grid-template-columns:1fr;gap:34px}
   .galleri{grid-template-columns:repeat(2,1fr)}
@@ -449,8 +478,8 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
 
 @media (max-width:960px){
   .nav-links{display:none}
-  .burger{display:block;margin-left:auto}
-  .nav-tlf{margin-left:0;order:2}
+  .nav-tlf{margin-left:auto;order:2}
+  .burger{display:block;order:3;margin-left:4px}
   .om-in,.kontakt-in{grid-template-columns:1fr}
   .tk-grid{grid-template-columns:1fr}
   .fod-in{grid-template-columns:1fr;gap:26px;text-align:left}
@@ -477,6 +506,9 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
     display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px 14px;
     border-bottom:1px solid var(--s200);padding:16px 0;align-items:start;
   }
+  /* display:grid på rækken slår [hidden] ud — uden denne linje er
+     referencefilteret dødt på mobil. */
+  .spec tbody tr[hidden]{display:none}
   .spec td{border:0;padding:0}
   .spec td:first-child{grid-column:1;grid-row:1;font-size:15px}
   .spec td.r{grid-column:2;grid-row:1;text-align:right;white-space:nowrap}
