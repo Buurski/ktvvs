@@ -44,6 +44,7 @@ button,input,textarea{font:inherit;color:inherit}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ik-defs{position:absolute;width:0;height:0;overflow:hidden}
 
 .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--s950);color:#fff;padding:12px 18px}
 .skip:focus{left:8px;top:8px}
@@ -52,7 +53,14 @@ button,input,textarea{font:inherit;color:inherit}
   outline:2px solid var(--fokus,var(--s950));outline-offset:2px;
 }
 /* Ringen skal kunne ses paa den flade den ligger paa. */
-.nav,.sheet,.skema,.tilskud,.fod,.mobil-tlf,.tlf-plate,.sheet-tlf,.btn{--fokus:#fff}
+.nav,.sheet,.skema,.tilskud,.fod,.mobil-tlf,.tlf-plate,.sheet-tlf,.btn,
+.hero,.rating,.cta-baand--moerk,.arb-spor,.cta-in--tilskud{--fokus:#fff}
+
+/* Mediesymbolerne tegnes med streg, aldrig fyld. Samme vaegt overalt. */
+.ik-defs g,.legende svg,.baand-ik,.vaelg-rk svg,.hero-ned svg{
+  fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;
+}
 
 /* ---------- roller ---------- */
 .display{
@@ -72,20 +80,45 @@ button,input,textarea{font:inherit;color:inherit}
   letter-spacing:.13em;text-transform:uppercase;
 }
 
+/* ---------- indløb ved scroll ---------- */
+/* Kun med script. Uden script staar alt fremme fra start. */
+.js [data-anim]{opacity:0;transform:translateY(16px)}
+.js [data-anim].ind{
+  opacity:1;transform:none;
+  transition:opacity .55s ease,transform .55s cubic-bezier(.16,.9,.3,1);
+}
+@media (prefers-reduced-motion:reduce){
+  .js [data-anim]{opacity:1;transform:none;transition:none}
+}
+
 /* =========================================================
    NAV
    ========================================================= */
 .nav{position:sticky;top:0;z-index:100;background:var(--s950);color:var(--surface)}
 .nav-in{
   max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
-  height:var(--navh);display:flex;align-items:center;gap:clamp(16px,3vw,48px);
+  height:var(--navh);display:flex;align-items:center;gap:clamp(14px,2.4vw,40px);
 }
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;flex:0 0 auto}
-.brand-mark{width:34px;height:34px;flex:0 0 auto}
+.brand-plads{display:block;width:34px;height:34px;flex:0 0 auto}
+.brand-mark{width:100%;height:100%;display:block}
 .brand-word{font-weight:800;font-size:19px;letter-spacing:-.02em;font-variation-settings:'wdth' 112}
 .brand-dot{color:var(--varme);padding-inline:1px}
+/* Maerket flyver fra hero op i navigationen. Klassen saettes foerst naar
+   flyveren rent faktisk findes — ellers ville maerket forsvinde helt for
+   dem der har slaaet bevaegelse fra. */
+.flyv .brand-plads .brand-mark,
+.flyv .mark-plads .mark-stor{visibility:hidden}
+.flyv .brand-word{opacity:0;transition:opacity .25s ease}
+.flyv .brand-word.vis{opacity:1}
 
-.nav-links{display:flex;gap:clamp(14px,1.9vw,30px);margin-left:auto}
+.fly-mark{
+  position:fixed;top:0;left:0;z-index:101;pointer-events:none;
+  transform-origin:0 0;will-change:transform;
+}
+@media (prefers-reduced-motion:reduce){.fly-mark{transition:none}}
+
+.nav-links{display:flex;gap:clamp(12px,1.6vw,26px);margin-left:auto}
 .nav-links a{
   font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.11em;
   text-transform:uppercase;color:var(--s200);text-decoration:none;
@@ -96,7 +129,7 @@ button,input,textarea{font:inherit;color:inherit}
 
 .nav-tlf{
   display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--surface);
-  padding-left:clamp(16px,2vw,30px);border-left:1px solid rgba(255,255,255,.14);
+  padding-left:clamp(14px,1.8vw,26px);border-left:1px solid rgba(255,255,255,.14);
 }
 .nav-tlf .lbl{color:var(--s400)}
 .nav-tlf .val{
@@ -104,6 +137,13 @@ button,input,textarea{font:inherit;color:inherit}
   font-variation-settings:'wdth' 115;font-variant-numeric:tabular-nums;
 }
 .nav-tlf:hover .val{color:var(--varme)}
+
+.nav-cta{
+  flex:0 0 auto;background:var(--varme-deep);color:#fff;text-decoration:none;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.11em;
+  text-transform:uppercase;padding:11px 16px;transition:background .13s;
+}
+.nav-cta:hover{background:var(--varme-deeper)}
 
 .burger{display:none;background:none;border:0;padding:10px;cursor:pointer}
 .burger span{display:block;width:22px;height:2px;background:var(--surface);margin:4px 0}
@@ -127,32 +167,60 @@ button,input,textarea{font:inherit;color:inherit}
 
 /* =========================================================
    HERO
+   Firmaets eget anlaeg i fuld bredde. Fotoet er byggeplads-
+   dokumentation, ikke reklamefoto — derfor beskaaret taet og
+   moerknet, saa det baerer i stoerrelsen.
    ========================================================= */
-.hero{background:var(--paper);border-bottom:1px solid var(--s200)}
+.hero{
+  position:relative;isolation:isolate;background:var(--s950);color:var(--surface);
+  min-height:clamp(560px,90vh,940px);display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(56px,8vh,104px) 0 clamp(78px,10vh,120px);overflow:hidden;
+}
+.hero-foto{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:32% 58%;z-index:-2;
+}
+.hero-skygge{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(100deg,rgba(9,13,18,.95) 0%,rgba(9,13,18,.9) 34%,rgba(9,13,18,.62) 62%,rgba(9,13,18,.42) 100%),
+    linear-gradient(to top,rgba(9,13,18,.85) 0%,rgba(9,13,18,0) 42%);
+}
+
+/* Flowspor. Roedt loeber op, blaat loeber ned — logoets egen aflaesning.
+   Kun transform animeres; ingen filter, ingen skygge. */
+.hero-flow{
+  position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#fff 16%,#fff 84%,transparent);
+  mask-image:linear-gradient(to bottom,transparent,#fff 16%,#fff 84%,transparent);
+}
+.spor{position:absolute;top:0;bottom:0;right:var(--x);width:1px;background:rgba(255,255,255,.11)}
+.spor::after{
+  content:'';position:absolute;left:-1px;width:3px;height:26%;
+  background:linear-gradient(to bottom,transparent,var(--c),transparent);
+  animation-duration:var(--t);animation-delay:var(--f);
+  animation-timing-function:linear;animation-iteration-count:infinite;
+}
+.spor-frem{--c:var(--varme)}
+.spor-frem::after{animation-name:loeb-op}
+.spor-retur{--c:var(--vand)}
+.spor-retur::after{animation-name:loeb-ned}
+@keyframes loeb-op{from{transform:translateY(400%)}to{transform:translateY(-400%)}}
+@keyframes loeb-ned{from{transform:translateY(-400%)}to{transform:translateY(400%)}}
+@media (prefers-reduced-motion:reduce){.spor::after{animation:none;opacity:.5}}
+
 .hero-in{
-  max-width:var(--maxw);margin:0 auto;padding:clamp(44px,6vw,88px) var(--pad) 0;
-  display:grid;grid-template-columns:1.16fr .84fr;gap:clamp(28px,4vw,64px);align-items:end;
+  position:relative;max-width:var(--maxw);width:100%;margin:0 auto;
+  padding-inline:var(--pad);
 }
-.hero-text{padding-bottom:clamp(40px,5vw,76px)}
-.hero .display{font-size:clamp(34px,5vw,76px)}
+.mark-plads{display:block;width:clamp(84px,10vw,146px);height:clamp(84px,10vw,146px);margin-bottom:clamp(20px,2.4vw,34px)}
+.mark-stor{width:100%;height:100%;display:block}
 
-/* Sidens vigtigste tal sættes som en mærkepladeværdi, ikke som overskriftstekst:
-   tabulære cifre i udvidet bredde, enheden som separat mono-etiket. */
-.hero-h1{display:flex;flex-direction:column;gap:2px}
-.hero-tal{display:flex;align-items:baseline;gap:clamp(8px,1vw,16px);flex-wrap:wrap}
-.hero-tal .n{
-  font-variation-settings:'wdth' 118;font-feature-settings:'tnum' 1;
-  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
-}
-.hero-tal .u{
-  font-family:var(--mono);font-weight:500;font-size:clamp(11px,1.1vw,15px);
-  letter-spacing:.13em;text-transform:uppercase;color:var(--label);
-  align-self:center;padding-bottom:.35em;
-}
-.hero-l2{display:block}
-.hero .lede{max-width:52ch;margin-top:26px;color:var(--s600);font-size:clamp(17px,1.25vw,19px)}
+.hero-brow{color:var(--s200);margin-bottom:14px}
+.hero-h1{max-width:16ch}
+.hero .lede{max-width:54ch;margin-top:24px;color:var(--s100);font-size:clamp(17px,1.25vw,19px)}
 
-.hero-act{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:stretch}
+.hero-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;align-items:stretch}
 
 .tlf-plate{
   display:flex;flex-direction:column;justify-content:center;gap:5px;
@@ -160,7 +228,7 @@ button,input,textarea{font:inherit;color:inherit}
   transition:background .13s;
 }
 .tlf-plate:hover{background:var(--varme-deeper)}
-.tlf-plate .lbl{color:rgba(255,255,255,.82)}
+.tlf-plate .lbl{color:rgba(255,255,255,.85)}
 .tlf-plate .val{
   font-weight:800;font-size:30px;line-height:1;letter-spacing:-.01em;
   font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
@@ -168,6 +236,19 @@ button,input,textarea{font:inherit;color:inherit}
 .tlf-plate--stor{margin-top:30px;align-self:flex-start;display:inline-flex;padding:18px 32px}
 .tlf-plate--stor .val{font-size:clamp(30px,3.6vw,46px)}
 
+.btn-lys{
+  display:inline-flex;align-items:center;background:var(--surface);border:1px solid var(--surface);
+  color:var(--s950);text-decoration:none;padding:14px 26px;font-weight:600;font-size:17px;
+  transition:background .13s,border-color .13s;
+}
+.btn-lys:hover{background:#fff;border-color:#fff}
+.btn-linje{
+  display:inline-flex;align-items:center;background:none;
+  border:1px solid var(--linje,rgba(255,255,255,.42));
+  color:var(--linje-tekst,var(--surface));text-decoration:none;padding:14px 26px;
+  font-weight:600;font-size:17px;transition:background .13s,border-color .13s;
+}
+.btn-linje:hover{border-color:var(--linje-hover,#fff);background:rgba(255,255,255,.07)}
 .btn-ghost{
   display:inline-flex;align-items:center;background:none;border:1px solid var(--s200);
   color:var(--s950);text-decoration:none;padding:14px 26px;font-weight:600;font-size:17px;
@@ -176,24 +257,24 @@ button,input,textarea{font:inherit;color:inherit}
 .btn-ghost:hover{background:var(--s100);border-color:var(--s400)}
 
 .hero-spec{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:44px 0 0;
-  border-top:1px solid var(--s200);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:clamp(34px,4vw,52px) 0 0;
+  border-top:1px solid rgba(255,255,255,.22);max-width:920px;
 }
 .hero-spec>div{padding:16px 16px 0 0}
 .hero-spec dt{
   font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--label);margin-bottom:7px;
+  text-transform:uppercase;color:var(--s400);margin-bottom:7px;
 }
-.hero-spec dd{margin:0;font-weight:600;font-size:15px;line-height:1.3}
+.hero-spec dd{margin:0;font-weight:600;font-size:15px;line-height:1.3;color:var(--surface)}
 
-.hero-fig{margin:0;position:relative}
-.hero-fig img{width:100%;object-fit:cover;aspect-ratio:4/3;border:1px solid var(--s200);border-bottom:0}
-.hero-fig figcaption{
-  position:absolute;left:0;bottom:0;background:var(--s950);color:var(--surface);
-  padding:11px 16px;display:flex;flex-direction:column;gap:4px;max-width:88%;
+.hero-ned{
+  position:absolute;left:var(--pad);bottom:clamp(22px,3.4vh,40px);z-index:1;
+  display:flex;align-items:center;gap:10px;color:var(--s200);text-decoration:none;
 }
-.hero-fig .lbl{color:var(--s400)}
-.hero-fig .txt{font-weight:600;font-size:13px}
+.hero-ned svg{width:18px;height:18px;flex:0 0 auto;animation:ned 2.4s ease-in-out infinite}
+.hero-ned:hover{color:#fff}
+@keyframes ned{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){.hero-ned svg{animation:none}}
 
 /* =========================================================
    ANLÆGSSKEMA
@@ -204,32 +285,45 @@ button,input,textarea{font:inherit;color:inherit}
 .sec-head--dark p{color:var(--s400)}
 
 /* Signaturforklaring — de ni fagområder og hvilket medie hvert hører til.
-   Overskriften lover kortlægningen; det er her den bliver vist. */
+   Overskriften lover kortlægningen; det er her den bliver vist. Hvert felt
+   er en knap, der fremhaever sit baand i skemaet nedenfor. */
 .legende{
   list-style:none;margin:clamp(28px,3vw,44px) 0 0;padding:0;
-  display:flex;flex-wrap:wrap;gap:11px clamp(16px,1.8vw,26px);
+  display:flex;flex-wrap:wrap;gap:10px;
 }
-.legende li{
-  display:flex;align-items:center;gap:9px;
-  font-size:15px;color:var(--s200);
+.legende button{
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  background:none;border:1px solid rgba(255,255,255,.16);color:var(--s100);
+  font-size:15px;font-weight:500;padding:9px 15px 9px 12px;text-align:left;
+  transition:border-color .15s,background .15s,color .15s;
 }
-.legende i{width:15px;height:15px;flex:0 0 auto;background:var(--m)}
-.legende li[data-medie=vand]{--m:var(--vand)}
-.legende li[data-medie=varme]{--m:var(--varme)}
-.legende li[data-medie=luft]{--m:var(--luft)}
-.legende li[data-medie=gas]{--m:var(--gas)}
-.legende li[data-medie=metal]{--m:var(--metal)}
+.legende svg{width:32px;height:32px;flex:0 0 auto;color:var(--m);stroke-width:1.5}
+.legende button:hover,.legende button.frem{
+  border-color:var(--m);background:rgba(255,255,255,.05);color:#fff;
+}
+.legende li button[data-medie=vand]{--m:var(--vand)}
+.legende li button[data-medie=varme]{--m:var(--varme)}
+.legende li button[data-medie=luft]{--m:var(--luft)}
+.legende li button[data-medie=gas]{--m:var(--gas)}
+.legende li button[data-medie=metal]{--m:var(--metal)}
+.legende-hint{
+  margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--s400);
+}
 
 .baand-liste{margin-top:clamp(40px,5vw,70px);border-top:1px solid rgba(255,255,255,.1)}
 .baand{
   max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
   display:grid;
-  grid-template-columns:clamp(120px,14vw,205px) minmax(0,1fr) clamp(168px,17vw,250px) clamp(150px,16vw,240px);
+  grid-template-columns:clamp(130px,15vw,225px) minmax(0,1fr) clamp(168px,17vw,250px) clamp(150px,16vw,240px);
   align-items:stretch;border-bottom:1px solid rgba(255,255,255,.1);
+  outline:0;transition:background .3s;
 }
+.baand.peget{background:rgba(255,255,255,.05)}
 /* Feltet bløder ud i venstre skærmkant — et mærkningsbånd stopper ikke ved en margen. */
 .baand-felt{
-  display:flex;align-items:center;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:clamp(10px,1.1vw,16px);
   padding:30px 20px 30px calc(var(--pad) + 4px);
   margin-left:calc(var(--pad) * -1);margin-right:clamp(20px,2.5vw,40px);
   position:relative;overflow:hidden;
@@ -246,16 +340,20 @@ button,input,textarea{font:inherit;color:inherit}
   .js .baand:not(.vis) .baand-felt::before{transform:none}
   .js .baand.vis .baand-felt::before{transition:none}
 }
+.baand-ik{
+  position:relative;flex:0 0 auto;color:#fff;stroke-width:1.35;
+  width:clamp(46px,4.6vw,68px);height:clamp(46px,4.6vw,68px);
+}
 .baand-navn{
   position:relative;font-family:var(--mono);font-weight:700;
-  font-size:clamp(22px,1.6vw,26px);letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  font-size:clamp(19px,1.5vw,26px);letter-spacing:.1em;text-transform:uppercase;color:#fff;
 }
 .baand[data-medie=vand]{--m:var(--vand)}
 .baand[data-medie=varme]{--m:var(--varme)}
 .baand[data-medie=luft]{--m:var(--luft)}
 .baand[data-medie=gas]{--m:var(--gas)}
 .baand[data-medie=metal]{--m:var(--metal)}
-.baand[data-medie=gas] .baand-navn{color:var(--s950)}
+.baand[data-medie=gas] .baand-navn,.baand[data-medie=gas] .baand-ik{color:var(--s950)}
 
 .baand-krop{padding:30px 0}
 .baand-krop h3{font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:10px}
@@ -271,6 +369,26 @@ button,input,textarea{font:inherit;color:inherit}
   width:100%;height:100%;object-fit:cover;min-height:150px;
   border-left:1px solid rgba(255,255,255,.1);filter:saturate(.9);
 }
+
+/* =========================================================
+   CTA-BÅND
+   ========================================================= */
+.cta-baand{background:var(--surface);border-block:1px solid var(--s200);padding-block:clamp(34px,4vw,58px)}
+.cta-baand--moerk{background:var(--s900);border-color:rgba(255,255,255,.12);color:var(--surface)}
+.cta-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:clamp(20px,3vw,48px);
+}
+.cta-in--tilskud{
+  margin-top:clamp(34px,4vw,54px);padding-top:clamp(30px,3.4vw,44px);
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.cta-tekst{font-weight:600;font-size:clamp(19px,1.9vw,26px);line-height:1.32;letter-spacing:-.015em;max-width:34ch}
+.cta-baand--moerk .cta-tekst,.cta-in--tilskud .cta-tekst{color:var(--surface)}
+.cta-act{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+/* Linjeknappen laaner sin farve af fladen den staar paa. */
+.cta-baand:not(.cta-baand--moerk){--linje:var(--s400);--linje-tekst:var(--s950);--linje-hover:var(--s950)}
+.cta-baand:not(.cta-baand--moerk) .btn-linje:hover{background:var(--s100)}
 
 /* =========================================================
    REFERENCER
@@ -313,35 +431,98 @@ button,input,textarea{font:inherit;color:inherit}
 
 /* =========================================================
    BYGGERATING
+   Blaat felt: tillid er mediet her. Karakteren laeses paa
+   skala og fylde, ikke paa en groen kulør systemet ikke har.
    ========================================================= */
-.rating{background:var(--surface);border-block:1px solid var(--s200);padding-block:clamp(48px,6vw,86px)}
-.rating-in{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,5vw,80px);align-items:center}
-.rating-txt p{margin-top:18px;color:var(--s600);max-width:46ch}
-.rating-kilde{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--label);line-height:1.7}
-.karakterer{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--s200)}
-.karakterer li{background:var(--surface);padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.kar{
-  width:64px;height:64px;display:grid;place-items:center;
-  font-weight:800;font-size:34px;color:#fff;font-variation-settings:'wdth' 112;
+.rating{background:var(--vand-deep);color:var(--surface);padding-block:clamp(56px,7vw,100px)}
+.rating-in{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,5vw,80px);align-items:center}
+.rating-brow{color:rgba(255,255,255,.72);margin-bottom:16px}
+.rating-txt p{margin-top:18px;color:var(--s100);max-width:48ch}
+.rating-kilde{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);line-height:1.75;
 }
-.kar-a{background:var(--s950)}
-.kar-b{background:var(--s600)}
-.karakterer .lbl{color:var(--s600)}
+.karakterer{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.22);
+}
+.karakterer li{
+  background:var(--vand-deep);padding:26px 14px 22px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
+}
+.kar{
+  font-weight:800;font-size:clamp(40px,4.4vw,58px);line-height:.86;color:#fff;
+  font-variation-settings:'wdth' 112;
+}
+.skala{display:flex;gap:4px}
+.skala i{width:16px;height:7px;background:rgba(255,255,255,.34)}
+.skala i.fyldt{background:#fff}
+.karakterer .lbl{color:var(--s100)}
+
+.rating-mrk{
+  margin-top:1px;background:rgba(255,255,255,.08);padding:20px 22px;
+  display:flex;gap:20px;align-items:center;
+}
+/* Maerket er trykt paa hvid i forvejen — saa giver vi det en hvid plade
+   med vilje i stedet for at lade en hvid firkant sidde og flyde. */
+.rating-mrk img{width:76px;height:auto;flex:0 0 auto;background:#fff;padding:10px}
+.rating-mrk p{font-size:15px;color:var(--s100);margin:0}
 
 /* =========================================================
    UDFØRT ARBEJDE
+   Uden script og paa smalle skaerme: en almindelig vandret
+   scroller. Med script og plads bindes sporet til sidescrollet
+   via en sticky scene — scrollet stopper aldrig.
    ========================================================= */
 .arbejde{padding-block:var(--sec);background:var(--paper)}
-.galleri{margin-top:clamp(32px,4vw,54px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,18px)}
-.g{margin:0;position:relative;background:var(--s950)}
-.g img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;border:1px solid var(--s200)}
-.g-stor{grid-column:span 2}
-.g-stor img{aspect-ratio:8/3}
-.g figcaption{
-  position:absolute;left:0;bottom:0;background:var(--s950);color:var(--surface);
-  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  padding:7px 11px;
+.arb-scene{margin-top:clamp(28px,3.4vw,50px)}
+.arb-spor{
+  display:flex;gap:clamp(12px,1.4vw,22px);
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 var(--pad) 16px;
 }
+.arb-kort{
+  flex:0 0 clamp(258px,74vw,392px);scroll-snap-align:center;margin:0;
+  background:var(--s950);color:var(--surface);display:flex;flex-direction:column;
+}
+.arb-kort img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.arb-kort figcaption{padding:16px 18px 20px;display:flex;flex-direction:column;gap:9px;flex:1 1 auto}
+.arb-kort .lbl{color:var(--m,var(--s400))}
+.arb-kort .txt{font-size:15px;line-height:1.5;color:var(--s200)}
+.arb-kort[data-medie=vand]{--m:#4fa9e0}
+.arb-kort[data-medie=varme]{--m:#f4746a}
+.arb-kort[data-medie=luft]{--m:#3fb3ac}
+.arb-kort[data-medie=metal]{--m:#9aa5af}
+
+.arb-status{
+  max-width:var(--maxw);margin:18px auto 0;padding-inline:var(--pad);
+  display:flex;align-items:center;gap:16px;
+}
+.arb-tal{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--label);flex:0 0 auto;font-variant-numeric:tabular-nums;
+}
+.arb-bar{flex:1 1 auto;height:2px;background:var(--s200);position:relative;overflow:hidden}
+.arb-bar i{
+  position:absolute;inset:0 auto 0 0;width:100%;background:var(--vand);
+  transform-origin:left center;transform:scaleX(var(--p,.08));
+}
+
+/* Sticky-tilstand — kun naar scriptet slaar den til. */
+.arb-drev .arb-scene{height:var(--scene,300vh)}
+.arb-drev .arb-hold{
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;justify-content:center;gap:22px;overflow:hidden;
+}
+.arb-drev .arb-spor{
+  overflow:visible;scroll-snap-type:none;padding:0;
+  transform:translate3d(var(--x,0px),0,0);will-change:transform;
+  width:max-content;padding-left:var(--pad);
+}
+.arb-drev .arb-kort{flex:0 0 clamp(320px,30vw,450px);scroll-snap-align:none}
+/* Uden width:100% goer de vandrette auto-margener at feltet krymper til
+   sin tekst i stedet for at straekke — saa forsvandt fremdriftslinjen. */
+.arb-drev .arb-status{margin-top:0;width:100%}
 
 /* =========================================================
    TILSKUD
@@ -373,9 +554,6 @@ button,input,textarea{font:inherit;color:inherit}
 .tidslinje li{display:grid;grid-template-columns:clamp(90px,9vw,130px) 1fr;gap:20px;padding:17px 0;border-bottom:1px solid var(--s200);align-items:baseline}
 .tidslinje .data{font-size:clamp(19px,2vw,30px);color:var(--s950)}
 .tidslinje .txt{font-size:15px;color:var(--s600)}
-.beviser{margin-top:36px;display:flex;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--s200);padding:22px}
-.beviser img{width:104px;height:auto;flex:0 0 auto}
-.beviser p{font-size:15px;color:var(--s600);margin:0}
 
 /* =========================================================
    VI STØTTER
@@ -409,14 +587,16 @@ button,input,textarea{font:inherit;color:inherit}
 .vaelg-rk label{cursor:pointer}
 .vaelg-rk input{position:absolute;opacity:0;width:0;height:0}
 .vaelg-rk span{
-  display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.09em;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.09em;
   text-transform:uppercase;border:1px solid var(--s200);color:var(--s600);
   padding:9px 12px;border-radius:2px;transition:background .12s,color .12s,border-color .12s;
 }
+.vaelg-rk svg{width:18px;height:18px;flex:0 0 auto}
 .vaelg-rk label:hover span{border-color:var(--s400);color:var(--s950)}
 .vaelg-rk input:checked+span{color:#fff;border-color:transparent}
 .vaelg-rk input:checked+span[data-medie=vand]{background:var(--vand)}
-.vaelg-rk input:checked+span[data-medie=varme]{background:var(--varme)}
+.vaelg-rk input:checked+span[data-medie=varme]{background:var(--varme-deep)}
 .vaelg-rk input:checked+span[data-medie=luft]{background:var(--luft)}
 .vaelg-rk input:checked+span[data-medie=gas]{background:var(--gas);color:var(--s950)}
 .vaelg-rk input:checked+span[data-medie=metal]{background:var(--metal)}
@@ -466,32 +646,32 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
    RESPONSIVT
    ========================================================= */
 @media (max-width:1180px){
-  .hero-in{grid-template-columns:1fr;gap:0}
-  .hero-text{padding-bottom:36px}
-  .hero-fig img{aspect-ratio:16/9}
-  .baand{grid-template-columns:clamp(110px,14vw,180px) minmax(0,1fr) 205px}
+  .baand{grid-template-columns:clamp(120px,15vw,190px) minmax(0,1fr) 205px}
   .baand-foto{display:none}
   .rating-in{grid-template-columns:1fr;gap:34px}
-  .galleri{grid-template-columns:repeat(2,1fr)}
-  .g-stor{grid-column:span 2}
 }
 
 @media (max-width:960px){
   .nav-links{display:none}
+  .nav-cta{display:none}
   .nav-tlf{margin-left:auto;order:2}
   .burger{display:block;order:3;margin-left:4px}
   .om-in,.kontakt-in{grid-template-columns:1fr}
   .tk-grid{grid-template-columns:1fr}
   .fod-in{grid-template-columns:1fr;gap:26px;text-align:left}
   .fod-slut{text-align:left}
+  .cta-in{flex-direction:column;align-items:flex-start}
 }
 
 @media (max-width:860px){
   .baand{grid-template-columns:1fr;padding-block:0}
   .baand-felt{
+    flex-direction:row;align-items:center;gap:14px;
     margin-right:calc(var(--pad) * -1);
-    padding:14px 18px 14px calc(var(--pad) + 2px);min-height:52px;
+    padding:12px 18px 12px calc(var(--pad) + 2px);min-height:58px;
   }
+  .baand-ik{width:34px;height:34px;stroke-width:1.5}
+  .legende svg{width:28px;height:28px}
   .baand-krop{padding:22px 0 6px}
   .baand-tal{padding:0 0 24px;flex-direction:row;align-items:baseline;gap:14px;justify-content:flex-start}
   .baand-tal .data{font-size:34px}
@@ -515,22 +695,33 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
   .spec td:nth-child(2){grid-column:1;grid-row:2}
   .spec .n{font-size:19px}
   .spec .r i{font-size:10px;letter-spacing:.05em}
-  .beviser{flex-direction:column;align-items:flex-start;gap:16px}
+  .rating-mrk{flex-direction:column;align-items:flex-start;gap:16px}
+}
+
+@media (max-width:700px){
+  /* Sporene loeber hen over teksten, naar hero'en er smal. */
+  .hero-flow{display:none}
+  /* Den vandrette gradient er bygget til en bred hero. Paa en smal skaerm
+     ligger teksten i den moerkeste ende og fotoet forsvinder helt. */
+  .hero-skygge{
+    background:linear-gradient(180deg,rgba(9,13,18,.9) 0%,rgba(9,13,18,.74) 34%,rgba(9,13,18,.93) 100%);
+  }
+  .hero-foto{object-position:26% 50%}
 }
 
 @media (max-width:560px){
   :root{--navh:60px}
   .display{font-size:clamp(30px,8.6vw,46px)}
   .brand-word{font-size:17px}
-  .brand-mark{width:29px;height:29px}
+  .brand-plads{width:29px;height:29px}
   .nav-tlf{padding-left:12px}
   .nav-tlf .val{font-size:15px}
+  .hero{min-height:0;padding-block:clamp(40px,7vh,64px) clamp(66px,9vh,92px)}
   .hero-act{flex-direction:column;align-items:stretch}
   .tlf-plate{align-items:flex-start}
-  .btn-ghost{justify-content:center}
-  .galleri{grid-template-columns:1fr}
-  .g-stor{grid-column:span 1}
-  .g-stor img{aspect-ratio:4/3}
+  .btn-lys,.btn-linje,.btn-ghost{justify-content:center}
+  .hero-ned{display:none}
+  .cta-act{flex-direction:column;align-items:stretch;width:100%}
   .felt-rk{grid-template-columns:1fr}
   body{padding-bottom:64px}
   .mobil-tlf{

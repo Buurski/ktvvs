@@ -85,10 +85,17 @@ typography:
     letterSpacing: "0"
   band-name:
     fontFamily: "Azeret Mono, ui-monospace, monospace"
-    fontSize: "clamp(22px, 1.6vw, 26px)"
+    fontSize: "clamp(19px, 1.5vw, 26px)"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.1em"
+  karakter:
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "clamp(40px, 4.4vw, 58px)"
+    fontWeight: 800
+    lineHeight: 0.86
+    letterSpacing: "0"
+    fontVariation: "'wdth' 112"
   label:
     fontFamily: "Azeret Mono, ui-monospace, monospace"
     fontSize: "11px"
@@ -301,7 +308,7 @@ To slags, og de må ikke forveksles.
 ### Medie-båndet (signaturkomponent)
 Systemets definerende komponent. En fuldbredde-række der repræsenterer ét medie, bygget som fire kolonner: **farvefelt · krop · tal · foto**.
 
-1. **Farvefeltet** (`clamp(120px, 14vw, 205px)`) er en massiv flade i mediets farve. Det bløder ud i venstre skærmkant via negativ margen — et mærkningsbånd stopper ikke ved en margen. Bærer mediets navn i mono-versaler, mindst 22px i vægt 700.
+1. **Farvefeltet** (`clamp(130px, 15vw, 225px)`) er en massiv flade i mediets farve. Det bløder ud i venstre skærmkant via negativ margen — et mærkningsbånd stopper ikke ved en margen. Bærer mediets symbol stort med navnet under, i mono-versaler, vægt 700.
 2. **Kroppen** bærer de fagområder mediet dækker (Title) og en beskrivelse (Body-sm).
 3. **Talkolonnen** bærer én rigtig mængde fra referencelisten i Data-sm med enheden som mono-etiket.
 4. **Fotokolonnen** bærer ét ægte projektfoto. Falder bort under 1180px, hvor pladsen er vigtigere end billedet.
@@ -311,12 +318,40 @@ Bånd stables kant mod kant uden mellemrum, så de danner ét sammenhængende sk
 Farven er en flade der fylder et helt felt — aldrig en `border-left`-stribe på en ellers grå række. En farvet venstrekant over 1px er kategoriens standardgreb og gør mediet til dekoration i stedet for struktur.
 
 ### Signaturforklaringen (signaturkomponent)
-Tegningens eget greb, og det der gør tesen synlig i stedet for påstået. En vandret liste med de ni fagområder, hvert med et 15px fyldt farvefelt i sit medies farve. Den står mellem sektionsoverskriften og medie-båndene, så læseren ser kortlægningen ni→fem, før hun møder de fem.
+Tegningens eget greb, og det der gør tesen synlig i stedet for påstået. En vandret liste med de ni fagområder, hvert med sit mediesymbol i mediets farve. Den står mellem sektionsoverskriften og medie-båndene, så læseren ser kortlægningen ni→fem, før hun møder de fem.
+
+Hvert felt er en **knap**: tryk fører til mediets bånd og fremhæver det. Kortlægningen bliver dermed noget man kan bruge, ikke kun læse. Knappen bærer 1px kant i neutral tone og skifter til mediets farve ved hover og valg.
 
 Uden den er overskriften "Ni fagområder. Fem medier." en påstand siden aldrig indfrier.
 
+### Mediesymbolerne
+Fem tegnede symboler, ét pr. medie: **dråbe · flamme · luftstrøm · gasflaske · tag med nedløb**. De er tegnet i huset, i logoets egen geometri, og bruges tre steder: signaturforklaringen, medie-båndets farvefelt og formularens valgfelter.
+
+- Kun streg, aldrig fyld. Vægt 1,7 ved små størrelser, 1,35–1,5 ved store, så den optiske tyngde er ens.
+- Symbolet arver altid sit medies farve — på farvefeltet er det hvidt, fordi feltet selv er farven.
+- I farvefeltet står symbolet **over** navnet, ikke ved siden af, og fylder `clamp(46px, 4.6vw, 68px)`. Et lille ikon ved siden af en etiket er pynt; et stort symbol over navnet er skiltning.
+
+Importér aldrig en ikonpakke (Phosphor, Lucide, Feather). Et genkendeligt pakkeikon gør siden til enhver anden håndværkerside, og det er præcis det udfald systemet er bygget for at undgå. Nye symboler tegnes efter de samme regler.
+
 ### Spec-rækken (signaturkomponent)
 Referencelistens grundform: en vandret række med projektnavn til venstre, mediets chip i midten og mængden højrestillet i tabulære cifre. Rækker adskilles af 1px linjer, ikke af kort. Hele referencelisten er én sammenhængende tabel, ikke et galleri.
+
+## Bevægelse
+
+Fire bevægelser, ikke flere. Hver er bundet til scroll eller et klik, og ingen af dem er dekoration.
+
+**Scroll-reglen.** Scrollet må aldrig kapres. Ingen wheel-hijacking, ingen tvungen sektionsvis navigation, ingen forsinket "smooth scroll"-emulering. `position: sticky` er tilladt, fordi den er systemets egen: brugeren kan altid fortsætte, afbryde og vende om, og den opfører sig rigtigt på berøring. Bevægelse er en **funktion af scroll-positionen**, aldrig noget der overtager den.
+
+1. **Mærkets flugt.** Logoet står stort i hero'en og rejser op i navigationen mens man scroller, hvor det dokker og ordmærket toner ind ved siden af. Start- og slutposition læses af to rigtige pladsholdere i DOM'en, aldrig af hårdkodede tal — så rammer rejsen på alle bredder. Kun `transform` og `opacity`.
+2. **Flowsporene.** Tynde spor i hero'ens højre side; rødt løber op, blåt løber ned. Logoets egen aflæsning gjort til bevægelse. Skjules under 700px, hvor de ville løbe hen over teksten.
+3. **Arbejdssporet.** Sektionen "Udført arbejde" pinnes i én skærmhøjde mens billederne kører sideværts. Under 961px og ved reduceret bevægelse falder den tilbage til en almindelig vandret scroller med `scroll-snap` — den native løsning er bedre på berøring end en efterlignet.
+4. **Indløb.** Medie-felterne løber ind fra venstre i flowets retning; afsnit toner ind med 16px. Begge har et sikkerhedsnet-timeout, fordi en IntersectionObserver springer elementer over ved hurtig scroll, og et farveløst felt er værre end en manglende animation.
+
+**Aldrig animér fra usynlig tilstand uden garanti.** Er startpunktet `opacity: 0` eller `scaleX(0)`, må skjulningen først sættes af scriptet selv (`.js`-klassen), så indholdet står fremme uden JavaScript. Ellers forsvinder designet for dem der aldrig får scriptet.
+
+**Dyre egenskaber animeres ikke.** `filter`, `box-shadow`, `width`, `top` og `background` hører ikke til i en animation. Kun `transform` og `opacity`.
+
+`prefers-reduced-motion: reduce` slår mærkets flugt, flowsporene, det sticky arbejdsspor og alle indløb fra. Siden skal være fuldt brugbar uden en eneste bevægelse.
 
 ## Do's and Don'ts
 
@@ -337,7 +372,9 @@ Referencelistens grundform: en vandret række med projektnavn til venstre, medie
 - **Don't** opfind tekniske etiketter uden data bag — koordinatudlæsninger, sigtekors, tilfældige hex-strenge. En etiket skal indeksere noget rigtigt, ellers er den attrap og gennemskues.
 - **Don't** tilføj `box-shadow` med spredning, glasflader eller gradienter. Dybde kommer fra tonal lagdeling.
 - **Don't** tegn en rød nedadgående pil eller en blå opadgående. Flow-reglen er logoets egen grammatik.
-- **Don't** brug generiske ikon-kort til fagområderne. Medie-båndet erstatter dem, og et ikon-grid er kategoriens standardudseende.
+- **Don't** brug generiske ikon-kort til fagområderne. Medie-båndet erstatter dem, og et ikon-grid er kategoriens standardudseende. Husets egne mediesymboler er ikke det samme som et importeret pakkeikon i et kort.
+- **Don't** kapr scrollet. Sticky er tilladt, wheel-hijacking er ikke.
+- **Don't** animér fra en tilstand hvor indholdet er usynligt, uden at scriptet kan garantere at sende det frem igen.
 - **Don't** brug en farvet `border-left` over 1px på rækker, kort eller callouts. Mediet skal fylde et felt, ikke kante en grå boks.
 - **Don't** sæt en mono-etiket over hver eneste sektion. Etiketten hører til i datakontekst — felter, mængder, medier — ikke som fast sektions-øjenbryn.
 - **Don't** nummerér sektioner 01/02/03 medmindre rækkefølgen selv bærer information læseren skal bruge.

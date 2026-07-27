@@ -1,16 +1,26 @@
 /* =========================================================
    KT VVS — interaktioner
-   Ét autoreret bevægelsesmoment: medie-felterne løber ind fra venstre,
-   i flowets retning, én gang. Alt andet er tilstandsskift.
+
+   Fire bevægelser, alle bundet til scroll eller et klik:
+   1. Mærket rejser fra hero op i navigationen og dokker.
+   2. Medie-felterne løber ind fra venstre, i flowets retning.
+   3. Arbejdssporet kører sideværts mens siden scrolles forbi.
+   4. Afsnit toner ind når de kommer i syne.
+
+   Scrollet bliver aldrig låst eller kapret. Alt kan forlades når som helst,
+   og uden script står hele siden stille og fuldt læsbar.
    ========================================================= */
 (function () {
   'use strict';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rod = document.documentElement;
 
-  // Markerer at script kører. CSS må først skjule medie-felterne herefter,
-  // så farven aldrig mangler på en side uden JS.
-  document.documentElement.classList.add('js');
+  // Markerer at script kører. CSS må først skjule noget herefter,
+  // så intet forsvinder på en side uden JS.
+  rod.classList.add('js');
+
+  function spaend(v, lav, hoej) { return v < lav ? lav : (v > hoej ? hoej : v); }
 
   /* ---------- mobilmenu ---------- */
   var burger = document.getElementById('burger');
@@ -42,7 +52,121 @@
     });
   }
 
-  /* ---------- medie-felternes indløb (det ene bevægelsesmoment) ---------- */
+  /* ---------- mærkets flugt op i navigationen ----------
+     Start- og slutposition læses af to rigtige pladsholdere i DOM'en, så
+     rejsen rammer rigtigt på alle bredder uden hårdkodede tal. Kun transform
+     ændres; intet layout røres undervejs. */
+  var heroMark = document.getElementById('heroMark');
+  var navMark = document.getElementById('navMark');
+  var navWord = document.getElementById('navWord');
+  var flyver = null, maal = null;
+
+  function maalOp() {
+    if (!heroMark || !navMark) return null;
+    var h = heroMark.getBoundingClientRect();
+    var n = navMark.getBoundingClientRect();
+    if (!h.width || !n.width) return null;
+    return {
+      hx: h.left, hy: h.top + window.scrollY, hw: h.width,
+      nx: n.left, ny: n.top, nw: n.width
+    };
+  }
+
+  if (heroMark && navMark && !reduced) {
+    maal = maalOp();
+    if (maal && maal.hy > maal.ny + 20) {
+      flyver = heroMark.querySelector('img').cloneNode(true);
+      flyver.setAttribute('class', 'fly-mark');
+      flyver.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(flyver);
+      rod.classList.add('flyv');
+    }
+  }
+
+  function tegnMaerke() {
+    if (!flyver || !maal) return;
+    var afstand = maal.hy - maal.ny;
+    var p = spaend(window.scrollY / afstand, 0, 1);
+    var x = maal.hx + (maal.nx - maal.hx) * p;
+    // Naturlig position er der maerket ville staa hvis det bare fulgte siden.
+    // Der imellem og dokken interpoleres, saa det glider paa plads og staar stille.
+    var naturlig = maal.hy - window.scrollY;
+    var y = naturlig + (maal.ny - naturlig) * p;
+    var k = 1 + (maal.nw / maal.hw - 1) * p;
+    flyver.style.width = maal.hw + 'px';
+    flyver.style.height = maal.hw + 'px';
+    flyver.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) scale(' + k.toFixed(4) + ')';
+    if (navWord) navWord.classList.toggle('vis', p > 0.72);
+  }
+
+  /* ---------- arbejdssporet ---------- */
+  var scene = document.getElementById('arbScene');
+  var spor = document.getElementById('arbSpor');
+  var arbTal = document.getElementById('arbTal');
+  var arbBar = document.getElementById('arbBar');
+  var kort = spor ? spor.querySelectorAll('.arb-kort').length : 0;
+  var drev = false, rest = 0;
+
+  function opsaetSpor() {
+    if (!scene || !spor) return;
+    var kan = window.innerWidth >= 961 && !reduced;
+    rod.classList.toggle('arb-drev', kan);
+    drev = kan;
+    if (!kan) {
+      scene.style.removeProperty('--scene');
+      spor.style.removeProperty('--x');
+      return;
+    }
+    // Maales foerst efter klassen er sat — sporet er foerst max-content der.
+    var pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--pad')) || 24;
+    rest = Math.max(0, spor.scrollWidth + pad - window.innerWidth);
+    scene.style.setProperty('--scene', (window.innerHeight + rest) + 'px');
+  }
+
+  function tegnSpor() {
+    if (!drev || !scene || !spor) return;
+    var r = scene.getBoundingClientRect();
+    var loeb = r.height - window.innerHeight;
+    var p = loeb > 0 ? spaend(-r.top / loeb, 0, 1) : 0;
+    spor.style.setProperty('--x', (-p * rest).toFixed(1) + 'px');
+    if (arbBar) arbBar.style.setProperty('--p', Math.max(0.04, p).toFixed(3));
+    if (arbTal) {
+      var i = Math.min(kort, Math.floor(p * kort) + 1);
+      arbTal.textContent = (i < 10 ? '0' + i : i) + ' / ' + kort;
+    }
+  }
+
+  /* ---------- ét scroll-kald til begge ---------- */
+  var venter = false;
+  function paaScroll() {
+    if (venter) return;
+    venter = true;
+    requestAnimationFrame(function () {
+      venter = false;
+      tegnMaerke();
+      tegnSpor();
+    });
+  }
+
+  opsaetSpor();
+  tegnMaerke();
+  tegnSpor();
+  window.addEventListener('scroll', paaScroll, { passive: true });
+  window.addEventListener('resize', function () {
+    maal = maalOp();
+    opsaetSpor();
+    tegnMaerke();
+    tegnSpor();
+  });
+  // Skrifter og billeder skifter maal efter foerste maaling.
+  window.addEventListener('load', function () {
+    maal = maalOp();
+    opsaetSpor();
+    tegnMaerke();
+    tegnSpor();
+  });
+
+  /* ---------- medie-felternes indløb ---------- */
   var baand = Array.prototype.slice.call(document.querySelectorAll('.baand'));
   if (baand.length) {
     if (reduced || !('IntersectionObserver' in window)) {
@@ -66,6 +190,37 @@
       }, 2500);
     }
   }
+
+  /* ---------- afsnit toner ind ---------- */
+  var anim = Array.prototype.slice.call(document.querySelectorAll('[data-anim]'));
+  if (anim.length) {
+    if (reduced || !('IntersectionObserver' in window)) {
+      anim.forEach(function (e) { e.classList.add('ind'); });
+    } else {
+      var io2 = new IntersectionObserver(function (poster) {
+        poster.forEach(function (p) {
+          if (!p.isIntersecting) return;
+          p.target.classList.add('ind');
+          io2.unobserve(p.target);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+      anim.forEach(function (e) { io2.observe(e); });
+      setTimeout(function () { anim.forEach(function (e) { e.classList.add('ind'); }); }, 3000);
+    }
+  }
+
+  /* ---------- signaturforklaring peger på sit bånd ---------- */
+  var legKnapper = Array.prototype.slice.call(document.querySelectorAll('.legende button'));
+  legKnapper.forEach(function (knap) {
+    knap.addEventListener('click', function () {
+      var mal = document.getElementById(knap.dataset.maal);
+      if (!mal) return;
+      legKnapper.forEach(function (k) { k.classList.toggle('frem', k.dataset.maal === knap.dataset.maal); });
+      document.querySelectorAll('.baand').forEach(function (b) { b.classList.toggle('peget', b === mal); });
+      mal.classList.add('vis');
+      mal.scrollIntoView({ block: 'center', behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
 
   /* ---------- referencefilter ---------- */
   var chips = document.querySelectorAll('.chip');

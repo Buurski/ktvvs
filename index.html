@@ -11,11 +11,12 @@
   Skarpe hjørner overalt; logoets cirkel er systemets eneste kurve. Archivo med udvidede
   tabulære tal som mærkeplade; Azeret Mono kun som felt-etiket.
 
-  STORY: Besøgende ser at ét firma kører 11.500 m³/h og et badeværelse, finder beviset i
-  navngivne projekter med mængder, og ringer.
+  STORY: Besøgende møder et rigtigt anlæg bygget af KT VVS, ser de fem medier forklaret,
+  finder beviset i navngivne projekter og en tredjepartskarakter, og ringer.
 
-  FIRST VIEWPORT: Maskinsort bjælke. Venstre: display-udsagn + telefon som dataværdi.
-  Højre: kranløft af ventilationskanal med KT VVS' egne varevogne, mærkeplade-billedtekst.
+  FIRST VIEWPORT: Firmaets eget trykluftanlæg i fuld bredde, mørknet. Mærket stort over.
+  Flowsporene i højre side løber rødt op og blåt ned — logoets egen bevægelse.
+  Mærket rejser op i navigationen når man scroller.
 
   FORM: "Anlægstavlen", nr. 1 på egen resonansliste. concept-seed.mjs ude af drift
   (tom output, exit 0) — retningen valgt af brugeren blandt fire fremlagte.
@@ -31,41 +32,64 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="images/web/hero-anlaeg-1600.jpg"
+      imagesrcset="images/web/hero-anlaeg-1000.jpg 1000w, images/web/hero-anlaeg-1600.jpg 1600w, images/web/hero-anlaeg-2400.jpg 2400w"
+      imagesizes="100vw">
 </head>
 <body>
 
 <a class="skip" href="#hoved">Spring til indhold</a>
 
+<!-- Mediesymbolerne. Tegnet i logoets eget sprog: samme stregvægt, samme
+     geometri, ingen importeret ikonpakke. -->
+<svg class="ik-defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <g id="ik-vand"><path d="M12 3.4c0 0-6.4 6.9-6.4 10.7a6.4 6.4 0 0 0 12.8 0C18.4 10.3 12 3.4 12 3.4Z"/></g>
+    <g id="ik-varme">
+      <path d="M12 21a5.6 5.6 0 0 0 5.6-5.6c0-4.3-4.4-6-4.4-11.4-2 1.4-3.6 3.6-3.6 6 0 1.6.9 2.3.9 3.3 0 1-.8 1.7-1.7 1.7-.9 0-1.6-.6-1.7-1.6a5.7 5.7 0 0 0-1.5 3.8A5.6 5.6 0 0 0 12 21Z"/>
+    </g>
+    <g id="ik-luft">
+      <path d="M3 8.4h11.1a2.7 2.7 0 1 0-2.7-2.7"/>
+      <path d="M3 12.4h14.5a2.9 2.9 0 1 1-2.9 2.9"/>
+      <path d="M3 16.4h7.4"/>
+    </g>
+    <g id="ik-gas">
+      <path d="M9.4 21h5.2a2.1 2.1 0 0 0 2.1-2.1v-8.6a4.7 4.7 0 0 0-9.4 0v8.6A2.1 2.1 0 0 0 9.4 21Z"/>
+      <path d="M10.5 5.7V3.3h3v2.4"/>
+    </g>
+    <g id="ik-metal">
+      <path d="M2.4 10.6 12 3.9l9.6 6.7"/>
+      <path d="M4.8 13.6h14.4"/>
+      <path d="M18.4 13.6V20"/>
+    </g>
+  </defs>
+</svg>
+
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="nav-in">
     <a class="brand" href="#top" aria-label="KT VVS — forside">
-      <svg class="brand-mark" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-        <g fill="#ef4035">
-          <path fill-rule="evenodd" d="M4 58.9 A56 56 0 0 1 116 58.9 Z M21.7 44.3 A41.4 41.4 0 0 1 98.3 44.3 Z"/>
-          <path d="M60 20.8 L80.2 34.2 L66.7 34.2 L66.7 44.3 L53.3 44.3 L53.3 34.2 L39.8 34.2 Z"/>
-        </g>
-        <g fill="#0079c2">
-          <path fill-rule="evenodd" d="M4.92 70.1 C16 66.5 27 65.6 36.5 65.6 C46 65.6 52 70.1 60 70.1 C68 70.1 74 65.6 83.5 65.6 C93 65.6 104 66.5 115.08 70.1 A56 56 0 0 1 4.92 70.1 Z M23.9 80.2 A41.4 41.4 0 0 0 96.1 80.2 Z"/>
-          <path d="M60 101.4 L38.7 88 L53.3 88 L53.3 80.2 L66.7 80.2 L66.7 88 L81.3 88 Z"/>
-        </g>
-      </svg>
-      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
+      <span class="brand-plads" id="navMark">
+        <img class="brand-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
+      </span>
+      <span class="brand-word" id="navWord">KT<span class="brand-dot">·</span>VVS</span>
     </a>
 
     <nav class="nav-links" aria-label="Hovedmenu">
-      <a href="#fagomraader" data-medie="vand">Fagområder</a>
-      <a href="#referencer" data-medie="luft">Referencer</a>
-      <a href="#arbejde" data-medie="metal">Udført arbejde</a>
-      <a href="#tilskud" data-medie="gas">Tilskud</a>
-      <a href="#om" data-medie="vand">Om KT VVS</a>
-      <a href="#kontakt" data-medie="varme">Kontakt</a>
+      <a href="#fagomraader">Fagområder</a>
+      <a href="#referencer">Referencer</a>
+      <a href="#rating">Bedømmelse</a>
+      <a href="#arbejde">Udført arbejde</a>
+      <a href="#tilskud">Tilskud</a>
+      <a href="#om">Om KT VVS</a>
     </nav>
 
     <a class="nav-tlf" href="tel:+4597124755">
       <span class="lbl">Telefon</span>
       <span class="val">97 12 47 55</span>
     </a>
+
+    <a class="nav-cta" href="#kontakt">Skriv til os</a>
 
     <button class="burger" id="burger" aria-label="Åbn menu" aria-expanded="false" aria-controls="sheet">
       <span></span><span></span>
@@ -77,6 +101,7 @@
   <nav aria-label="Menu">
     <a href="#fagomraader">Fagområder</a>
     <a href="#referencer">Referencer</a>
+    <a href="#rating">Bedømmelse</a>
     <a href="#arbejde">Udført arbejde</a>
     <a href="#tilskud">Tilskud og fradrag</a>
     <a href="#om">Om KT VVS</a>
@@ -92,69 +117,89 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
+  <img class="hero-foto"
+       src="images/web/hero-anlaeg-1600.jpg"
+       srcset="images/web/hero-anlaeg-1000.jpg 1000w, images/web/hero-anlaeg-1600.jpg 1600w, images/web/hero-anlaeg-2400.jpg 2400w"
+       sizes="100vw"
+       alt="Trykluftanlæg udført af KT VVS: blå hovedrør med ventiler og flanger, ståltanke og loftsføringer i et industriteknikrum"
+       width="2400" height="1200" fetchpriority="high">
+  <div class="hero-skygge" aria-hidden="true"></div>
+
+  <!-- Flowspor: rødt løber op, blåt løber ned. Logoets egen aflæsning,
+       ikke dekoration. Kun transform og opacity animeres. -->
+  <div class="hero-flow" aria-hidden="true">
+    <span class="spor spor-frem" style="--x:6%;--t:9s;--f:0s"></span>
+    <span class="spor spor-frem" style="--x:14%;--t:11s;--f:-3.4s"></span>
+    <span class="spor spor-frem" style="--x:23%;--t:10s;--f:-6.1s"></span>
+    <span class="spor spor-retur" style="--x:31%;--t:12s;--f:-1.8s"></span>
+    <span class="spor spor-retur" style="--x:40%;--t:9.5s;--f:-5.2s"></span>
+  </div>
+
   <div class="hero-in">
-    <div class="hero-text">
-      <h1 class="display hero-h1">
-        <span class="hero-tal"><span class="n">11.500</span><span class="u">m³/h</span></span>
-        <span class="hero-l2">Og ét badeværelse.</span>
-      </h1>
-      <p class="lede">KT VVS har lavet begge dele. Autoriseret VVS-installatør på Platanvej i
-        Herning, grundlagt 1963. Vand, varme, luft, gas og metal, for kommuner, virksomheder
-        og private.</p>
+    <span class="mark-plads" id="heroMark" aria-hidden="true">
+      <img class="mark-stor" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
+    </span>
 
-      <div class="hero-act">
-        <a class="tlf-plate" href="tel:+4597124755">
-          <span class="lbl">Ring til os</span>
-          <span class="val">97 12 47 55</span>
-        </a>
-        <a class="btn-ghost" href="#referencer">Se de 32 projekter</a>
-      </div>
+    <p class="hero-brow lbl">Aut. VVS-installatør · Herning · siden 1963</p>
+    <h1 class="display hero-h1">Vand, varme, luft,<br>gas og metal.</h1>
+    <p class="lede">Ét firma til hele installationen. Vi bygger, servicerer og vedligeholder
+      for kommuner, virksomheder og private i Midtjylland. Billedet her er vores eget
+      trykluftanlæg hos en industrikunde.</p>
 
-      <dl class="hero-spec">
-        <div><dt>Grundlagt</dt><dd>1963</dd></div>
-        <div><dt>Indehaver</dt><dd>Henrik Korshøj</dd></div>
-        <div><dt>Autorisation</dt><dd>Aut. VVS-installatør</dd></div>
-        <div><dt>Kvalitetsstyring</dt><dd>Godkendt af Tekniq</dd></div>
-      </dl>
+    <div class="hero-act">
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+      <a class="btn-lys" href="#kontakt">Skriv hvad opgaven er</a>
+      <a class="btn-linje" href="#referencer">Se de 32 projekter</a>
     </div>
 
-    <figure class="hero-fig">
-      <img src="images/web/hero-ventilation.jpg" alt="Kranløft af stor ventilationskanal over en mur, med KT VVS' varevogne parkeret nedenfor" width="1200" height="900" fetchpriority="high">
-      <figcaption>
-        <span class="lbl">Opgavetype</span>
-        <span class="txt">Ventilationsentreprise, industri</span>
-      </figcaption>
-    </figure>
+    <dl class="hero-spec">
+      <div><dt>Grundlagt</dt><dd>1963</dd></div>
+      <div><dt>Indehaver</dt><dd>Henrik Korshøj</dd></div>
+      <div><dt>Bedømmelse</dt><dd>A · A · A · B</dd></div>
+      <div><dt>Kvalitetsstyring</dt><dd>Godkendt af Tekniq</dd></div>
+    </dl>
   </div>
+
+  <a class="hero-ned" href="#fagomraader">
+    <span class="lbl">Fem medier</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15m0 0-6-6m6 6 6-6"/></svg>
+  </a>
 </section>
 
 <!-- ============ ANLÆGSSKEMA ============ -->
 <section class="skema" id="fagomraader">
   <div class="wrap">
-    <header class="sec-head sec-head--dark">
+    <header class="sec-head sec-head--dark" data-anim>
       <h2 class="headline">Ni fagområder.<br>Fem medier.</h2>
       <p>Vi sorterer ikke efter ydelser, men efter hvad der løber i røret. Det er også sådan
-        en opgave bliver planlagt. Det er også det firmaets eget logo viser: rød pil op er frem
+        en opgave bliver planlagt. Og det er det, firmaets eget logo viser: rød pil op er frem
         og varme, blå pil ned med bølge er retur og vand.</p>
     </header>
 
     <ul class="legende" aria-label="Signaturforklaring: ni fagområder fordelt på fem medier">
-      <li data-medie="vand"><i></i>VVS</li>
-      <li data-medie="vand"><i></i>Badeværelser</li>
-      <li data-medie="varme"><i></i>Jordvarme og varmepumper</li>
-      <li data-medie="varme"><i></i>Solvarme</li>
-      <li data-medie="varme"><i></i>Stoker og brændekedel</li>
-      <li data-medie="varme"><i></i>Energioptimering</li>
-      <li data-medie="luft"><i></i>Ventilation</li>
-      <li data-medie="gas"><i></i>Gas- og oliekedel</li>
-      <li data-medie="metal"><i></i>Blikkenslager</li>
+      <li><button type="button" data-medie="vand" data-maal="b-vand"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-vand"/></svg>VVS</button></li>
+      <li><button type="button" data-medie="vand" data-maal="b-vand"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-vand"/></svg>Badeværelser</button></li>
+      <li><button type="button" data-medie="varme" data-maal="b-varme"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>Jordvarme og varmepumper</button></li>
+      <li><button type="button" data-medie="varme" data-maal="b-varme"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>Solvarme</button></li>
+      <li><button type="button" data-medie="varme" data-maal="b-varme"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>Stoker og brændekedel</button></li>
+      <li><button type="button" data-medie="varme" data-maal="b-varme"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>Energioptimering</button></li>
+      <li><button type="button" data-medie="luft" data-maal="b-luft"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-luft"/></svg>Ventilation</button></li>
+      <li><button type="button" data-medie="gas" data-maal="b-gas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-gas"/></svg>Gas- og oliekedel</button></li>
+      <li><button type="button" data-medie="metal" data-maal="b-metal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-metal"/></svg>Blikkenslager</button></li>
     </ul>
+    <p class="legende-hint">Tryk et fagområde for at se det i skemaet.</p>
   </div>
 
   <div class="baand-liste" id="baand">
 
-    <article class="baand" data-medie="vand">
-      <div class="baand-felt"><span class="baand-navn">Vand</span></div>
+    <article class="baand" id="b-vand" data-medie="vand" tabindex="-1">
+      <div class="baand-felt">
+        <svg class="baand-ik" viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-vand"/></svg>
+        <span class="baand-navn">Vand</span>
+      </div>
       <div class="baand-krop">
         <h3>VVS og badeværelser</h3>
         <p>Vandinstallationer, varmeinstallationer, afløb og sanitet, rørskader og
@@ -168,8 +213,11 @@
       <img class="baand-foto" src="images/web/m-vand.jpg" alt="Færdigt badeværelse med indmuret armatur og stenbadekar" width="1000" height="750" loading="lazy">
     </article>
 
-    <article class="baand" data-medie="varme">
-      <div class="baand-felt"><span class="baand-navn">Varme</span></div>
+    <article class="baand" id="b-varme" data-medie="varme" tabindex="-1">
+      <div class="baand-felt">
+        <svg class="baand-ik" viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>
+        <span class="baand-navn">Varme</span>
+      </div>
       <div class="baand-krop">
         <h3>Varmepumper, jordvarme og energioptimering</h3>
         <p>Jordvarme med nedgravede slanger, luft/vand og luft/luft. Solvarme og
@@ -183,8 +231,11 @@
       <img class="baand-foto" src="images/web/m-varme.jpg" alt="Fjernvarmeinstallation med manometre og isolerede frem- og returrør" width="1000" height="750" loading="lazy">
     </article>
 
-    <article class="baand" data-medie="luft">
-      <div class="baand-felt"><span class="baand-navn">Luft</span></div>
+    <article class="baand" id="b-luft" data-medie="luft" tabindex="-1">
+      <div class="baand-felt">
+        <svg class="baand-ik" viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-luft"/></svg>
+        <span class="baand-navn">Luft</span>
+      </div>
       <div class="baand-krop">
         <h3>Ventilation, køling og procesudsug</h3>
         <p>Bolig- og komfortventilation, køling, industri- og procesventilation samt
@@ -197,8 +248,11 @@
       <img class="baand-foto" src="images/web/m-luft.jpg" alt="Isoleret ventilationskanalforløb ført gennem et teknikrum" width="1000" height="750" loading="lazy">
     </article>
 
-    <article class="baand" data-medie="gas">
-      <div class="baand-felt"><span class="baand-navn">Gas</span></div>
+    <article class="baand" id="b-gas" data-medie="gas" tabindex="-1">
+      <div class="baand-felt">
+        <svg class="baand-ik" viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-gas"/></svg>
+        <span class="baand-navn">Gas</span>
+      </div>
       <div class="baand-krop">
         <h3>Gas- og oliekedler</h3>
         <p>Gaskedler ved nyinstallation og udskiftning, kombination med solvarme,
@@ -212,8 +266,11 @@
       <img class="baand-foto" src="images/web/m-gas.jpg" alt="Gaskedler opsat i kaskade i et teknikrum" width="912" height="684" loading="lazy">
     </article>
 
-    <article class="baand" data-medie="metal">
-      <div class="baand-felt"><span class="baand-navn">Metal</span></div>
+    <article class="baand" id="b-metal" data-medie="metal" tabindex="-1">
+      <div class="baand-felt">
+        <svg class="baand-ik" viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-metal"/></svg>
+        <span class="baand-navn">Metal</span>
+      </div>
       <div class="baand-krop">
         <h3>Blikkenslager i zink og kobber</h3>
         <p>Tagrender og nedløb, skorstensinddækning, facade- og tagbeklædning i kobber og
@@ -230,10 +287,25 @@
   </div>
 </section>
 
+<!-- CTA 1 -->
+<aside class="cta-baand cta-baand--moerk">
+  <div class="wrap cta-in">
+    <p class="cta-tekst">Ved du ikke hvilken kasse din opgave hører i? Det gør ikke noget.
+      Ring, så finder vi ud af det sammen.</p>
+    <div class="cta-act">
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+      <a class="btn-lys" href="#kontakt">Skriv i stedet</a>
+    </div>
+  </div>
+</aside>
+
 <!-- ============ REFERENCER ============ -->
 <section class="ref" id="referencer">
   <div class="wrap">
-    <header class="sec-head">
+    <header class="sec-head" data-anim>
       <h2 class="headline">32 projekter. Med navn.</h2>
       <p>Vi har udført mange forskellige opgaver for mange forskellige kunder. Her er et
         udpluk, ført sådan som vi selv fører listen: kunde, opgave og størrelse.</p>
@@ -292,73 +364,228 @@
 </section>
 
 <!-- ============ BYGGERATING ============ -->
-<section class="rating">
+<section class="rating" id="rating">
   <div class="wrap rating-in">
-    <div class="rating-txt">
-      <h2 class="headline">Bedømt udefra.</h2>
+    <div class="rating-txt" data-anim>
+      <p class="rating-brow lbl">Tredjepartsbedømmelse</p>
+      <h2 class="headline">Bedømt udefra.<br>Ikke af os selv.</h2>
       <p>Byggeriets Evalueringscenter bedømmer entreprenører på fire parametre efter skalaen
-        A til E. Det er ikke noget vi selv skriver. Det er en karakter vi får.</p>
+        A til E, hvor A er bedst. Karakteren gives på baggrund af de bygherrer vi har
+        arbejdet for. Den er ikke noget vi selv skriver.</p>
       <p class="rating-kilde">Byggeriets Evalueringscenter · KT VVS ApS, CVR 28989989 ·
         senest opdateret 07.09.2016</p>
     </div>
-    <ul class="karakterer">
-      <li><span class="kar kar-a">A</span><span class="lbl">Tidsfrister</span></li>
-      <li><span class="kar kar-a">A</span><span class="lbl">Mangler</span></li>
-      <li><span class="kar kar-a">A</span><span class="lbl">Arbejdsmiljø</span></li>
-      <li><span class="kar kar-b">B</span><span class="lbl">Kundetilfredshed</span></li>
-    </ul>
+
+    <div class="rating-kort" data-anim>
+      <ul class="karakterer">
+        <li>
+          <span class="kar">A</span>
+          <span class="skala" role="img" aria-label="Karakter A ud af skalaen A til E">
+            <i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i>
+          </span>
+          <span class="lbl">Tidsfrister</span>
+        </li>
+        <li>
+          <span class="kar">A</span>
+          <span class="skala" role="img" aria-label="Karakter A ud af skalaen A til E">
+            <i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i>
+          </span>
+          <span class="lbl">Mangler</span>
+        </li>
+        <li>
+          <span class="kar">A</span>
+          <span class="skala" role="img" aria-label="Karakter A ud af skalaen A til E">
+            <i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i>
+          </span>
+          <span class="lbl">Arbejdsmiljø</span>
+        </li>
+        <li>
+          <span class="kar">B</span>
+          <span class="skala" role="img" aria-label="Karakter B ud af skalaen A til E">
+            <i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i class="fyldt"></i><i></i>
+          </span>
+          <span class="lbl">Kundetilfredshed</span>
+        </li>
+      </ul>
+
+      <div class="rating-mrk">
+        <img src="assets/badge-danskvvs-tekniq.png" alt="Dansk VVS Garanti og Tekniq Garanti" width="520" height="451" loading="lazy">
+        <p>Medlem af Tekniq (Dansk VVS). Vores kvalitetsstyringssystem er godkendt af
+          Tekniq Kvalitet, og arbejdet er dækket af Dansk VVS Garanti.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ UDFØRT ARBEJDE ============ -->
+<!-- Sporet er en almindelig vandret scroller uden JS og på mobil. Med JS og
+     plads bindes det til sidescrollet via en sticky scene. Aldrig scroll-lås:
+     scrollet stopper ikke, og sektionen kan altid forlades. -->
 <section class="arbejde" id="arbejde">
   <div class="wrap">
-    <header class="sec-head">
+    <header class="sec-head" data-anim>
       <h2 class="headline">Udført arbejde</h2>
-      <p>Billeder fra egne opgaver: industri, offentligt byggeri og private hjem.</p>
+      <p>Billeder fra egne opgaver: industri, offentligt byggeri og private hjem.
+        Rul videre, så kører de forbi.</p>
     </header>
+  </div>
 
-    <div class="galleri">
-      <figure class="g g-stor"><img src="images/web/g-trykluft.jpg" alt="Blå trykluftinstallation med ventiler og tanke i en industrivirksomhed" width="1100" height="825" loading="lazy"><figcaption>Trykluftanlæg, industri</figcaption></figure>
-      <figure class="g"><img src="images/web/g-fjernvarme.jpg" alt="Nedgravede fjernvarmerør i en udgravning" width="1100" height="825" loading="lazy"><figcaption>Fjernvarmeinstallation</figcaption></figure>
-      <figure class="g"><img src="images/web/g-gulvvarme.jpg" alt="Gulvvarmeslanger udlagt på armeringsnet før støbning" width="1100" height="825" loading="lazy"><figcaption>Gulvvarme før støbning</figcaption></figure>
-      <figure class="g"><img src="images/web/g-varmepumpe.jpg" alt="Teknikrum med varmepumpe, beholder og rørføring" width="1100" height="825" loading="lazy"><figcaption>Varmepumpe, enfamiliehus</figcaption></figure>
-      <figure class="g"><img src="images/web/g-vent2.jpg" alt="Store isolerede ventilationskanaler under montage" width="900" height="675" loading="lazy"><figcaption>Ventilation, industri</figcaption></figure>
-      <figure class="g g-stor"><img src="images/web/g-trykluft2.jpg" alt="Blåt rørforløb ført over tag på erhvervsbygning" width="1100" height="825" loading="lazy"><figcaption>Rørføring over tag, erhverv</figcaption></figure>
-      <figure class="g"><img src="images/web/g-tandlaeger.jpg" alt="Erhvervsbygning med facade- og udhængsbeklædning i zink" width="900" height="675" loading="lazy"><figcaption>Facadebeklædning i zink</figcaption></figure>
-      <figure class="g"><img src="images/web/g-bad.jpg" alt="Renoveret badeværelse med væghængt håndvask" width="1100" height="825" loading="lazy"><figcaption>Badeværelsesrenovering</figcaption></figure>
-      <figure class="g"><img src="images/web/g-satellitten.jpg" alt="Metalinddækning monteret på en murkrone, med håndværker i baggrunden" width="1100" height="825" loading="lazy"><figcaption>Inddækning af murkrone</figcaption></figure>
-      <figure class="g"><img src="images/web/g-elas.jpg" alt="Strålevarmepaneler monteret under loftet i en produktionshal" width="1100" height="825" loading="lazy"><figcaption>Varmeanlæg, produktionshal</figcaption></figure>
-      <figure class="g"><img src="images/web/g-jordvarme.jpg" alt="Teknikrum i enfamiliehus med jordvarmeanlæg, beholder og rørføring" width="1100" height="1467" loading="lazy"><figcaption>Jordvarme, enfamiliehus</figcaption></figure>
-      <figure class="g g-stor"><img src="images/web/g-villatag.jpg" alt="Skorstensinddækning og tagrende på en villa" width="1024" height="768" loading="lazy"><figcaption>Blikarbejde, villa</figcaption></figure>
-      <figure class="g"><img src="images/web/g-badny.jpg" alt="Nyt badeværelse i villa med flisemønster og indbygget cisterne" width="1100" height="1467" loading="lazy"><figcaption>Nyt badeværelse, villa</figcaption></figure>
+  <div class="arb-scene" id="arbScene">
+    <div class="arb-hold">
+      <div class="arb-spor" id="arbSpor" tabindex="0" role="group" aria-label="Billeder fra udført arbejde">
+
+        <figure class="arb-kort" data-medie="luft">
+          <img src="images/web/g-trykluft.jpg" alt="Blå trykluftinstallation med ventiler og tanke i en industrivirksomhed" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Trykluft · industri</span>
+            <span class="txt">Hovedføring i blåt trykluftrør med afspærringsventiler, filter og modtagertanke.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="varme">
+          <img src="images/web/g-fjernvarme.jpg" alt="Nedgravede fjernvarmerør i en udgravning" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Fjernvarme · forsyning</span>
+            <span class="txt">Præisolerede frem- og returrør svejst og muffet i udgravningen før tildækning.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="varme">
+          <img src="images/web/g-gulvvarme.jpg" alt="Gulvvarmeslanger udlagt på armeringsnet før støbning" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Gulvvarme · nybyggeri</span>
+            <span class="txt">Slanger bundet op på armeringsnettet og trykprøvet, inden betonen kommer på.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="varme">
+          <img src="images/web/g-varmepumpe.jpg" alt="Teknikrum med varmepumpe, beholder og rørføring" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Varmepumpe · enfamiliehus</span>
+            <span class="txt">Indedel, varmtvandsbeholder og rørføring samlet i ét teknikrum.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="luft">
+          <img src="images/web/g-vent2.jpg" alt="Store isolerede ventilationskanaler under montage" width="900" height="675" loading="lazy">
+          <figcaption>
+            <span class="lbl">Ventilation · industri</span>
+            <span class="txt">Isolerede hovedkanaler ophængt og samlet under montagen.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="luft">
+          <img src="images/web/g-trykluft2.jpg" alt="Blåt rørforløb ført over tag på erhvervsbygning" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Rørføring · erhverv</span>
+            <span class="txt">Føring hen over tag, når der ikke er plads at tage indvendigt.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="metal">
+          <img src="images/web/g-tandlaeger.jpg" alt="Erhvervsbygning med facade- og udhængsbeklædning i zink" width="900" height="675" loading="lazy">
+          <figcaption>
+            <span class="lbl">Zink · facade</span>
+            <span class="txt">Facade og udhæng beklædt i zink. Vedligeholdelsesfrit, og det patinerer selv.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="vand">
+          <img src="images/web/g-bad.jpg" alt="Renoveret badeværelse med væghængt håndvask" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Badeværelse · renovering</span>
+            <span class="txt">Ny installation bag væggen, væghængt sanitet og skjult rørføring.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="metal">
+          <img src="images/web/g-satellitten.jpg" alt="Metalinddækning monteret på en murkrone, med håndværker i baggrunden" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Inddækning · murkrone</span>
+            <span class="txt">Metalafdækning på murkronen, så vandet ledes af i stedet for ned i muren.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="varme">
+          <img src="images/web/g-elas.jpg" alt="Strålevarmepaneler monteret under loftet i en produktionshal" width="1100" height="825" loading="lazy">
+          <figcaption>
+            <span class="lbl">Strålevarme · produktionshal</span>
+            <span class="txt">Paneler under loftet varmer flader og folk i stedet for luften oppe under taget.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="varme">
+          <img src="images/web/g-jordvarme.jpg" alt="Teknikrum i enfamiliehus med jordvarmeanlæg, beholder og rørføring" width="1100" height="1467" loading="lazy">
+          <figcaption>
+            <span class="lbl">Jordvarme · enfamiliehus</span>
+            <span class="txt">Jordvarmeanlæg med beholder og fordelerrør sat op i bryggerset.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="metal">
+          <img src="images/web/g-villatag.jpg" alt="Skorstensinddækning og tagrende på en villa" width="1024" height="768" loading="lazy">
+          <figcaption>
+            <span class="lbl">Blikarbejde · villa</span>
+            <span class="txt">Skorstensinddækning, tagrender og nedløb på en almindelig villa.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="arb-kort" data-medie="vand">
+          <img src="images/web/g-badny.jpg" alt="Nyt badeværelse i villa med flisemønster og indbygget cisterne" width="1100" height="1467" loading="lazy">
+          <figcaption>
+            <span class="lbl">Badeværelse · ny villa</span>
+            <span class="txt">Væghængt toilet med indbygget cisterne, så gulvet kan gøres rent i ét stræk.</span>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <div class="arb-status" aria-hidden="true">
+        <span class="arb-tal" id="arbTal">01 / 13</span>
+        <span class="arb-bar"><i id="arbBar"></i></span>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- CTA 2 -->
+<aside class="cta-baand">
+  <div class="wrap cta-in">
+    <p class="cta-tekst">Har du en opgave der ligner? Ring og fortæl kort hvad det drejer sig
+      om, så siger vi ærligt om det er noget for os.</p>
+    <div class="cta-act">
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+      <a class="btn-linje" href="#kontakt">Skriv i stedet</a>
+    </div>
+  </div>
+</aside>
+
 <!-- ============ TILSKUD OG FRADRAG ============ -->
 <section class="tilskud" id="tilskud">
   <div class="wrap">
-    <header class="sec-head sec-head--dark">
+    <header class="sec-head sec-head--dark" data-anim>
       <h2 class="headline">Tilskud og fradrag.<br>Ring før du går i gang.</h2>
       <p>Skifter du oliefyr, gasfyr eller elvarme ud med en varmepumpe, er der penge at
         hente. Men reglerne har en fælde, og den koster rigtige penge, hvis du rammer den.</p>
     </header>
 
     <div class="tk-grid">
-      <article class="tk">
+      <article class="tk" data-anim>
         <span class="lbl">Varmepumpepuljen</span>
         <span class="data">27.000<i>kr.</i></span>
         <p>Fast tilskud fra Energistyrelsen, når olie-, gas-, træpille- eller elvarme
           udskiftes med varmepumpe. Kræver helårsbolig uden mulighed for fjernvarme.</p>
       </article>
-      <article class="tk">
+      <article class="tk" data-anim>
         <span class="lbl">Grønt håndværkerfradrag</span>
         <span class="data">9.000<i>kr.</i></span>
         <p>Pr. person i husstanden, 2026. Dækker arbejdsløn ved installation, service og
           udskiftning af varmepumper, jordvarme inkl. jordslanger og fjernvarmeunits.</p>
       </article>
-      <article class="tk tk-advar">
+      <article class="tk tk-advar" data-anim>
         <span class="lbl">Fælden</span>
         <span class="data tk-ord">Enten / eller</span>
         <p>Du kan ikke få både tilskud og fradrag for det samme arbejde. Og du må ikke gå i
@@ -371,18 +598,30 @@
       omfattet. Vi er ikke skatterådgivere, men vi hjælper gerne med at planlægge opgaven i
       den rigtige rækkefølge og få fakturaen sat rigtigt op. De officielle regler står på
       skat.dk og sparenergi.dk.</p>
+
+    <div class="cta-in cta-in--tilskud">
+      <p class="cta-tekst">Overvejer du varmepumpe? Ring før du bestiller noget.
+        Rækkefølgen afgør om du får tilskuddet.</p>
+      <div class="cta-act">
+        <a class="tlf-plate" href="tel:+4597124755">
+          <span class="lbl">Ring til os</span>
+          <span class="val">97 12 47 55</span>
+        </a>
+        <a class="btn-lys" href="#kontakt">Skriv i stedet</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ OM KT VVS ============ -->
 <section class="om" id="om">
   <div class="wrap om-in">
-    <figure class="om-fig">
+    <figure class="om-fig" data-anim>
       <img src="images/web/om-skilt.jpg" alt="KT VVS' skilt på en byggeplads med firmaets varevogne og et hus under opførelse i baggrunden" width="1400" height="1167" loading="lazy">
       <figcaption>Byggeplads, Midtjylland</figcaption>
     </figure>
 
-    <div class="om-txt">
+    <div class="om-txt" data-anim>
       <h2 class="headline">Samme firma siden 1963.</h2>
       <p>KT VVS blev grundlagt i 1963 af brødrene Erik og Kurt Truelsen. I dag drives
         virksomheden af Henrik Korshøj, som overtog den i 2005.</p>
@@ -395,12 +634,6 @@
         <li><span class="data">2005</span><span class="txt">Henrik Korshøj overtager virksomheden</span></li>
         <li><span class="data">I dag</span><span class="txt">VVS, gas, ventilation og blikarbejde. Platanvej 15, Herning</span></li>
       </ol>
-
-      <div class="beviser">
-        <img src="assets/badge-danskvvs-tekniq.png" alt="Dansk VVS Garanti og Tekniq Garanti" width="520" height="451" loading="lazy">
-        <p>KT VVS er medlem af Tekniq (Dansk VVS), og vores kvalitetsstyringssystem er
-          godkendt af Tekniq Kvalitet.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -442,12 +675,12 @@
       <fieldset class="medie-vaelg">
         <legend class="lbl">Hvad drejer det sig om?</legend>
         <div class="vaelg-rk">
-          <label><input type="checkbox" name="medie" value="VVS / badeværelse"><span data-medie="vand">VVS / badeværelse</span></label>
-          <label><input type="checkbox" name="medie" value="Varmepumpe / jordvarme"><span data-medie="varme">Varmepumpe / jordvarme</span></label>
-          <label><input type="checkbox" name="medie" value="Ventilation"><span data-medie="luft">Ventilation</span></label>
-          <label><input type="checkbox" name="medie" value="Gas / oliekedel"><span data-medie="gas">Gas / oliekedel</span></label>
-          <label><input type="checkbox" name="medie" value="Blikkenslager / tag"><span data-medie="metal">Blikkenslager / tag</span></label>
-          <label><input type="checkbox" name="medie" value="Andet"><span data-medie="vand">Noget andet</span></label>
+          <label><input type="checkbox" name="medie" value="VVS / badeværelse"><span data-medie="vand"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-vand"/></svg>VVS / badeværelse</span></label>
+          <label><input type="checkbox" name="medie" value="Varmepumpe / jordvarme"><span data-medie="varme"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-varme"/></svg>Varmepumpe / jordvarme</span></label>
+          <label><input type="checkbox" name="medie" value="Ventilation"><span data-medie="luft"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-luft"/></svg>Ventilation</span></label>
+          <label><input type="checkbox" name="medie" value="Gas / oliekedel"><span data-medie="gas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-gas"/></svg>Gas / oliekedel</span></label>
+          <label><input type="checkbox" name="medie" value="Blikkenslager / tag"><span data-medie="metal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-metal"/></svg>Blikkenslager / tag</span></label>
+          <label><input type="checkbox" name="medie" value="Andet"><span data-medie="vand"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ik-vand"/></svg>Noget andet</span></label>
         </div>
       </fieldset>
 
@@ -491,16 +724,7 @@
 <footer class="fod">
   <div class="wrap fod-in">
     <div class="fod-brand">
-      <svg class="fod-mark" viewBox="0 0 120 120" aria-hidden="true">
-        <g fill="#ef4035">
-          <path fill-rule="evenodd" d="M4 58.9 A56 56 0 0 1 116 58.9 Z M21.7 44.3 A41.4 41.4 0 0 1 98.3 44.3 Z"/>
-          <path d="M60 20.8 L80.2 34.2 L66.7 34.2 L66.7 44.3 L53.3 44.3 L53.3 34.2 L39.8 34.2 Z"/>
-        </g>
-        <g fill="#0079c2">
-          <path fill-rule="evenodd" d="M4.92 70.1 C16 66.5 27 65.6 36.5 65.6 C46 65.6 52 70.1 60 70.1 C68 70.1 74 65.6 83.5 65.6 C93 65.6 104 66.5 115.08 70.1 A56 56 0 0 1 4.92 70.1 Z M23.9 80.2 A41.4 41.4 0 0 0 96.1 80.2 Z"/>
-          <path d="M60 101.4 L38.7 88 L53.3 88 L53.3 80.2 L66.7 80.2 L66.7 88 L81.3 88 Z"/>
-        </g>
-      </svg>
+      <img class="fod-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
       <span class="fod-word">KT<span class="brand-dot">·</span>VVS <em>ApS</em></span>
     </div>
 
