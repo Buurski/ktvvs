@@ -1,646 +1,507 @@
 <!doctype html>
+<!--
+  RETNINGSKONTRAKT — KT VVS, forside
+
+  THESIS: Et installationsfirmas hjemmeside sat i anlæggets egen notation. Ni fagområder
+  organiseres som fem medier. Refuserer kategoriens ikon-kort-grid og den forrige demos
+  creme-editorial — kategoriens to forudsigelige udfald.
+
+  OWN-WORLD: Kølig stålpalet (#eef1f4 / #0d1117). Fem medie-farver hentet ud af logoet,
+  som selv er et flowdiagram: rød pil op = frem/varme, blå pil ned + bølge = retur/vand.
+  Skarpe hjørner overalt; logoets cirkel er systemets eneste kurve. Archivo med udvidede
+  tabulære tal som mærkeplade; Azeret Mono kun som felt-etiket.
+
+  STORY: Besøgende ser at ét firma kører 11.500 m³/h og et badeværelse, finder beviset i
+  navngivne projekter med mængder, og ringer.
+
+  FIRST VIEWPORT: Maskinsort bjælke. Venstre: display-udsagn + telefon som dataværdi.
+  Højre: kranløft af ventilationskanal med KT VVS' egne varevogne, mærkeplade-billedtekst.
+
+  FORM: "Anlægstavlen", nr. 1 på egen resonansliste. concept-seed.mjs ude af drift
+  (tom output, exit 0) — retningen valgt af brugeren blandt fire fremlagte.
+-->
 <html lang="da">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nordvang VVS — VVS-installatør i Herning siden 1963</title>
-<meta name="description" content="Familiedrevet VVS-firma i Herning siden 1963. VVS, ventilation, blikkenslager, varmepumper, energioptimering og kedler — for private og erhverv.">
-
+<title>KT VVS ApS — Aut. VVS-installatør i Herning siden 1963</title>
+<meta name="description" content="KT VVS ApS, Platanvej 15, Herning. Autoriseret VVS-installatør siden 1963. Vand, varme, luft, gas og metal for kommuner, virksomheder og private i Midtjylland.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
 </head>
 <body>
-<!-- =========================================================
-     NAV
-     ========================================================= -->
-<header class="nav" id="top">
-  <div class="wrap nav-inner">
-    <a href="#top" class="logo" aria-label="Nordvang VVS — forside">
-      <img data-cms="billede" src="assets/logo.png" alt="Nordvang VVS">
+
+<a class="skip" href="#hoved">Spring til indhold</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="KT VVS — forside">
+      <svg class="brand-mark" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+        <g fill="#ef4035">
+          <path fill-rule="evenodd" d="M4 58.9 A56 56 0 0 1 116 58.9 Z M21.7 44.3 A41.4 41.4 0 0 1 98.3 44.3 Z"/>
+          <path d="M60 20.8 L80.2 34.2 L66.7 34.2 L66.7 44.3 L53.3 44.3 L53.3 34.2 L39.8 34.2 Z"/>
+        </g>
+        <g fill="#0079c2">
+          <path fill-rule="evenodd" d="M4.92 70.1 C16 66.5 27 65.6 36.5 65.6 C46 65.6 52 70.1 60 70.1 C68 70.1 74 65.6 83.5 65.6 C93 65.6 104 66.5 115.08 70.1 A56 56 0 0 1 4.92 70.1 Z M23.9 80.2 A41.4 41.4 0 0 0 96.1 80.2 Z"/>
+          <path d="M60 101.4 L38.7 88 L53.3 88 L53.3 80.2 L66.7 80.2 L66.7 88 L81.3 88 Z"/>
+        </g>
+      </svg>
+      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
     </a>
-    <nav class="nav-links" aria-label="Primær">
-      <a data-cms="linktekst" href="#fagomraader">Fagområder</a>
-      <a data-cms="linktekst-2" href="#referencer">Referencer</a>
-      <a data-cms="linktekst-3" href="#omos">Om os</a>
-      <a data-cms="linktekst-4" href="#stoette">Vi støtter</a>
-      <a data-cms="linktekst-5" href="#kontakt">Kontakt</a>
+
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#fagomraader" data-medie="vand">Fagområder</a>
+      <a href="#referencer" data-medie="luft">Referencer</a>
+      <a href="#arbejde" data-medie="metal">Udført arbejde</a>
+      <a href="#tilskud" data-medie="gas">Tilskud</a>
+      <a href="#om" data-medie="vand">Om KT VVS</a>
+      <a href="#kontakt" data-medie="varme">Kontakt</a>
     </nav>
-    <div class="nav-cta">
-      <span class="phone"><span class="dot"></span>12 34 56 78</span>
-      <a href="#kontakt" class="btn btn-primary">Få et tilbud <span class="arrow">→</span></a>
-      <button class="menu-btn" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M4 7h16M4 12h16M4 17h16"/>
-        </svg>
-      </button>
-    </div>
+
+    <a class="nav-tlf" href="tel:+4597124755">
+      <span class="lbl">Telefon</span>
+      <span class="val">97 12 47 55</span>
+    </a>
+
+    <button class="burger" id="burger" aria-label="Åbn menu" aria-expanded="false" aria-controls="sheet">
+      <span></span><span></span>
+    </button>
   </div>
 </header>
 
-<div class="mobile-sheet" role="dialog" aria-label="Menu">
-  <button class="close menu-btn" aria-label="Luk menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M6 18L18 6"/></svg>
-  </button>
-  <a data-cms="linktekst-6" href="#fagomraader">Fagområder</a>
-  <a data-cms="linktekst-7" href="#referencer">Referencer</a>
-  <a data-cms="linktekst-8" href="#omos">Om os</a>
-  <a data-cms="linktekst-9" href="#stoette">Vi støtter</a>
-  <a data-cms="linktekst-10" href="#kontakt">Kontakt</a>
+<div class="sheet" id="sheet" hidden>
+  <nav aria-label="Menu">
+    <a href="#fagomraader">Fagområder</a>
+    <a href="#referencer">Referencer</a>
+    <a href="#arbejde">Udført arbejde</a>
+    <a href="#tilskud">Tilskud og fradrag</a>
+    <a href="#om">Om KT VVS</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="sheet-tlf" href="tel:+4597124755">
+    <span class="lbl">Ring til os</span>
+    <span class="val">97 12 47 55</span>
+  </a>
 </div>
 
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-<section class="hero" id="hero">
-  <div class="wrap hero-wrap">
-    <div class="hero-photo" aria-hidden="true">
-      <img data-cms="billede-2" src="images/projekt-gulvvarme.jpg" alt="VVS-installation i gang — gulvvarme udlægges på fundament">
-      <span data-cms="tekststykke" class="photo-tag">Gulvvarme · privat villa</span>
-    </div>
+<main id="hoved">
 
-    <div class="hero-top">
-      <div class="hero-meta">
-        <span class="since"><b>EST. 1963</b><span class="sep"></span>Industrivej 188 · 7400 Herning</span>
-        <span data-cms="tekststykke-2" class="kicker">VVS-installatør i Herning &amp; Midtjylland</span>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-in">
+    <div class="hero-text">
+      <h1 class="display">11.500&nbsp;m³/h.<br>Og ét badeværelse.</h1>
+      <p class="lede">KT VVS har lavet begge dele. Autoriseret VVS-installatør på Platanvej i
+        Herning siden 1963. Vand, varme, luft, gas og metal, for kommuner, virksomheder og
+        private i hele Midtjylland.</p>
+
+      <div class="hero-act">
+        <a class="tlf-plate" href="tel:+4597124755">
+          <span class="lbl">Ring til os</span>
+          <span class="val">97 12 47 55</span>
+        </a>
+        <a class="btn-ghost" href="#referencer">Se de 32 projekter</a>
       </div>
 
-      <div class="hero-headline">
-        <h1 data-cms="overskrift">
-          <span class="navy">VVS i</span><br>
-          <span class="navy">Herning</span><br>
-          <span class="navy">siden</span> <span class="red">1963.</span>
-        </h1>
-      </div>
+      <dl class="hero-spec">
+        <div><dt>Grundlagt</dt><dd>1963</dd></div>
+        <div><dt>Indehaver</dt><dd>Henrik Korshøj</dd></div>
+        <div><dt>Autorisation</dt><dd>Aut. VVS-installatør</dd></div>
+        <div><dt>Kvalitetsstyring</dt><dd>Godkendt af Tekniq</dd></div>
+      </dl>
     </div>
 
-    <div class="hero-bottom">
-      <div class="hero-sub">
-        <span data-cms="tekststykke-3" class="lead-quote">Vi laver det rigtigt — og vi laver det færdigt.</span>
-        Familiedrevet siden brødrene Truelsen startede firmaet i 1963. I dag løser
-        vi VVS, ventilation, blikkenslager­arbejde, varmepumper og energi­optimering
-        for både private hjem og erhverv på tværs af Midtjylland.
-      </div>
-
-      <div class="hero-cta-wrap">
-        <div class="hero-cta">
-          <a href="#kontakt" class="btn btn-accent">Få et tilbud <span class="arrow">→</span></a>
-          <a data-cms="linktekst-11" href="tel:+4512345678" class="btn btn-ghost">Ring 12 34 56 78</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat"><div class="num">63</div><div data-cms="tekststykke-4" class="lbl">År i faget</div></div>
-      <div class="stat"><div class="num">6</div><div data-cms="tekststykke-5" class="lbl">Fagområder</div></div>
-      <div class="stat"><div class="num">50<span class="sup">+</span></div><div data-cms="tekststykke-6" class="lbl">Varmepumper installeret</div></div>
-      <div class="stat"><div class="num">3</div><div data-cms="tekststykke-7" class="lbl">Generationer</div></div>
-    </div>
-  </div>
-
-  <div class="scroll-cue"><span class="bar"></span>Scroll</div>
-</section>
-
-<!-- =========================================================
-     SCROLL-LOCKED ANIMATION
-     ========================================================= -->
-<section class="scrollanim" id="anim" aria-label="Hvordan vi arbejder">
-  <div class="pin">
-
-    <div class="sa-head">
-      <div class="copy">
-        <span data-cms="tekststykke-8" class="kicker on-dark">Fra rør til færdig løsning</span>
-        <h2 data-cms="overskrift-2" style="margin-top:14px">Vi bygger det rigtigt — <span class="red">fra rør til færdig løsning.</span></h2>
-        <p data-cms="tekst">Tegning bliver til installation. Installation bliver til varme,
-        vand og luft, der bare virker — år efter år.</p>
-      </div>
-    </div>
-
-    <div class="sa-stage">
-      <div class="stage-inner" id="scroll-anim">
-        <!-- =====================================================
-             DEVELOPER: drop the real video file in here.
-             Keep id="scroll-anim-video". main.js maps
-             video.currentTime to scroll progress 0..1.
-             ===================================================== -->
-        <video id="scroll-anim-video" muted playsinline preload="auto" disableRemotePlayback>
-          <source src="VIdeo/transitionvideo.mp4" type="video/mp4">
-        </video>
-
-        <div class="sa-placeholder">
-          <div class="sa-grid"></div>
-
-          <svg class="sa-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g class="blueprint">
-              <path d="M180 720 L 540 540 L 540 360 L 900 180 L 1260 360 L 1260 540 L 1420 620"/>
-              <path d="M540 540 L 360 640 L 360 760"/>
-              <path d="M540 360 L 380 280"/>
-              <path d="M1260 540 L 1100 620 L 1100 760"/>
-              <path d="M900 180 L 900 80"/>
-              <circle cx="540" cy="540" r="14"/>
-              <circle cx="540" cy="360" r="14"/>
-              <circle cx="900" cy="180" r="18"/>
-              <circle cx="1260" cy="360" r="14"/>
-              <circle cx="1260" cy="540" r="14"/>
-              <circle cx="360" cy="640" r="10"/>
-              <circle cx="1100" cy="620" r="10"/>
-              <rect x="1320" y="600" width="160" height="120" rx="6"/>
-              <rect x="1340" y="620" width="120" height="80" rx="50"/>
-              <path d="M180 760 L 1420 760" stroke-dasharray="6 6"/>
-              <path d="M180 740 L 180 780"/>
-              <path d="M1420 740 L 1420 780"/>
-            </g>
-
-            <g class="photo">
-              <defs>
-                <linearGradient id="finish" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#1a3a5c"/>
-                  <stop offset="1" stop-color="#0a1626"/>
-                </linearGradient>
-              </defs>
-              <rect x="160" y="160" width="1280" height="580" fill="url(#finish)" opacity="0.7"/>
-              <rect x="200" y="200" width="1200" height="500" fill="none" stroke="rgba(255,255,255,.18)"/>
-              <text x="800" y="470" text-anchor="middle"
-                font-family="Bricolage Grotesque" font-weight="600" font-size="120"
-                fill="rgba(255,255,255,.5)" letter-spacing="-4">færdig installation</text>
-            </g>
-
-            <g class="heatflow">
-              <defs>
-                <radialGradient id="heat" cx="0.5" cy="0.5" r="0.5">
-                  <stop offset="0" stop-color="#ff8a7d" stop-opacity="0.8"/>
-                  <stop offset="0.5" stop-color="#d63426" stop-opacity="0.3"/>
-                  <stop offset="1" stop-color="#d63426" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              <circle cx="1400" cy="660" r="240" fill="url(#heat)"/>
-              <circle cx="900" cy="450" r="180" fill="url(#heat)" opacity="0.6"/>
-            </g>
-          </svg>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="sa-foot">
-      <div class="progress-track"><div class="fill"></div></div>
-    </div>
-
-    <!-- Callout — fades in when video reaches its final frame -->
-    <div class="sa-callout" id="sa-callout" aria-hidden="true">
-      <p data-cms="tekst-2" class="sa-callout-text">Sådan ser det ud, <span class="red">når vi er færdige.</span></p>
-      <a href="#kontakt" class="btn btn-accent">Få et tilbud <span class="arrow">→</span></a>
-    </div>
+    <figure class="hero-fig">
+      <img src="images/web/hero-ventilation.jpg" alt="Kranløft af stor ventilationskanal over en mur, med KT VVS' varevogne parkeret nedenfor" width="1200" height="900" fetchpriority="high">
+      <figcaption>
+        <span class="lbl">Opgavetype</span>
+        <span class="txt">Ventilationsentreprise, industri</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- =========================================================
-     FAGOMRÅDER
-     ========================================================= -->
-<section class="services" id="fagomraader">
+<!-- ============ ANLÆGSSKEMA ============ -->
+<section class="skema" id="fagomraader">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2 data-cms="overskrift-3"><span class="red">Seks fagområder.</span><br>Ét hold håndværkere.</h2>
-      <p data-cms="tekst-3" class="right">Vi løser hele opgaven internt — fra det første rør i jorden til den dag varmepumpen kører optimalt. Det er det vi mener med <strong>helhedsleverandør</strong>.</p>
-    </div>
+    <header class="sec-head sec-head--dark">
+      <h2 class="headline">Ni fagområder.<br>Fem medier.</h2>
+      <p>Vi sorterer ikke efter ydelser, men efter hvad der løber i røret. Det er også sådan
+        en opgave bliver planlagt, og sådan logoet har set ud siden 1963: rød op er frem og
+        varme, blå ned er retur og vand.</p>
+    </header>
+  </div>
 
-    <div class="services-grid reveal">
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-3" src="images/renovering-af-badevaerelse-02.jpg" alt="VVS-installation, hvid håndvask">
-          <div class="svc-num">01 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-4" class="svc-title">VVS &amp; badeværelser</h3>
-          <p data-cms="tekst-4" class="svc-blurb">Nyt badeværelse, totalrenovering eller en lækage. Vi tager hele opgaven — fra nedrivning til afleveret rum.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
+  <div class="baand-liste" id="baand">
 
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-4" src="images/projekt-ventilation-erhverv.jpg" alt="Ventilationsanlæg, erhverv">
-          <div class="svc-num">02 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-5" class="svc-title">Ventilation</h3>
-          <p data-cms="tekst-5" class="svc-blurb">Behovsstyret ventilation til både bolig og erhverv. Et hus der trækker vejret — uden træk og uden støj.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
+    <article class="baand" data-medie="vand">
+      <div class="baand-felt"><span class="baand-navn">Vand</span></div>
+      <div class="baand-krop">
+        <h3>VVS og badeværelser</h3>
+        <p>Vandinstallationer, varmeinstallationer, afløb og sanitet, rørskader og
+          reparationer. Badeværelser fra rådgivning til færdig installation, i samarbejde
+          med udstillingerne hos Bad&nbsp;og&nbsp;Design.</p>
+      </div>
+      <div class="baand-tal">
+        <span class="data">19</span>
+        <span class="lbl">VVS-projekter<br>på referencelisten</span>
+      </div>
+      <img class="baand-foto" src="images/web/m-vand.jpg" alt="Færdigt badeværelse med indmuret armatur og stenbadekar" width="1000" height="750" loading="lazy">
+    </article>
 
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-5" src="images/bording-kirkehus-01.jpg" alt="Blikkenslagerarbejde, tag og skorsten">
-          <div class="svc-num">03 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-6" class="svc-title">Blikkenslager</h3>
-          <p data-cms="tekst-6" class="svc-blurb">Tag, inddækninger, zink og kobber. Klassisk håndværk udført af blikkenslagere som ved hvad de laver.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
+    <article class="baand" data-medie="varme">
+      <div class="baand-felt"><span class="baand-navn">Varme</span></div>
+      <div class="baand-krop">
+        <h3>Varmepumper, jordvarme og energioptimering</h3>
+        <p>Jordvarme med nedgravede slanger, luft/vand og luft/luft. Solvarme og
+          brændekedel. EnergiTJEK af eksisterende installationer: varmestyring med
+          vejrkompensering, sparepumper og isolering af vand- og varmeinstallationer.</p>
+      </div>
+      <div class="baand-tal">
+        <span class="data">50<span class="plus">+</span></span>
+        <span class="lbl">varmepumper<br>installeret</span>
+      </div>
+      <img class="baand-foto" src="images/web/m-varme.jpg" alt="Fjernvarmeinstallation med manometre og isolerede frem- og returrør" width="1000" height="750" loading="lazy">
+    </article>
 
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-6" src="images/enfamiliehus-vildbjerg-varmepumpe.jpeg" alt="Varmepumpe-installation i teknikrum">
-          <div class="svc-num">04 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-7" class="svc-title">Jordvarme &amp; varmepumper</h3>
-          <p data-cms="tekst-7" class="svc-blurb">Over 50 anlæg installeret. Vi rådgiver om det rette valg, dimensionerer korrekt og servicerer i mange år frem.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
+    <article class="baand" data-medie="luft">
+      <div class="baand-felt"><span class="baand-navn">Luft</span></div>
+      <div class="baand-krop">
+        <h3>Ventilation, køling og procesudsug</h3>
+        <p>Bolig- og komfortventilation, køling, industri- og procesventilation samt
+          udsugningsanlæg. Service, drift og vedligehold på anlæg vi selv har sat op, og
+          på dem vi har overtaget.</p>
+      </div>
+      <div class="baand-tal">
+        <span class="data">11.500</span>
+        <span class="lbl">m³/h · største<br>anlæg på listen</span>
+      </div>
+      <img class="baand-foto" src="images/web/m-luft.jpg" alt="Stort isoleret ventilationskanalforløb i en offentlig institution" width="1000" height="750" loading="lazy">
+    </article>
 
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-7" src="images/elas-as-straalevarme.jpg" alt="Energi­optimering i industri">
-          <div class="svc-num">05 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-8" class="svc-title">Energi­optimering</h3>
-          <p data-cms="tekst-8" class="svc-blurb">Lavere regning, bedre indeklima, mindre CO₂. Vi laver beregningen og finder den løsning der faktisk tjener sig hjem.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
+    <article class="baand" data-medie="gas">
+      <div class="baand-felt"><span class="baand-navn">Gas</span></div>
+      <div class="baand-krop">
+        <h3>Gas- og oliekedler</h3>
+        <p>Gaskedler ved nyinstallation og udskiftning, kombination med solvarme,
+          flaskegasinstallationer samt oliekedler. Udføres i samarbejde med vores
+          underleverandører.</p>
+      </div>
+      <div class="baand-tal">
+        <span class="data">6</span>
+        <span class="lbl">kedelløsninger ·<br>gas, olie, flaskegas</span>
+      </div>
+      <img class="baand-foto" src="images/web/m-gas.jpg" alt="Tre gaskedler opsat i kaskade i et teknikrum" width="912" height="684" loading="lazy">
+    </article>
 
-      <article class="svc">
-        <div class="svc-media">
-          <img data-cms="billede-8" src="images/industri-gaskedler-kaskade.jpg" alt="Gaskedler i kaskade">
-          <div class="svc-num">06 / 06</div>
-        </div>
-        <div class="svc-body">
-          <h3 data-cms="overskrift-9" class="svc-title">Gas- &amp; oliekedel</h3>
-          <p data-cms="tekst-9" class="svc-blurb">Service, udskiftning og nedlukning. Vi kommer ud — også når det haster og kedlen står helt af.</p>
-          <div class="svc-foot">
-            <span class="svc-arrow">Læs mere <span class="a">→</span></span>
-          </div>
-        </div>
-      </article>
-    </div>
+    <article class="baand" data-medie="metal">
+      <div class="baand-felt"><span class="baand-navn">Metal</span></div>
+      <div class="baand-krop">
+        <h3>Blikkenslager i zink og kobber</h3>
+        <p>Tagrender og nedløb, skorstensinddækning, facade- og tagbeklædning i kobber og
+          zink, skifertag. Zink er ugiftigt og vedligeholdelsesfrit og patinerer af sig
+          selv. Det gamle håndværk i enkelt, tidløst design.</p>
+      </div>
+      <div class="baand-tal">
+        <span class="data">4</span>
+        <span class="lbl">zinkvarianter · natur,<br>quartz, anthra, lakeret</span>
+      </div>
+      <img class="baand-foto" src="images/web/m-metal.jpg" alt="Nyt zinktag med stående false på et kirkehus" width="1000" height="750" loading="lazy">
+    </article>
+
   </div>
 </section>
 
-<!-- =========================================================
-     REFERENCER
-     ========================================================= -->
-<section class="refs" id="referencer">
+<!-- ============ REFERENCER ============ -->
+<section class="ref" id="referencer">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2 data-cms="overskrift-10">Udvalgte <span class="red">referencer.</span></h2>
-      <p data-cms="tekst-10" class="right">Vi arbejder lige meget for familien om hjørnet og for en større fødevarevirksomhed i Midtjylland. Samme håndværk — bare forskellig skala.</p>
+    <header class="sec-head">
+      <h2 class="headline">32 projekter, med navn og mængde.</h2>
+      <p>Vi har udført mange forskellige opgaver for mange forskellige kunder. Her er et
+        udpluk, ført sådan som vi selv fører listen: kunde, opgave og størrelse.</p>
+    </header>
+
+    <div class="filtre" role="group" aria-label="Filtrér referencer">
+      <button class="chip is-on" data-f="alle" aria-pressed="true">Alle <span>32</span></button>
+      <button class="chip" data-f="luft" aria-pressed="false">Ventilation <span>13</span></button>
+      <button class="chip" data-f="vand" aria-pressed="false">VVS <span>19</span></button>
     </div>
 
-    <div class="refs-filter reveal" role="tablist">
-      <button data-cms="knaptekst" class="active" data-cat="all">Alle</button>
-      <button data-cms="knaptekst-2" data-cat="erhverv">Erhverv</button>
-      <button data-cms="knaptekst-3" data-cat="offentlig">Offentlig</button>
-      <button data-cms="knaptekst-4" data-cat="privat">Privat</button>
-      <button data-cms="knaptekst-5" data-cat="energi">Energi &amp; varmepumper</button>
-    </div>
+    <table class="spec">
+      <caption class="vh">Referenceliste over udførte projekter med opgavetype og mængde</caption>
+      <thead>
+        <tr><th scope="col">Kunde og opgave</th><th scope="col">Medie</th><th scope="col" class="r">Mængde</th></tr>
+      </thead>
+      <tbody id="spec-body">
+        <tr data-medie="luft"><td><b>Herning Kommune</b> · Ågården, Vildbjerg</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">11.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Kvickly Haderslev</b> · slagterafdeling m/køling</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">9.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>CEU Erhvervsakademi Herning</b> · ny elevbygning</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">7.000</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Restaurant Van Kok</b>, Herning</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">6.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Vildbjerg Tandcenter</b> · klinikker og adm. m/køling</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">6.000</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Skovhus A/S</b>, Herning · administration</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">6.000</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Midtjyllands Kristne Friskole</b> · ny elevfløj</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">5.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Hydratech Industries</b>, Silkeborg · ren-rum og samlehal</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">4.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>IPD Logistics</b>, Herning · administration</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">4.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Herning Vand</b> · administration</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">4.000</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Midtjyllands Kristne Friskole</b> · gl. elevfløj</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">3.500</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Herning Golfklub</b> · restaurant og mødelokaler</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">3.000</span> <i>m³/h</i></td></tr>
+        <tr data-medie="luft"><td><b>Ringkøbing Kommune</b> · bostedet Satellitten</td><td><span class="tag luft">Ventilation</span></td><td class="r"><span class="n">12</span> <i>lejligheder</i></td></tr>
 
-    <div class="refs-grid reveal">
-      <article class="ref r1" data-cat="erhverv">
-        <img data-cms="billede-9" src="images/projekt-industri-hydraulik.jpg" alt="Større fødevarevirksomhed i Midtjylland — hydraulik, trykluft og ventilation">
-        <div class="meta">
-          <div data-cms="tekststykke-9" class="tag">Erhverv · Industri</div>
-          <div data-cms="tekststykke-10" class="title">Fødevarevirksomhed, Midtjylland</div>
-        </div>
-      </article>
-
-      <article class="ref r2" data-cat="offentlig">
-        <img data-cms="billede-10" src="images/projekt-fjernvarme-02.jpeg" alt="Forsyningsselskab — ny fjernvarmeinstallation">
-        <div class="meta">
-          <div data-cms="tekststykke-11" class="tag">Offentlig · Forsyning</div>
-          <div data-cms="tekststykke-12" class="title">Lokalt forsyningsselskab</div>
-        </div>
-      </article>
-
-      <article class="ref r3" data-cat="offentlig">
-        <img data-cms="billede-11" src="images/projekt-ventilation-offentlig-01.jpeg" alt="Ventilation — offentlig institution">
-        <div class="meta">
-          <div data-cms="tekststykke-13" class="tag">Offentlig · Drift</div>
-          <div data-cms="tekststykke-14" class="title">Offentlig institution</div>
-        </div>
-      </article>
-
-      <article class="ref r4" data-cat="privat">
-        <img data-cms="billede-12" src="images/renovering-af-badevaerelse-05.jpg" alt="Privat badeværelse — fliser og bruseniche">
-        <div class="meta">
-          <div data-cms="tekststykke-15" class="tag">Privat · Renovering</div>
-          <div data-cms="tekststykke-16" class="title">Badeværelse, Vildbjerg</div>
-        </div>
-      </article>
-
-      <article class="ref r5" data-cat="energi">
-        <img data-cms="billede-13" src="images/enfamiliehus-vildbjerg-varmepumpe.jpeg" alt="Varmepumpe-installation">
-        <div class="meta">
-          <div data-cms="tekststykke-17" class="tag">Energi · Varmepumpe</div>
-          <div data-cms="tekststykke-18" class="title">Enfamiliehus, Vildbjerg</div>
-        </div>
-      </article>
-
-      <article class="ref r6" data-cat="energi">
-        <img data-cms="billede-14" src="images/projekt-fjernvarme-01.jpg" alt="Fjernvarmerør udlægges i grav">
-        <div class="meta">
-          <div data-cms="tekststykke-19" class="tag">Energi · Fjernvarme</div>
-          <div data-cms="tekststykke-20" class="title">Fjernvarme-installation</div>
-        </div>
-      </article>
-
-      <article class="ref r7" data-cat="privat">
-        <img data-cms="billede-15" src="images/privat-badevaerelse-ny-villa.jpeg" alt="Håndklædetørrer, nyt badeværelse">
-        <div class="meta">
-          <div data-cms="tekststykke-21" class="tag">Privat · Renovering</div>
-          <div data-cms="tekststykke-22" class="title">Villa-badeværelse, Snejbjerg</div>
-        </div>
-      </article>
-    </div>
+        <tr data-medie="vand"><td><b>Nyt Hjem A/S</b> · parcelhuse i hele landet</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">175</span> <i>huse</i></td></tr>
+        <tr data-medie="vand"><td><b>Nyt Hjem A/S</b> · lejligheder, Odense</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">52</span> <i>lejligheder</i></td></tr>
+        <tr data-medie="vand"><td><b>Them Bolighus</b> · højlager og udstilling</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">4.000</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>IPD Logistics</b>, Herning · højlager og adm.</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">3.500</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Jydske Storkøkken</b>, Silkeborg · lager og udstilling</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">3.200</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Skovhus</b>, Herning · lager, produktion og adm.</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">2.500</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Kvickly Haderslev</b> · ombygning</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">2.000</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Pf Værktøj</b>, Herning · produktion og lager</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">1.600</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Rema 1000</b>, Højbjerg · ny butik</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">1.000</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Midtjyllands Kristne Friskole</b> · elevbygning</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">1.000</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Vildbjerg Tandcenter</b> · tandlægeklinik</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">800</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Elas A/S</b>, Herning · højlager og produktion</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">650</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Herning Kommune</b> · værkstedsbygning</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">550</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Hydratech Industries</b>, Silkeborg · produktion</td><td><span class="tag vand">VVS</span></td><td class="r"><span class="n">500</span> <i>m²</i></td></tr>
+        <tr data-medie="vand"><td><b>Herning Vand</b> · ny velfærdsbygning og ombygning af adm.</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
+        <tr data-medie="vand"><td><b>Herning Vand</b> · om- og tilbygning, administration</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
+        <tr data-medie="vand"><td><b>Herning Golfklub</b> · tilbygning til klubhus</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
+        <tr data-medie="vand"><td><b>Herning Cykelklub</b> · nyt klubhus</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
+        <tr data-medie="vand"><td><b>CEU Herning</b> · ny elevbygning</td><td><span class="tag vand">VVS</span></td><td class="r">—</td></tr>
+      </tbody>
+    </table>
+    <p class="ref-fod">Kilde: KT VVS' egen referenceliste. Enkelte projekter står uden
+      mængde, fordi opgaven ikke blev opgjort i m² eller m³/h.</p>
   </div>
 </section>
 
-<!-- =========================================================
-     OM OS
-     ========================================================= -->
-<section class="about" id="omos">
-  <div class="wrap about-wrap">
-    <div class="about-left reveal">
-      <span class="year-tag">19<span class="red">63</span></span>
-      <div data-cms="tekststykke-23" class="since">Grundlagt af brødrene Erik &amp; Kurt Truelsen</div>
-      <div class="house-photo">
-        <img data-cms="billede-16" src="images/enfamiliehus-herning-blikkenslager-02.jpg" alt="Enfamiliehus med zinkbeklædning — leveret af Nordvang VVS">
-      </div>
+<!-- ============ BYGGERATING ============ -->
+<section class="rating">
+  <div class="wrap rating-in">
+    <div class="rating-txt">
+      <h2 class="headline">Bedømt udefra.</h2>
+      <p>Byggeriets Evalueringscenter bedømmer entreprenører på fire parametre efter skalaen
+        A til E. Det er ikke noget vi selv skriver. Det er en karakter vi får.</p>
+      <p class="rating-kilde">Byggeriets Evalueringscenter · KT VVS ApS, CVR 28989989 ·
+        senest opdateret 07.09.2016</p>
     </div>
-    <div class="about-right reveal">
-      <span data-cms="tekststykke-24" class="kicker">Om os</span>
-      <h2 data-cms="overskrift-11" style="margin-top:18px">Tre generationers håndværk — samme adresse i Herning.</h2>
-      <p data-cms="tekst-11">
-        Det startede med to brødre, en bil og en idé om at lave det rigtigt
-        første gang. Erik og Kurt Truelsen grundlagde Nordvang VVS i 1963, og firmaet
-        har ligget i Herning lige siden.
-      </p>
-      <p data-cms="tekst-12">
-        I dag drives firmaet af Jens Nordvang, som overtog i 2005. Vi lægger
-        en ære i at overholde tidsfrister, aflevere uden mangler og passe på
-        arbejdsmiljøet på hver eneste sag.
-      </p>
-      <p data-cms="tekst-13">
-        Vi er store nok til at løse opgaver for industri og offentlige bygherrer
-        — og små nok til at den samme håndværker står på sagen fra start til
-        slut.
-      </p>
-
-      <div class="signature">
-        <div data-cms="tekststykke-25" class="avatar">HK</div>
-        <div>
-          <div data-cms="tekststykke-26" class="who">Jens Nordvang</div>
-          <div data-cms="tekststykke-27" class="role">Ejer &amp; direktør siden 2005</div>
-        </div>
-      </div>
-    </div>
+    <ul class="karakterer">
+      <li><span class="kar kar-a">A</span><span class="lbl">Tidsfrister</span></li>
+      <li><span class="kar kar-a">A</span><span class="lbl">Mangler</span></li>
+      <li><span class="kar kar-a">A</span><span class="lbl">Arbejdsmiljø</span></li>
+      <li><span class="kar kar-b">B</span><span class="lbl">Kundetilfredshed</span></li>
+    </ul>
   </div>
+</section>
 
+<!-- ============ UDFØRT ARBEJDE ============ -->
+<section class="arbejde" id="arbejde">
   <div class="wrap">
-    <div class="timeline reveal">
-      <div class="t"><span class="yr">1963</span><span data-cms="tekststykke-28">Erik og Kurt Truelsen grundlægger Nordvang VVS i Herning.</span></div>
-      <div class="t"><span class="yr">1985</span><span data-cms="tekststykke-29">Adressen på Industrivej 188 bliver firmaets faste hjem.</span></div>
-      <div class="t"><span class="yr">2005</span><span data-cms="tekststykke-30">Jens Nordvang overtager driften — familietraditionen fortsætter.</span></div>
-      <div class="t"><span class="yr">2024</span><span data-cms="tekststykke-31">Over 50 varmepumpe­anlæg installeret i Midtjylland.</span></div>
+    <header class="sec-head">
+      <h2 class="headline">Udført arbejde</h2>
+      <p>Billeder fra egne opgaver: industri, offentligt byggeri og private hjem.</p>
+    </header>
+
+    <div class="galleri">
+      <figure class="g g-stor"><img src="images/web/g-trykluft.jpg" alt="Blå trykluftinstallation med ventiler og tanke i en industrivirksomhed" width="1100" height="825" loading="lazy"><figcaption>Trykluftanlæg, industri</figcaption></figure>
+      <figure class="g"><img src="images/web/g-fjernvarme.jpg" alt="Nedgravede fjernvarmerør i en udgravning" width="1100" height="825" loading="lazy"><figcaption>Fjernvarmeinstallation</figcaption></figure>
+      <figure class="g"><img src="images/web/g-gulvvarme.jpg" alt="Gulvvarmeslanger udlagt på armeringsnet før støbning" width="1100" height="825" loading="lazy"><figcaption>Gulvvarme, nybyggeri</figcaption></figure>
+      <figure class="g"><img src="images/web/g-varmepumpe.jpg" alt="Teknikrum med varmepumpe, beholder og rørføring" width="1100" height="825" loading="lazy"><figcaption>Varmepumpe, enfamiliehus</figcaption></figure>
+      <figure class="g"><img src="images/web/g-vent2.jpg" alt="Store isolerede ventilationskanaler under montage" width="900" height="675" loading="lazy"><figcaption>Ventilation, industri</figcaption></figure>
+      <figure class="g g-stor"><img src="images/web/g-trykluft2.jpg" alt="Blåt rørforløb ført over tag på erhvervsbygning" width="1100" height="825" loading="lazy"><figcaption>Rørføring over tag, erhverv</figcaption></figure>
+      <figure class="g"><img src="images/web/g-tandlaeger.jpg" alt="Bygning med facadebeklædning i zink" width="900" height="675" loading="lazy"><figcaption>Blikkenslagerarbejde, klinik</figcaption></figure>
+      <figure class="g"><img src="images/web/g-bad.jpg" alt="Renoveret badeværelse med væghængt håndvask" width="1100" height="825" loading="lazy"><figcaption>Badeværelsesrenovering</figcaption></figure>
+      <figure class="g"><img src="images/web/g-satellitten.jpg" alt="Ventilationsanlæg på tag af bosted" width="1100" height="825" loading="lazy"><figcaption>Ventilation, bosted</figcaption></figure>
+      <figure class="g"><img src="images/web/g-elas.jpg" alt="Strålevarmepaneler monteret i produktionshal" width="1100" height="825" loading="lazy"><figcaption>Strålevarme, produktionshal</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- =========================================================
-     TRUST STRIP
-     ========================================================= -->
-<section class="trust" aria-label="Certificeringer og nøgletal">
-  <div class="wrap trust-grid">
-    <div class="tk">
-      <div data-cms="tekststykke-32" class="label">Eget hold</div>
-      <div data-cms="tekststykke-33" class="value">Egne <span class="red">håndværkere</span></div>
-      <div data-cms="tekststykke-34" class="desc">Vi løser hele opgaven internt — fra det første rør i jorden til færdig løsning.</div>
-    </div>
-    <div class="tk">
-      <div data-cms="tekststykke-35" class="label">Garanti på arbejdet</div>
-      <div class="value">Vi står <span data-cms="tekststykke-36" class="red">bag det</span></div>
-      <div data-cms="tekststykke-37" class="desc">Vi står bag det vi laver — også når regnestykket skal holde i mange år frem.</div>
-    </div>
-    <div class="tk">
-      <div data-cms="tekststykke-38" class="label">Fast &amp; fair pris</div>
-      <div class="value">Ingen <span class="red">overraskelser</span></div>
-      <div data-cms="tekststykke-39" class="desc">Du får prisen på skrift, før vi går i gang. Det du får sagt, er det du betaler.</div>
-    </div>
-    <div class="tk">
-      <div data-cms="tekststykke-40" class="label">Lokal forankring</div>
-      <div class="value">Herning, <span data-cms="tekststykke-41" class="red">siden 1963</span></div>
-      <div data-cms="tekststykke-42" class="desc">Tre generationer. Samme adresse. Det er hele forskellen.</div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     VI STØTTER LOKALT
-     ========================================================= -->
-<section class="support" id="stoette">
+<!-- ============ TILSKUD OG FRADRAG ============ -->
+<section class="tilskud" id="tilskud">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2 data-cms="overskrift-12">Vi støtter <span class="red">lokalt.</span></h2>
-      <p data-cms="tekst-14" class="right">En del af det at være et lokalt familie­firma er at give noget tilbage. Vi bakker op om foreninger, frivillige og familier — det meste i Herning og omegn.</p>
+    <header class="sec-head sec-head--dark">
+      <h2 class="headline">Tilskud og fradrag.<br>Ring før du går i gang.</h2>
+      <p>Skifter du oliefyr, gasfyr eller elvarme ud med en varmepumpe, er der penge at
+        hente. Men reglerne har en fælde, og den koster rigtige penge, hvis du rammer den.</p>
+    </header>
+
+    <div class="tk-grid">
+      <article class="tk">
+        <span class="lbl">Varmepumpepuljen</span>
+        <span class="data">27.000<i>kr.</i></span>
+        <p>Fast tilskud fra Energistyrelsen, når olie-, gas-, træpille- eller elvarme
+          udskiftes med varmepumpe. Kræver helårsbolig uden mulighed for fjernvarme.</p>
+      </article>
+      <article class="tk">
+        <span class="lbl">Grønt håndværkerfradrag</span>
+        <span class="data">9.000<i>kr.</i></span>
+        <p>Pr. person i husstanden, 2026. Dækker arbejdsløn ved installation, service og
+          udskiftning af varmepumper, jordvarme inkl. jordslanger og fjernvarmeunits.</p>
+      </article>
+      <article class="tk tk-advar">
+        <span class="lbl">Fælden</span>
+        <span class="data tk-ord">Enten / eller</span>
+        <p>Du kan ikke få både tilskud og fradrag for det samme arbejde. Og du må ikke gå i
+          gang, før du har fået tilsagn om tilskud. Starter du for tidligt, mister du pengene.</p>
+      </article>
     </div>
-    <div class="support-grid reveal">
-      <div class="card">
-        <svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        <div>
-          <h3 data-cms="overskrift-13">Herning Fremad Fodbold</h3>
-          <div data-cms="tekststykke-43" class="sub">Lokal sport · Hovedsponsor</div>
-        </div>
-      </div>
-      <div class="card">
-        <svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        <div>
-          <h3 data-cms="overskrift-14">Familier med kræftramte børn</h3>
-          <div data-cms="tekststykke-44" class="sub">Frivilligt arbejde · Donation</div>
-        </div>
-      </div>
-      <div class="card">
-        <svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        <div>
-          <h3 data-cms="overskrift-15">Hjertestartere i lokalområdet</h3>
-          <div data-cms="tekststykke-45" class="sub">Beredskab · Opsætning &amp; service</div>
-        </div>
-      </div>
-      <div class="card">
-        <svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        <div>
-          <h3 data-cms="overskrift-16">Herning Golfklub</h3>
-          <div data-cms="tekststykke-46" class="sub">Klub-sponsor · Bane &amp; skilte</div>
-        </div>
+
+    <p class="tk-fod">Fradraget gælder kun arbejdsløn, ikke materialer, og regningen skal
+      betales elektronisk. Almindeligt VVS-arbejde som badeværelsesrenovering er ikke
+      omfattet. Vi er ikke skatterådgivere, men vi hjælper gerne med at planlægge opgaven i
+      den rigtige rækkefølge og få fakturaen sat rigtigt op. De officielle regler står på
+      skat.dk og sparenergi.dk.</p>
+  </div>
+</section>
+
+<!-- ============ OM KT VVS ============ -->
+<section class="om" id="om">
+  <div class="wrap om-in">
+    <figure class="om-fig">
+      <img src="images/web/om-skilt.jpg" alt="KT VVS' skilt på en byggeplads med firmaets varevogne og et hus under opførelse i baggrunden" width="1400" height="1167" loading="lazy">
+      <figcaption>Byggeplads, Midtjylland</figcaption>
+    </figure>
+
+    <div class="om-txt">
+      <h2 class="headline">Samme firma siden 1963.</h2>
+      <p>KT VVS blev grundlagt i 1963 af brødrene Erik og Kurt Truelsen. I dag drives
+        virksomheden af Henrik Korshøj, som overtog den i 2005.</p>
+      <p>Kundegrundlaget tæller alt fra private husstande og boligselskaber til offentlige
+        og private virksomheder. I tæt samarbejde med kunden udfører vi opgaver inden for
+        renovering og nybyggeri samt servicering og vedligehold.</p>
+
+      <ol class="tidslinje">
+        <li><span class="data">1963</span><span class="txt">Grundlagt af brødrene Erik og Kurt Truelsen</span></li>
+        <li><span class="data">2005</span><span class="txt">Henrik Korshøj overtager virksomheden</span></li>
+        <li><span class="data">I dag</span><span class="txt">VVS, gas, ventilation og blikarbejde. Platanvej 15, Herning</span></li>
+      </ol>
+
+      <div class="beviser">
+        <img src="assets/badge-danskvvs-tekniq.png" alt="Dansk VVS Garanti og Tekniq Garanti" width="520" height="451" loading="lazy">
+        <p>KT VVS er medlem af Tekniq (Dansk VVS), og vores kvalitetsstyringssystem er
+          godkendt af Tekniq Kvalitet.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =========================================================
-     KONTAKT
-     ========================================================= -->
-<section class="contact" id="kontakt">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2 data-cms="overskrift-17">Skal vi <span class="red">tage en snak?</span></h2>
-      <p data-cms="tekst-15" class="right">Skriv lidt om opgaven, så vender vi tilbage — oftest samme dag. Skal det gå hurtigt, så grib telefonen. Vi tager den selv.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div class="row">
-          <div data-cms="tekststykke-47" class="label">Adresse</div>
-          <div class="val">
-            Industrivej 188<br>
-            7400 Herning
-            <small>Værksted &amp; kontor · åbent man–fre 7–16</small>
-          </div>
-        </div>
-        <div class="row">
-          <div data-cms="tekststykke-48" class="label">Telefon</div>
-          <div class="val">
-            <a data-cms="linktekst-12" href="tel:+4512345678">12 34 56 78</a>
-            <small>Vagt udenfor åbningstid for eksisterende kunder</small>
-          </div>
-        </div>
-        <div class="row">
-          <div data-cms="tekststykke-49" class="label">E-mail</div>
-          <div class="val">
-            <a data-cms="linktekst-13" href="mailto:hej@nordvangvvs.dk">hej@nordvangvvs.dk</a>
-            <small>Skriv direkte til Jens Nordvang</small>
-          </div>
-        </div>
-        <div class="map" aria-label="Kort over Industrivej 188, Herning">
-          <div class="pin">
-            <div class="pin-mark"></div>
-            <div data-cms="tekststykke-52" class="pin-label">Nordvang VVS · Industrivej 188</div>
-          </div>
-          <div data-cms="tekststykke-53" class="scale">0 ——— 200 m</div>
-        </div>
-      </div>
-
-      <form class="form reveal">
-        <h3 data-cms="overskrift-18">Få et tilbud</h3>
-        <p data-cms="tekst-16" class="form-sub">Forventet svartid: samme arbejdsdag.</p>
-
-        <div class="field">
-          <label>Hvad drejer det sig om?</label>
-          <div class="chips" role="radiogroup">
-            <button data-cms="knaptekst-6" type="button" class="active">Badeværelse</button>
-            <button data-cms="knaptekst-7" type="button">Varmepumpe</button>
-            <button data-cms="knaptekst-8" type="button">VVS akut</button>
-            <button data-cms="knaptekst-9" type="button">Ventilation</button>
-            <button data-cms="knaptekst-10" type="button">Erhverv</button>
-            <button data-cms="knaptekst-11" type="button">Andet</button>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="navn">Navn</label>
-          <input id="navn" type="text" placeholder="Dit navn" required>
-        </div>
-
-        <div class="field">
-          <label for="tlf">Telefon</label>
-          <input id="tlf" type="tel" placeholder="Vi ringer dig tilbage" required>
-        </div>
-
-        <div class="field">
-          <label for="adr">Adresse på opgaven</label>
-          <input id="adr" type="text" placeholder="Vej, by &amp; postnummer">
-        </div>
-
-        <div class="field">
-          <label for="besked">Kort om opgaven</label>
-          <textarea id="besked" placeholder="Fx: nyt badeværelse 8 m², ønsker gulvvarme og bruseniche…"></textarea>
-        </div>
-
-        <div class="submit-row">
-          <span data-cms="tekststykke-54" class="note">Vi gemmer kun det du skriver — intet andet.</span>
-          <button type="submit" class="btn btn-accent">Send forespørgsel <span class="arrow">→</span></button>
-          <span class="ok">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12l5 5L20 6"/></svg>
-            Tak — vi vender tilbage hurtigst muligt.
-          </span>
-        </div>
-      </form>
-    </div>
+<!-- ============ VI STØTTER ============ -->
+<section class="stoetter">
+  <div class="wrap stoetter-in">
+    <h2 class="stoetter-h">Vi støtter</h2>
+    <ul>
+      <li>Herning Fremad Fodbold</li>
+      <li>Familier med kræftramte børn</li>
+      <li>Kunsten at redde liv (hjertestartere)</li>
+      <li>Herning Golfklub</li>
+    </ul>
   </div>
 </section>
 
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <h3 data-cms="overskrift-19">VVS i Herning <span class="red">siden 1963.</span></h3>
-        <p data-cms="tekst-17">Nordvang VVS er en familiedrevet VVS-installatør med base i Herning. Vi løser opgaver for både private og erhverv på tværs af Midtjylland.</p>
-      </div>
-      <div>
-        <h4 data-cms="lille-overskrift">Fagområder</h4>
-        <ul>
-          <li><a data-cms="linktekst-14" href="#fagomraader">VVS &amp; badeværelser</a></li>
-          <li><a data-cms="linktekst-15" href="#fagomraader">Ventilation</a></li>
-          <li><a data-cms="linktekst-16" href="#fagomraader">Blikkenslager</a></li>
-          <li><a data-cms="linktekst-17" href="#fagomraader">Varmepumper</a></li>
-          <li><a data-cms="linktekst-18" href="#fagomraader">Energi­optimering</a></li>
-          <li><a data-cms="linktekst-19" href="#fagomraader">Gas- &amp; oliekedel</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 data-cms="lille-overskrift-2">Firma</h4>
-        <ul>
-          <li><a data-cms="linktekst-20" href="#omos">Om os</a></li>
-          <li><a data-cms="linktekst-21" href="#referencer">Referencer</a></li>
-          <li><a data-cms="linktekst-22" href="#stoette">Vi støtter</a></li>
-          <li><a data-cms="linktekst-23" href="#">Ledige stillinger</a></li>
-          <li><a data-cms="linktekst-24" href="#">Persondata­politik</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 data-cms="lille-overskrift-3">Kontakt</h4>
-        <ul>
-          <li data-cms="punkt">Industrivej 188</li>
-          <li data-cms="punkt-2">7400 Herning</li>
-          <li><a data-cms="linktekst-25" href="tel:+4512345678">12 34 56 78</a></li>
-          <li><a data-cms="linktekst-26" href="mailto:hej@nordvangvvs.dk">hej@nordvangvvs.dk</a></li>
-        </ul>
-      </div>
+<!-- ============ KONTAKT ============ -->
+<section class="kontakt" id="kontakt">
+  <div class="wrap kontakt-in">
+    <div class="kontakt-info">
+      <h2 class="headline">Ring, eller skriv hvad opgaven er.</h2>
+      <p>Er du i tvivl om, hvor stor den er, så ring. Vi kigger gerne forbi og ser på det,
+        før der bliver skrevet noget ned.</p>
+
+      <a class="tlf-plate tlf-plate--stor" href="tel:+4597124755">
+        <span class="lbl">Telefon</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+
+      <dl class="kort">
+        <div><dt>Adresse</dt><dd>Platanvej 15<br>7400 Herning</dd></div>
+        <div><dt>E-mail</dt><dd><a href="mailto:hk@ktvvs.dk">hk@ktvvs.dk</a></dd></div>
+        <div><dt>Indehaver</dt><dd>Henrik Korshøj<br>Aut. VVS-installatør</dd></div>
+        <div><dt>CVR</dt><dd>28 98 99 89</dd></div>
+      </dl>
     </div>
-    <div class="bottom">
-      <span data-cms="tekststykke-55">© 1963–2026 · Nordvang VVS</span>
-      <span data-cms="tekststykke-56">VVS · Ventilation · Blikkenslager · Varmepumper — i Herning &amp; Midtjylland</span>
-      <span data-cms="tekststykke-57">Demo — fiktiv virksomhed lavet af <a href="https://kinly.dk">Kinly</a></span>
+
+    <form class="form" id="form" novalidate>
+      <fieldset class="medie-vaelg">
+        <legend class="lbl">Hvad drejer det sig om?</legend>
+        <div class="vaelg-rk">
+          <label><input type="checkbox" name="medie" value="VVS / badeværelse"><span data-medie="vand">VVS / badeværelse</span></label>
+          <label><input type="checkbox" name="medie" value="Varmepumpe / jordvarme"><span data-medie="varme">Varmepumpe / jordvarme</span></label>
+          <label><input type="checkbox" name="medie" value="Ventilation"><span data-medie="luft">Ventilation</span></label>
+          <label><input type="checkbox" name="medie" value="Gas / oliekedel"><span data-medie="gas">Gas / oliekedel</span></label>
+          <label><input type="checkbox" name="medie" value="Blikkenslager / tag"><span data-medie="metal">Blikkenslager / tag</span></label>
+          <label><input type="checkbox" name="medie" value="Andet"><span data-medie="vand">Noget andet</span></label>
+        </div>
+      </fieldset>
+
+      <div class="felt">
+        <label class="lbl" for="navn">Navn</label>
+        <input id="navn" name="navn" type="text" autocomplete="name" required>
+        <span class="fejl" data-for="navn"></span>
+      </div>
+      <div class="felt-rk">
+        <div class="felt">
+          <label class="lbl" for="tlf">Telefon</label>
+          <input id="tlf" name="tlf" type="tel" autocomplete="tel" required>
+          <span class="fejl" data-for="tlf"></span>
+        </div>
+        <div class="felt">
+          <label class="lbl" for="mail">E-mail</label>
+          <input id="mail" name="mail" type="email" autocomplete="email">
+          <span class="fejl" data-for="mail"></span>
+        </div>
+      </div>
+      <div class="felt">
+        <label class="lbl" for="besked">Kort om opgaven</label>
+        <textarea id="besked" name="besked" rows="4" required></textarea>
+        <span class="fejl" data-for="besked"></span>
+      </div>
+
+      <button class="btn" type="submit">Send forespørgsel</button>
+      <p class="form-note">Demo. Formularen sender ikke. Ring på 97 12 47 55.</p>
+
+      <div class="kvittering" id="kvittering" hidden role="status">
+        <span class="lbl">Modtaget</span>
+        <p>Tak. Vi vender tilbage hurtigst muligt.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="fod">
+  <div class="wrap fod-in">
+    <div class="fod-brand">
+      <svg class="fod-mark" viewBox="0 0 120 120" aria-hidden="true">
+        <g fill="#ef4035">
+          <path fill-rule="evenodd" d="M4 58.9 A56 56 0 0 1 116 58.9 Z M21.7 44.3 A41.4 41.4 0 0 1 98.3 44.3 Z"/>
+          <path d="M60 20.8 L80.2 34.2 L66.7 34.2 L66.7 44.3 L53.3 44.3 L53.3 34.2 L39.8 34.2 Z"/>
+        </g>
+        <g fill="#0079c2">
+          <path fill-rule="evenodd" d="M4.92 70.1 C16 66.5 27 65.6 36.5 65.6 C46 65.6 52 70.1 60 70.1 C68 70.1 74 65.6 83.5 65.6 C93 65.6 104 66.5 115.08 70.1 A56 56 0 0 1 4.92 70.1 Z M23.9 80.2 A41.4 41.4 0 0 0 96.1 80.2 Z"/>
+          <path d="M60 101.4 L38.7 88 L53.3 88 L53.3 80.2 L66.7 80.2 L66.7 88 L81.3 88 Z"/>
+        </g>
+      </svg>
+      <span class="fod-word">KT<span class="brand-dot">·</span>VVS <em>ApS</em></span>
     </div>
+
+    <address class="fod-adr">
+      Platanvej 15 · 7400 Herning<br>
+      <a href="tel:+4597124755">97 12 47 55</a> · <a href="mailto:hk@ktvvs.dk">hk@ktvvs.dk</a><br>
+      CVR 28 98 99 89
+    </address>
+
+    <p class="fod-slut">Aut. VVS-installatør Henrik Korshøj · Grundlagt 1963</p>
   </div>
 </footer>
 
-<script src="main.js"></script>
+<a class="mobil-tlf" href="tel:+4597124755">
+  <span class="lbl">Ring til KT VVS</span><span class="val">97 12 47 55</span>
+</a>
 
-<!-- Tweaks panel -->
-<div id="tweaks-root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="tweaks-app.jsx"></script>
+<script src="main.js" defer></script>
 </body>
 </html>

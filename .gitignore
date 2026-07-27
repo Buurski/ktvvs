@@ -3,5 +3,6 @@ kt-vvs/
 *.tar.gz
 *.zip
 images/*.mp4
+.scrape/
 
 .vercel

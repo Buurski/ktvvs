@@ -1,0 +1,6 @@
+# Originalarkivet bliver i git, men skal ikke uploades ved hver deploy.
+images/*.jpg
+images/*.jpeg
+images/*.png
+!images/web/**
+.scrape
