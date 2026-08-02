@@ -1,0 +1,222 @@
+<!doctype html>
+<!--
+  HERO-VARIANT E: "Maerkepladen". Intet foto over folden.
+  Hero'en er ét tal. Den stoerste maengde firmaet har bygget, sat som
+  paa et ventilationsaggregats maerkeplade, med projektet under. Resten er
+  fire ord og et telefonnummer. Roligt, lyst, og svaert at forveksle med
+  nogen anden VVS-side. Billederne kommer nedenfor.
+-->
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KT VVS ApS · Hero E</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
+<style>
+body{background:var(--surface)}
+
+.nav--lys{background:var(--surface);color:var(--s950);border-bottom:1px solid var(--s200);--fokus:var(--s950)}
+.nav--lys .brand-word{color:var(--s950)}
+.nav--lys .brand-dot{color:var(--s400)}
+.nav--lys .nav-links a{color:var(--s600)}
+.nav--lys .nav-links a:hover{color:var(--s950);border-color:var(--s950)}
+.nav--lys .nav-tlf{border-left:1px solid var(--s200)}
+.nav--lys .nav-tlf .lbl{color:var(--label)}
+.nav--lys .nav-tlf .val{color:var(--s950)}
+.nav--lys .nav-cta{background:var(--s950);color:var(--surface)}
+.nav--lys .nav-cta:hover{background:var(--s800)}
+.nav--lys .burger span{background:var(--s950)}
+
+/* ---- E: ét tal --------------------------------------------------------- */
+.hero-e{
+  background:var(--surface);color:var(--s950);
+  /* Maalerraekken hoerer med til foerste skaerm. */
+  min-height:clamp(470px,calc(100vh - var(--navh) - 96px),740px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(32px,5vh,56px) 0;
+}
+.e-in{max-width:var(--maxw);width:100%;margin:0 auto;padding-inline:var(--pad)}
+
+.e-top{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.e-top .lbl{color:var(--label)}
+
+/* Tallet. Sat i bredde 118 med tabulaere cifre, som paa en maerkeplade,
+   og saa stort at det er sidens billede. */
+.e-tal{
+  display:flex;align-items:flex-start;gap:clamp(10px,1.4vw,20px);
+  margin-top:clamp(12px,1.6vw,20px);
+}
+.e-tal b{
+  font-weight:800;font-size:clamp(76px,17vw,240px);line-height:.82;
+  letter-spacing:-.05em;font-variation-settings:'wdth' 118;
+  font-variant-numeric:tabular-nums;
+}
+.e-tal .enhed{
+  font-family:var(--mono);font-weight:700;font-size:clamp(13px,1.3vw,19px);
+  letter-spacing:.06em;color:var(--s600);padding-top:clamp(10px,1.5vw,20px);white-space:nowrap;
+}
+
+/* Linjen under tallet forklarer hvad tallet er, og hvem det er bygget for. */
+.e-under{
+  margin-top:clamp(20px,2.4vw,30px);padding-top:clamp(18px,2vw,24px);
+  border-top:1px solid var(--s200);
+  display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);
+  align-items:start;
+}
+.e-sag{font-size:clamp(19px,1.7vw,26px);font-weight:600;line-height:1.25;letter-spacing:-.02em;max-width:22ch}
+.e-sag span{display:block;font-weight:400;font-size:17px;line-height:1.55;color:var(--s600);margin-top:12px;max-width:38ch}
+
+/* Telefonen som dataværdi. Ingen roed knap. */
+.e-act{display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(20px,3vw,40px)}
+.e-tlf{text-decoration:none;color:var(--s950);display:block;border-bottom:2px solid var(--s950);padding-bottom:9px}
+.e-tlf .lbl{display:block;color:var(--label);margin-bottom:9px}
+.e-tlf .val{
+  display:block;font-weight:700;font-size:clamp(30px,2.9vw,40px);line-height:1;
+  letter-spacing:-.02em;font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
+}
+.e-tlf:hover{color:var(--vand-deep);border-color:var(--vand-deep)}
+.e-link{color:var(--s950);text-decoration:none;font-weight:600;font-size:17px;border-bottom:1px solid var(--s400);padding-bottom:11px}
+.e-link:hover{border-color:var(--s950)}
+
+/* Nederst: de oevrige tal som en smal maalerraekke. */
+.e-raekke{
+  border-top:1px solid var(--s200);background:var(--paper);
+}
+.e-raekke-in{
+  max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.e-raekke>div{}
+.e-raekke-in>div{padding:clamp(16px,1.8vw,22px) 18px}
+.e-raekke-in>div+div{border-left:1px solid var(--s200)}
+.e-raekke b{
+  display:block;font-weight:700;font-size:clamp(26px,2.3vw,34px);line-height:.95;
+  letter-spacing:-.02em;font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
+}
+.e-raekke .enhed{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--label);margin-top:10px;
+}
+
+@media (max-width:960px){
+  .e-under{grid-template-columns:minmax(0,1fr);gap:clamp(22px,4vw,32px)}
+  .e-raekke-in{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .e-raekke-in>div:nth-child(odd){border-left:0}
+  .e-raekke-in>div:nth-child(n+3){border-top:1px solid var(--s200)}
+}
+@media (max-width:560px){
+  .hero-e{min-height:0;padding-top:clamp(28px,5vh,40px)}
+  .e-in{padding-inline:var(--pad)}
+  /* Seks cifre i bredde 118 skal kunne staa inden for sidepolstringen,
+     og enheden skal stadig vaere med paa linjen. */
+  .e-tal b{font-size:clamp(46px,16.4vw,76px)}
+  .e-tal .enhed{font-size:12px;padding-top:6px}
+  .e-top{gap:10px}
+  .e-raekke-in>div{padding-inline:0 14px}
+  .e-raekke-in>div:nth-child(even){padding-left:14px}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoved">Spring til indhold</a>
+
+<header class="nav nav--lys">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="KT VVS, forside">
+      <span class="brand-plads"><img class="brand-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120"></span>
+      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#tal">Fagområder</a>
+      <a href="#tal">Referencer</a>
+      <a href="#tal">Om KT VVS</a>
+    </nav>
+    <a class="nav-tlf" href="tel:+4597124755">
+      <span class="lbl">Telefon</span>
+      <span class="val">97 12 47 55</span>
+    </a>
+    <a class="nav-cta" href="#tal">Skriv til os</a>
+    <button class="burger" aria-label="Åbn menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="hoved">
+
+<section class="hero-e" id="top">
+  <div class="e-in">
+    <div class="e-top">
+      <p class="lbl">Største ventilationsanlæg udført</p>
+      <p class="lbl">Aut. VVS-installatør i Herning siden 1963</p>
+    </div>
+
+    <p class="e-tal"><b id="stort">11.500</b><span class="enhed">m³/h</span></p>
+
+    <div class="e-under">
+      <p class="e-sag">Herning Kommune, Ågården i Vildbjerg.
+        <span>Vi tager også badeværelset i villaen to gader herfra. Det er de samme folk.</span></p>
+
+      <div class="e-act">
+        <a class="e-tlf" href="tel:+4597124755">
+          <span class="lbl">Ring til os</span>
+          <span class="val">97 12 47 55</span>
+        </a>
+        <a class="e-link" href="#tal">Se de 32 projekter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="e-raekke" id="tal" aria-label="Nøgletal">
+  <div class="e-raekke-in">
+    <div><b data-fra-aar="1963">63</b><span class="enhed">År i Herning</span></div>
+    <div><b>32</b><span class="enhed">Navngivne projekter</span></div>
+    <div><b>4.000</b><span class="enhed">m², største VVS-entreprise</span></div>
+    <div><b>50+</b><span class="enhed">Varmepumper installeret</span></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  /* Antal aar regnes ud fra 1963, saa tallet ikke bliver forkert med tiden. */
+  document.querySelectorAll('b[data-fra-aar]').forEach(function(el){
+    el.textContent = new Date().getFullYear() - (+el.dataset.fraAar);
+  });
+
+  /* Det store tal taeller op én gang. Slutvaerdien staar i HTML fra start,
+     saa den er rigtig uden script og ved reduceret bevaegelse. */
+  var el = document.getElementById('stort');
+  if(!el) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var maal = 11500, koert = false;
+  function skriv(v){
+    el.textContent = Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+  skriv(0);
+  function koer(){
+    if(koert) return;
+    koert = true;
+    var start = null, tid = 1400;
+    function skridt(nu){
+      if(start === null) start = nu;
+      var p = Math.min((nu - start) / tid, 1);
+      skriv(maal * (1 - Math.pow(1 - p, 3)));
+      if(p < 1) requestAnimationFrame(skridt);
+    }
+    requestAnimationFrame(skridt);
+  }
+  /* Sikkerhedsnet: et nulstillet tal er vaerre end en manglende animation. */
+  setTimeout(koer, 2000);
+  requestAnimationFrame(koer);
+})();
+</script>
+</body>
+</html>
