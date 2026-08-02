@@ -1,0 +1,203 @@
+<!doctype html>
+<!--
+  HERO-VARIANT A: Fuldbredde installation-foto.
+  Ét ægte anlægsfoto i fuld skærm, mørknet efter systemets tonale regler.
+  Tekst-overlay med hovedbudskabet, social-proof-band klistret direkte under.
+  Subtil parallax paa baggrunden: kun transform, kun ved scroll.
+  Vises isoleret. Rører ikke index.html.
+-->
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KT VVS ApS · Hero A</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="images/web/hero-anlaeg-1600.jpg"
+      imagesrcset="images/web/hero-anlaeg-1000.jpg 1000w, images/web/hero-anlaeg-1600.jpg 1600w, images/web/hero-anlaeg-2400.jpg 2400w"
+      imagesizes="100vw">
+<style>
+/* ---- A: fuldbredde-foto ---------------------------------------------- */
+.hero-a{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--s950);color:var(--surface);
+  /* Baandet nedenfor hoerer med til foerste skaerm. Hero'en maaler sig derfor
+     mod viewporten minus navigationen og baandet, ikke mod hele skaermen. */
+  min-height:clamp(540px,calc(100vh - var(--navh) - 86px),820px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(36px,5vh,64px) 0 clamp(32px,4.5vh,48px);
+}
+/* Baggrunden er 116% hoej, saa parallax-flytningen aldrig blotter en kant. */
+.hero-a .baggrund{
+  position:absolute;left:0;right:0;top:-8%;height:116%;z-index:-2;
+  will-change:transform;
+}
+.hero-a .baggrund img{width:100%;height:100%;object-fit:cover;object-position:46% 54%}
+/* Sloeret skal baere hvid tekst og stadig lade roerene laeses. Venstre side
+   holdes lige moerk nok til 4,5:1 paa broedteksten, ikke moerkere. */
+.hero-a .slor{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(96deg,rgba(9,13,18,.9) 0%,rgba(9,13,18,.82) 32%,rgba(9,13,18,.5) 62%,rgba(9,13,18,.26) 100%),
+    linear-gradient(to top,rgba(9,13,18,.72) 0%,rgba(9,13,18,.08) 44%,rgba(9,13,18,.44) 100%);
+}
+
+.a-in{position:relative;max-width:var(--maxw);width:100%;margin:0 auto;padding-inline:var(--pad)}
+.a-mark{display:block;width:clamp(60px,5.8vw,86px);height:auto;margin-bottom:clamp(16px,2vw,24px)}
+.a-brow{color:var(--s200);margin-bottom:15px}
+.a-h1{max-width:15ch}
+.a-lede{max-width:52ch;margin-top:19px;color:var(--s100);font-size:clamp(17px,1.2vw,19px)}
+.a-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,2.8vw,32px);align-items:stretch}
+/* Billedteksten hoerer til fotoet, ikke til positioneringen. Den staar derfor
+   i hjoernet som en billedtekst, ikke inde i lede-teksten. */
+.a-foto-tekst{
+  position:absolute;right:var(--pad);bottom:clamp(14px,2vh,20px);z-index:1;
+  color:var(--s200);max-width:32ch;text-align:right;
+}
+@media (max-width:1180px){.a-foto-tekst{display:none}}
+
+/* Social-proof-baandet. Klistret under hero'en uden mellemrum, saa de to
+   flader laeses som ét felt. Navne i mono-versaler, som paa en maerkeplade. */
+.proof{background:var(--s900);color:var(--surface);border-top:1px solid rgba(255,255,255,.1)}
+.proof-in{
+  max-width:var(--maxw);margin:0 auto;padding:clamp(16px,1.7vw,22px) var(--pad);
+  display:flex;align-items:center;gap:clamp(14px,2.2vw,32px);flex-wrap:wrap;
+}
+.proof-lbl{color:var(--s400);flex:0 0 auto}
+.proof-nav{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  align-items:center;gap:0 clamp(12px,1.55vw,22px);
+}
+.proof-nav li{
+  font-family:var(--mono);font-weight:700;font-size:clamp(11px,.93vw,13px);
+  letter-spacing:.07em;text-transform:uppercase;color:var(--s100);
+  padding-block:4px;white-space:nowrap;
+}
+.proof-nav li+li{position:relative;padding-left:clamp(12px,1.55vw,22px)}
+.proof-nav li+li::before{
+  content:'';position:absolute;left:0;top:50%;width:1px;height:13px;
+  transform:translateY(-50%);background:rgba(255,255,255,.2);
+}
+.proof-tal{margin-left:auto;display:flex;align-items:baseline;gap:9px;flex:0 0 auto}
+.proof-tal b{
+  font-weight:800;font-size:22px;line-height:1;letter-spacing:-.02em;
+  font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
+}
+.proof-tal span{color:var(--s400)}
+
+@media (max-width:1180px){
+  .proof-tal{margin-left:0;width:100%;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+}
+@media (max-width:860px){
+  .hero-a{justify-content:flex-end;min-height:clamp(540px,84vh,780px)}
+  .hero-a .slor{
+    background:
+      linear-gradient(to top,rgba(9,13,18,.95) 0%,rgba(9,13,18,.82) 46%,rgba(9,13,18,.42) 78%,rgba(9,13,18,.6) 100%);
+  }
+  .a-h1{max-width:none}
+  .a-act{gap:10px}
+  .a-act>*{flex:1 1 100%}
+  .proof-nav li{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoved">Spring til indhold</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="KT VVS, forside">
+      <span class="brand-plads"><img class="brand-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120"></span>
+      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#referencer">Referencer</a>
+      <a href="#referencer">Fagområder</a>
+      <a href="#referencer">Om KT VVS</a>
+    </nav>
+    <a class="nav-tlf" href="tel:+4597124755">
+      <span class="lbl">Telefon</span>
+      <span class="val">97 12 47 55</span>
+    </a>
+    <a class="nav-cta" href="#referencer">Skriv til os</a>
+    <button class="burger" aria-label="Åbn menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="hoved">
+
+<section class="hero-a" id="top">
+  <div class="baggrund" id="parallax" aria-hidden="true">
+    <img src="images/web/hero-anlaeg-1600.jpg"
+         srcset="images/web/hero-anlaeg-1000.jpg 1000w, images/web/hero-anlaeg-1600.jpg 1600w, images/web/hero-anlaeg-2400.jpg 2400w"
+         sizes="100vw"
+         alt="" width="2400" height="1200" fetchpriority="high">
+  </div>
+  <div class="slor" aria-hidden="true"></div>
+
+  <div class="a-in">
+    <img class="a-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
+    <p class="a-brow lbl">Aut. VVS-installatør · Platanvej, Herning · siden 1963</p>
+    <h1 class="display a-h1">Samme firma til hallen og til badeværelset.</h1>
+    <p class="a-lede">Vand, varme, luft, gas og metal. Vi har bygget og passet installationer
+      i Midtjylland siden 1963, for kommuner, forsyning, skoler og industri, og for husejeren
+      nede ad vejen.</p>
+
+    <div class="a-act">
+      <a class="btn-lys" href="#referencer">Se referencer</a>
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+    </div>
+  </div>
+
+  <p class="a-foto-tekst lbl">Trykluftanlæg udført af KT VVS hos en industrikunde</p>
+</section>
+
+<section class="proof" id="referencer" aria-label="Udvalgte kunder">
+  <div class="proof-in">
+    <p class="proof-lbl lbl">Udført for</p>
+    <ul class="proof-nav">
+      <li>Herning Kommune</li>
+      <li>Danish Crown</li>
+      <li>Herning Vand</li>
+      <li>CEU Herning</li>
+      <li>Kvickly</li>
+      <li>Bording Kirkehus</li>
+    </ul>
+    <p class="proof-tal"><b>32</b> <span class="lbl">navngivne projekter</span></p>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* Parallax. Bevaegelse er en funktion af scroll-positionen, aldrig noget der
+   overtager den. Kun transform. Slaas fra ved reduceret bevaegelse. */
+(function(){
+  var lag = document.getElementById('parallax');
+  if(!lag) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var venter = false;
+  function tegn(){
+    venter = false;
+    var y = window.scrollY || 0;
+    if(y > window.innerHeight) return;
+    lag.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(2) + 'px,0)';
+  }
+  window.addEventListener('scroll', function(){
+    if(venter) return;
+    venter = true;
+    requestAnimationFrame(tegn);
+  }, {passive:true});
+  tegn();
+})();
+</script>
+</body>
+</html>

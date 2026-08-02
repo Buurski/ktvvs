@@ -1,0 +1,227 @@
+<!doctype html>
+<!--
+  HERO-VARIANT C: Typografi-hero uden foto.
+  Ren staalflade fra brand-tokens, stor rolig overskrift, og fire rigtige tal
+  fra referencelisten sat som paa en maerkeplade. Bevaegelsen ligger i tallene,
+  der taeller op én gang. Billeder kommer foerst nedenfor, i case-galleriet.
+  Vises isoleret. Rører ikke index.html.
+-->
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KT VVS ApS · Hero C</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
+<style>
+/* ---- C: typografi paa staalflade -------------------------------------- */
+.hero-c{
+  position:relative;background:var(--paper);color:var(--s950);
+  padding:clamp(40px,7vh,84px) 0 clamp(36px,6vh,72px);
+  min-height:clamp(540px,calc(100vh - var(--navh)),900px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+.c-in{
+  max-width:var(--maxw);width:100%;margin:0 auto;padding-inline:var(--pad);
+  display:grid;grid-template-columns:minmax(0,1.42fr) minmax(280px,1fr);
+  gap:clamp(32px,4.4vw,72px);align-items:center;
+}
+.c-top{display:flex;align-items:center;gap:16px;margin-bottom:clamp(24px,3.2vw,40px)}
+.c-top img{width:clamp(52px,4.6vw,68px);height:auto;display:block;flex:0 0 auto}
+.c-brow{color:var(--label)}
+
+.c-h1{
+  font-size:clamp(40px,5.4vw,76px);font-weight:800;line-height:.94;letter-spacing:-.038em;
+}
+/* Aarstallet farves ikke. Roed er handling og varme-mediet i dette system,
+   blaa er vand og links, og et aarstal er ingen af delene. Vaegten kommer
+   fra stoerrelsen, ikke fra en medie-farve. */
+.c-h1 em{font-style:normal}
+.c-lede{max-width:56ch;margin-top:clamp(22px,2.6vw,32px);color:var(--s600);font-size:clamp(17px,1.25vw,19px)}
+/* Navngivne bygherrer. En bygherre leder efter en anden bygherre, ikke en pris. */
+.c-kunder{
+  color:var(--label);margin-top:clamp(18px,2vw,24px);padding-top:clamp(16px,1.8vw,20px);
+  border-top:1px solid var(--s200);line-height:1.8;
+}
+.c-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3.4vw,40px);align-items:stretch}
+.c-act .btn-linje{--linje:var(--s200);--linje-tekst:var(--s950);--linje-hover:var(--s400)}
+.c-act .btn-linje:hover{background:var(--s100)}
+
+/* Maerkepladen. Fire tal, tabulaere cifre, enhed som separat mono-etiket.
+   Staar som egen spalte til hoejre for teksten, saa fladen er i balance
+   uden at der skal et billede ind for at fylde. */
+.c-tal{margin:0;border-top:1px solid var(--s200)}
+.c-tal>div{padding:clamp(14px,1.5vw,19px) 0;border-bottom:1px solid var(--s200)}
+.c-tal b{
+  display:block;font-weight:700;font-size:clamp(30px,3.1vw,46px);line-height:.9;
+  letter-spacing:-.025em;font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
+}
+.c-tal .enhed{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:500;line-height:1.3;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--label);margin-top:10px;
+}
+
+/* Case-galleriet ligger under hero'en. Her kommer billederne foerst. */
+.c-galleri{background:var(--s950);color:var(--surface);padding:clamp(20px,2.4vw,30px) 0}
+.c-galleri-in{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.c-galleri-hd{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:16px}
+.c-galleri-hd .lbl{color:var(--s400)}
+.c-galleri-hd a{color:var(--s100);text-decoration:none;font-size:15px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px}
+.c-galleri-hd a:hover{color:#fff;border-color:#fff}
+.c-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
+.c-strip figure{margin:0;position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--s800)}
+.c-strip img{width:100%;height:100%;object-fit:cover}
+.c-strip figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--surface);
+  background:linear-gradient(to top,rgba(9,13,18,.88),rgba(9,13,18,0));
+}
+
+@media (max-width:1024px){
+  .c-in{grid-template-columns:minmax(0,1fr);gap:clamp(26px,4vw,40px)}
+  /* Under to spalter laegger pladen sig som en raekke under teksten. */
+  .c-tal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--s200)}
+  .c-tal>div{padding:clamp(13px,2vw,17px) 16px clamp(14px,2vw,18px) 0}
+  .c-tal>div:nth-child(even){border-left:1px solid var(--s200);padding-left:clamp(16px,3vw,24px)}
+  .c-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .hero-c{min-height:0;padding-top:clamp(32px,5vh,48px)}
+  .c-act>*{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoved">Spring til indhold</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="KT VVS, forside">
+      <span class="brand-plads"><img class="brand-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120"></span>
+      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#galleri">Referencer</a>
+      <a href="#galleri">Fagområder</a>
+      <a href="#galleri">Om KT VVS</a>
+    </nav>
+    <a class="nav-tlf" href="tel:+4597124755">
+      <span class="lbl">Telefon</span>
+      <span class="val">97 12 47 55</span>
+    </a>
+    <a class="nav-cta" href="#galleri">Skriv til os</a>
+    <button class="burger" aria-label="Åbn menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="hoved">
+
+<section class="hero-c" id="top">
+  <div class="c-in">
+   <div class="c-ord">
+    <div class="c-top">
+      <img src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
+      <p class="c-brow lbl">Platanvej 15, Herning · Aut. VVS-installatør</p>
+    </div>
+
+    <h1 class="c-h1">Vi har lagt rør i Midtjylland <em>siden 1963.</em></h1>
+    <p class="c-lede">Ejerdrevet installationsfirma på Platanvej i Herning. Vand, varme, luft,
+      gas og metal. Vi har lavet ventilationen på Ågården i Vildbjerg og badeværelset i
+      villaen to gader herfra. Det er de samme folk begge steder.</p>
+    <p class="c-kunder lbl">Herning Kommune · Danish Crown · Herning Vand · CEU Herning · Kvickly</p>
+
+    <div class="c-act">
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+      <a class="btn-linje" href="#galleri">Se referencer</a>
+    </div>
+   </div>
+
+   <dl class="c-tal" id="tal">
+     <div><b data-fra-aar="1963">63</b><span class="enhed">År i Herning</span></div>
+     <div><b data-tal="32">32</b><span class="enhed">Navngivne projekter</span></div>
+     <div><b data-tal="11500">11.500</b><span class="enhed">m³/h, største ventilationsanlæg</span></div>
+     <div><b data-tal="50" data-plus="1">50+</b><span class="enhed">Varmepumper installeret</span></div>
+   </dl>
+  </div>
+</section>
+
+<section class="c-galleri" id="galleri" aria-label="Udført arbejde">
+  <div class="c-galleri-in">
+    <div class="c-galleri-hd">
+      <p class="lbl">Udført arbejde</p>
+      <a href="#galleri">Se alle 32 projekter</a>
+    </div>
+    <div class="c-strip">
+      <figure><img src="images/web/m-luft.jpg" alt="Ventilationsaggregat i teknikrum med isolerede kanaler langs loftet" width="1000" height="750" loading="lazy"><figcaption>Ventilation, teknikrum</figcaption></figure>
+      <figure><img src="images/web/g-trykluft2.jpg" alt="Blå trykluftrør med flangesamlinger ført hen over en industritagflade" width="1100" height="825" loading="lazy"><figcaption>Trykluft, industri</figcaption></figure>
+      <figure><img src="images/web/g-bad.jpg" alt="Nyrenoveret badeværelse med flisegulv og indbygget armatur" width="1000" height="750" loading="lazy"><figcaption>Badeværelse, privat</figcaption></figure>
+      <figure><img src="images/web/m-metal.jpg" alt="Nylagt tagflade i skifer med zinkinddækning langs rygningen" width="1000" height="750" loading="lazy"><figcaption>Blikkenslager, tag</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* Tallene taeller op én gang, naar pladen er i syne. Slutvaerdien staar i
+   HTML fra start, saa den staar rigtigt uden script og ved reduceret
+   bevaegelse. Scriptet saetter selv starttilstanden. */
+(function(){
+  var plade = document.getElementById('tal');
+  if(!plade) return;
+
+  /* Antal aar regnes ud fra grundlaeggelsesaaret, saa tallet ikke er forkert
+     naar aaret skifter. Vaerdien i HTML er kun en fallback uden script.
+     Staar foer bevaegelses-tjekket: tallet skal vaere rigtigt uanset. */
+  plade.querySelectorAll('b[data-fra-aar]').forEach(function(el){
+    var aar = new Date().getFullYear() - (+el.dataset.fraAar);
+    el.dataset.tal = aar;
+    el.textContent = aar;
+  });
+
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var felter = plade.querySelectorAll('b[data-tal]');
+  function skriv(el, v){
+    var t = Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    el.textContent = el.dataset.plus ? t + '+' : t;
+  }
+  felter.forEach(function(el){ skriv(el, 0); });
+
+  var koert = false;
+  function koer(){
+    if(koert) return;
+    koert = true;
+    var start = null, tid = 1500;
+    function skridt(nu){
+      if(start === null) start = nu;
+      var p = Math.min((nu - start) / tid, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      felter.forEach(function(el){ skriv(el, +el.dataset.tal * e); });
+      if(p < 1) requestAnimationFrame(skridt);
+    }
+    requestAnimationFrame(skridt);
+  }
+
+  /* Sikkerhedsnet: en observer springer elementer over ved hurtig scroll,
+     og et nulstillet tal er vaerre end en manglende animation. */
+  setTimeout(koer, 2500);
+  if(!('IntersectionObserver' in window)) { koer(); return; }
+  var obs = new IntersectionObserver(function(rk){
+    rk.forEach(function(r){ if(r.isIntersecting){ koer(); obs.disconnect(); } });
+  }, {threshold:.35});
+  obs.observe(plade);
+})();
+</script>
+</body>
+</html>
