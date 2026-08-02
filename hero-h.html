@@ -97,7 +97,9 @@ body{background:var(--surface)}
 .h-strip img{width:100%;height:100%;object-fit:cover}
 
 @media (max-width:1024px){
-  .nav3 nav a:nth-child(n+3){display:none}
+  /* Telefonen er undtaget: den er den tredje i hoejre menu, men den er
+     ogsaa sidens vigtigste handling og maa aldrig falde ud. */
+  .nav3 nav a:nth-child(n+3):not(.nav3-tlf){display:none}
 }
 @media (max-width:860px){
   .nav3-in{grid-template-columns:auto 1fr auto;height:66px}
