@@ -63,11 +63,13 @@ for det ved jeg ikke.
 Kundelogoer i stedet for navne kan sagtens laves, men vi skal have lov af dem først.
 Sig til hvis du har en god kontakt hos nogen af dem.
 
-Og det vigtigste: det her er kun forslag. Den rigtige side bliver som du vil have den.
-Farver, tekst, billeder, rækkefølge, det hele kan laves om. Jeres nuværende side ligger
-uændret, den har jeg ikke rørt.
+Og husk at det her kun er forslag. Den færdige side bliver præcis som du vil have den, og
+alt kan laves om undervejs. Jeres nuværende side ligger uændret, den har jeg ikke rørt.
 
-Ingen pres. Vil du hellere tage det over telefonen, så ringer jeg bare.
+Kan du nå at kigge inden på fredag den 7.? Så bygger jeg videre i næste uge og får den
+gjort færdig. Passer det skidt, siger du bare til, så rykker vi den.
+
+Vil du hellere tage det over telefonen, så ringer jeg bare.
 
 Mvh
 Lucas
