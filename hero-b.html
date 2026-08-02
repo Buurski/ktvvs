@@ -1,0 +1,220 @@
+<!doctype html>
+<!--
+  HERO-VARIANT B: Split-hero med roligt slideshow.
+  Venstre halvdel baerer typografi, tal og handlinger paa maskinsort.
+  Hoejre halvdel er ét billedfelt der krydstoner mellem fem aegte
+  projektfotos, fire tekniske og ét privat badevaerelse. Ingen slide-bevaegelse, ingen prikker der hopper: kun
+  opacity og en maerkeplade der skifter tekst. Tydelig B2B-vaegt.
+  Vises isoleret. Rører ikke index.html.
+-->
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KT VVS ApS · Hero B</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/kt-vvs-mark.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="images/web/hero-ventilation.jpg">
+<style>
+/* ---- B: split ---------------------------------------------------------- */
+.hero-b{
+  background:var(--s950);color:var(--surface);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  min-height:clamp(600px,calc(100vh - var(--navh)),920px);
+}
+
+/* venstre: typografi */
+.b-tekst{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(44px,6vh,80px) clamp(28px,4vw,72px) clamp(44px,6vh,80px) var(--pad);
+}
+.b-mark{display:block;width:clamp(64px,5.6vw,88px);height:auto;margin-bottom:clamp(20px,2.4vw,30px)}
+.b-brow{color:var(--s200);margin-bottom:15px}
+.b-h1{font-size:clamp(34px,3.9vw,58px);max-width:14ch}
+.b-lede{max-width:46ch;margin-top:20px;color:var(--s100);font-size:clamp(15px,1.06vw,17px)}
+
+/* Maerkepladen: tre rigtige tal fra referencelisten, tabulaere cifre. */
+.b-tal{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  margin:clamp(28px,3.2vw,40px) 0 0;border-top:1px solid rgba(255,255,255,.22);
+}
+.b-tal>div{padding:16px 14px 0 0}
+.b-tal b{
+  display:block;font-weight:700;font-size:clamp(30px,2.5vw,40px);line-height:.92;
+  letter-spacing:-.02em;font-variation-settings:'wdth' 118;font-variant-numeric:tabular-nums;
+}
+.b-tal .enhed{
+  display:block;font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--s400);margin-top:9px;
+}
+/* Navngivne kunder under maerkepladen. Tal alene overbeviser ikke en
+   bygherre; navnet paa en anden bygherre goer. */
+.b-kunder{color:var(--s400);margin-top:clamp(20px,2.2vw,26px);line-height:1.7}
+.b-act{display:flex;flex-wrap:wrap;gap:11px;margin-top:clamp(20px,2.4vw,28px);align-items:stretch}
+
+/* hoejre: billedfelt */
+.b-vis{position:relative;overflow:hidden;background:var(--s900);isolation:isolate}
+.b-vis figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.5s ease}
+.b-vis figure.frem{opacity:1}
+.b-vis img{width:100%;height:100%;object-fit:cover}
+/* Bunden moerknes, saa maerkepladen kan staa paa ethvert af de fem billeder. */
+.b-vis::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(9,13,18,.86) 0%,rgba(9,13,18,.1) 34%,rgba(9,13,18,0) 60%);
+}
+.b-plade{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:clamp(18px,2.4vw,30px) clamp(20px,2.6vw,34px);
+  display:flex;align-items:flex-end;gap:18px;
+}
+.b-plade .navn{
+  font-family:var(--mono);font-weight:700;font-size:clamp(13px,1.02vw,15px);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--surface);
+  min-height:2.4em;
+}
+.b-plade .navn span{display:block;font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--s200);margin-top:7px}
+/* Skridtviser: fem streger. Den aktive fyldes med plade-hvid, ikke med en
+   medie-farve. Et skridt i et slideshow er ikke et medie. */
+.b-skridt{margin-left:auto;display:flex;gap:6px;flex:0 0 auto;padding-bottom:4px}
+.b-skridt i{display:block;width:26px;height:2px;background:rgba(255,255,255,.3);transition:background .4s ease}
+.b-skridt i.paa{background:var(--surface)}
+
+@media (max-width:1180px){
+  .hero-b{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}
+  .b-h1{font-size:clamp(30px,3.6vw,46px)}
+}
+@media (max-width:860px){
+  /* Billedet er hele pointen i denne variant, saa det skal staa oeverst
+     paa mobil. Ellers ligger det under folden bag et halvt skaermbillede tekst. */
+  .hero-b{grid-template-columns:minmax(0,1fr);min-height:0}
+  .b-vis{order:-1;aspect-ratio:16/10;min-height:200px;max-height:44vh}
+  .b-plade{padding:14px 18px}
+  .b-tekst{padding:clamp(26px,4vh,38px) var(--pad) clamp(30px,4.5vh,44px)}
+  .b-mark{width:52px;margin-bottom:16px}
+  .b-h1{font-size:clamp(30px,8.2vw,40px);max-width:none}
+  .b-lede{max-width:none;margin-top:16px}
+  .b-tal{margin-top:24px}
+  .b-tal>div{padding-right:10px}
+  .b-act{margin-top:24px}
+  .b-act>*{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .b-vis figure{transition:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoved">Spring til indhold</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="KT VVS, forside">
+      <span class="brand-plads"><img class="brand-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120"></span>
+      <span class="brand-word">KT<span class="brand-dot">·</span>VVS</span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#top">Referencer</a>
+      <a href="#top">Fagområder</a>
+      <a href="#top">Om KT VVS</a>
+    </nav>
+    <a class="nav-tlf" href="tel:+4597124755">
+      <span class="lbl">Telefon</span>
+      <span class="val">97 12 47 55</span>
+    </a>
+    <a class="nav-cta" href="#top">Skriv til os</a>
+    <button class="burger" aria-label="Åbn menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="hoved">
+<section class="hero-b" id="top">
+
+  <div class="b-tekst">
+    <img class="b-mark" src="assets/kt-vvs-mark.svg" alt="" width="120" height="120">
+    <p class="b-brow lbl">Aut. VVS-installatør · Platanvej, Herning</p>
+    <h1 class="display b-h1">Fra badeværelser til 11.500&nbsp;m³/h ventilation.</h1>
+    <p class="b-lede">Ventilation til Herning Kommune. Trykluft til industrien.
+      Badeværelse hos naboen. Det er de samme håndværkere, der kører ud til det hele.</p>
+
+    <dl class="b-tal">
+      <div><b>1963</b><span class="enhed">Grundlagt i Herning</span></div>
+      <div><b>32</b><span class="enhed">Navngivne projekter</span></div>
+      <div><b>11.500</b><span class="enhed">m³/h, største anlæg</span></div>
+    </dl>
+
+    <p class="b-kunder lbl">Herning Kommune · Danish Crown · Herning Vand · CEU Herning</p>
+
+    <div class="b-act">
+      <a class="tlf-plate" href="tel:+4597124755">
+        <span class="lbl">Ring til os</span>
+        <span class="val">97 12 47 55</span>
+      </a>
+      <a class="btn-lys" href="#top">Se referencer</a>
+    </div>
+  </div>
+
+  <div class="b-vis" id="vis">
+    <figure class="frem">
+      <img src="images/web/hero-ventilation.jpg" alt="En stor ventilationskanal løftes med kran ind over en byggeplads, med tre KT VVS-varevogne holdende nedenfor" width="1200" height="900" fetchpriority="high">
+    </figure>
+    <figure>
+      <img src="images/web/m-luft.jpg" alt="Ventilationsaggregat i et teknikrum med isolerede kanaler og spirorør langs loftet" width="1000" height="750" loading="lazy">
+    </figure>
+    <figure>
+      <img src="images/web/g-trykluft2.jpg" alt="Blå trykluftrør med flangesamlinger ført hen over en industritagflade" width="1100" height="825" loading="lazy">
+    </figure>
+    <figure>
+      <img src="images/web/m-metal.jpg" alt="Nylagt tagflade i skifer med zinkinddækning langs rygningen, set i modlys" width="1000" height="750" loading="lazy">
+    </figure>
+    <figure>
+      <img src="images/web/g-bad.jpg" alt="Nyrenoveret badeværelse med flisegulv, bruseniche og indbygget armatur" width="1000" height="750" loading="lazy">
+    </figure>
+
+    <div class="b-plade">
+      <p class="navn" id="visNavn" aria-live="off">Ventilation, byggeplads<span>Kanal løftes på plads</span></p>
+      <div class="b-skridt" id="visSkridt" aria-hidden="true"><i class="paa"></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+</section>
+</main>
+
+<script>
+/* Roligt krydstoningsslideshow. Ingen bevaegelse ud over opacity.
+   Staar stille ved reduceret bevaegelse og naar fanen er skjult. */
+(function(){
+  var vis = document.getElementById('vis');
+  if(!vis) return;
+  var billeder = vis.querySelectorAll('figure');
+  var streger  = document.getElementById('visSkridt').children;
+  var navn     = document.getElementById('visNavn');
+  var tekster = [
+    ['Ventilation, byggeplads','Kanal løftes på plads'],
+    ['Ventilation, teknikrum','Aggregat og kanalføring'],
+    ['Trykluft, industri','Hovedføring over tagflade'],
+    ['Blikkenslager, tag','Skifer med zinkinddækning'],
+    ['Badeværelse, privat','Fliser, bruseniche og armatur']
+  ];
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var i = 0;
+  /* Foerste skift kommer sent. Laeseren skal naa overskrift og tal, foer
+     der er noget der bevaeger sig i oejenkrogen. */
+  setTimeout(function(){ setInterval(skift, 5200); skift(); }, 6500);
+  function skift(){
+    if(document.hidden) return;
+    billeder[i].classList.remove('frem');
+    streger[i].classList.remove('paa');
+    i = (i + 1) % billeder.length;
+    billeder[i].classList.add('frem');
+    streger[i].classList.add('paa');
+    navn.innerHTML = tekster[i][0] + '<span>' + tekster[i][1] + '</span>';
+  }
+})();
+</script>
+</body>
+</html>
