@@ -78,7 +78,8 @@ VVS · Blikkenslager · Gas/oliekedel · Ventilation · Badeværelser · Jordvar
 
 - **40 projektfotos** i `images/`, navngivet efter opgavetype og sted — se `images/INDEX.md`. Billederne er ægte, men **hvilket navngivet projekt hvert billede viser, er ikke dokumenteret**. Billedtekster må derfor kun beskrive opgavetype, aldrig en navngiven kunde. Beskriv desuden kun det man faktisk kan se på billedet.
 - **"Mere end 50 varmepumper installeret"** — kundens egen aktuelle påstand på ktvvs.dk. Godkendt til brug.
-- **Byggeriets Evalueringscenter** (`.scrape/EMPX.png`, kundens eget mærke): **A** tidsfrister · **A** mangler · **A** arbejdsmiljø · **B** kundetilfredshed. Skala A–E. KT VVS ApS, CVR 28989989, senest opdateret 07.09.2016. Datoen skal altid stå med, når karaktererne vises.
+- **Byggeriets Evalueringscenter** (`.scrape/EMPX.png`, kundens eget mærke): **A** tidsfrister · **A** mangler · **A** arbejdsmiljø · **B** kundetilfredshed. Skala A–E. KT VVS ApS, CVR 28989989, senest opdateret 07.09.2016.
+  **FRAVALGT AF KUNDEN 2026-08-02.** Henrik har sagt at karaktererne ikke skal med. De må ikke bruges på siden, hverken som karakterblok, som spec-linje i hero'en eller som navigationspunkt. De står stadig i `index.html` fra før beslutningen (nav-link ×2, `hero-spec`-rækken "Bedømmelse", og hele sektionen `#rating`) og skal fjernes derfra, når forsiden bygges om. De seks hero-forslag i `docs/heroer-til-henrik/` indeholder dem ikke.
 - **Beviser/mærker** (`.scrape/`): Tekniq-medlemskab og Tekniq-godkendt kvalitetsstyringssystem · Dansk VVS-garanti.
 - **Tilskud og fradrag — verificeret 2026-07-27** mod officielle kilder. Kundens gamle side citerer 2016-regler, som ikke længere gælder; brug kun tallene herunder.
   - Det brede håndværkerfradrag blev **ophævet 1. april 2022** (info.skat.dk).

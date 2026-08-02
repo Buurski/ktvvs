@@ -2,6 +2,7 @@
 
 Ikke sendt. Lucas sender selv.
 
+**Fra:** lucas@kinly.dk
 **Til:** hk@ktvvs.dk
 **Emne:** Seks forslag til toppen af forsiden
 
@@ -27,6 +28,8 @@ af dem, halvdelen er lyse og halvdelen mørke, og overskriften er skrevet på se
 Du må gerne sige "menulinjen fra nummer 2, farven fra nummer 4 og teksten fra nummer 5",
 så bygger jeg den.
 
+Karaktererne fra Byggeriets Evalueringscenter er ude af alle seks, som du sagde.
+
 Det jeg gerne vil høre fra dig:
 
 - Hvad fanger dig, og hvad falder du over i dårlig forstand?
@@ -37,6 +40,15 @@ Det jeg gerne vil høre fra dig:
   finde på.
 - Mangler der noget om firmaet øverst? Serviceaftaler for eksempel, eller hvilke opgaver
   I helst vil have ind.
+
+Så er der adressen ktvvs.dk. Den er ikke det samme som hjemmesiden. Adressen ligger et
+sted, hvor den bliver betalt en gang om året. Hjemmesiden er det, folk ser når de skriver
+adressen ind. Når den nye side er klar, skal vi ind det sted og få adressen til at vise den nye side
+i stedet for den gamle.
+
+Fandt du ud af hvem der står for den? Tit er det den der lavede siden i sin tid, eller det
+står på en regning der kommer en gang om året. Find en regning eller et brugernavn, så er
+vi hjemme.
 
 To ting vil jeg lige have bekræftet. Danish Crown står med i rækken af kunder, fordi
 filnavnene på nogle af billederne pegede den vej, men det står ikke på jeres nuværende
