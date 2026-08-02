@@ -102,12 +102,16 @@ body{background:var(--surface)}
   .nav3 nav a:nth-child(n+3):not(.nav3-tlf){display:none}
 }
 @media (max-width:860px){
-  .nav3-in{grid-template-columns:auto 1fr auto;height:66px}
+  /* Grid'et med maerket i midten holder ikke paa mobil: der er ikke plads
+     til tre spalter. Raekken bliver derfor en almindelig flex-raekke. */
+  .nav3-in{display:flex;align-items:center;gap:12px;height:66px}
   .nav3 nav.venstre{display:none}
   /* Menupunkterne gaar i burgeren, men telefonen bliver staaende.
      Nummeret skal kunne naas med ét tryk fra enhver position. */
-  .nav3 nav.hoejre{margin-left:auto}
+  .nav3 nav.hoejre{margin-left:auto;flex:0 0 auto}
   .nav3 nav.hoejre a:not(.nav3-tlf){display:none}
+  .nav3-tlf{margin-left:0}
+  .nav3-brand{flex:0 0 auto}
   .nav3-brand{flex-direction:row;align-items:center;gap:10px}
   .nav3-brand img{width:30px;height:30px}
   .nav3-tlf{margin-left:auto}
