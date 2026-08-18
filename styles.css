@@ -704,9 +704,9 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
   /* Den vandrette gradient er bygget til en bred hero. Paa en smal skaerm
      ligger teksten i den moerkeste ende og fotoet forsvinder helt. */
   .hero-skygge{
-    background:linear-gradient(180deg,rgba(9,13,18,.9) 0%,rgba(9,13,18,.74) 34%,rgba(9,13,18,.93) 100%);
+    background:linear-gradient(180deg,rgba(9,13,18,.82) 0%,rgba(9,13,18,.52) 38%,rgba(9,13,18,.78) 100%);
   }
-  .hero-foto{object-position:26% 50%}
+  .hero-foto{object-position:50% 45%}
 }
 
 @media (max-width:560px){
