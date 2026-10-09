@@ -620,6 +620,15 @@ input:focus,textarea:focus{outline:0;border-color:var(--vand);border-width:2px;p
   font-weight:600;font-size:17px;cursor:pointer;transition:background .13s;
 }
 .btn:hover{background:var(--varme-deeper)}
+.form[hidden],.form-fallback[hidden]{display:none}
+.form-fallback{background:var(--s950);color:#fff;padding:22px 22px 24px}
+.form-fallback .lbl{color:rgba(255,255,255,.8);display:block;margin-bottom:8px}
+.form-fallback p{margin-bottom:16px;line-height:1.6}
+.form-fallback a:not(.btn){color:#fff}
+.form-fallback .btn{display:inline-block;text-decoration:none}
+.form-fejl{margin-top:14px;font-weight:600}
+.fod-kinly{color:var(--s400);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+.fod-kinly:hover{color:#fff}
 .form-note{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--label)}
 .kvittering{margin-top:20px;background:var(--s950);color:#fff;padding:18px 20px}
 .kvittering .lbl{color:rgba(255,255,255,.8);display:block;margin-bottom:7px}

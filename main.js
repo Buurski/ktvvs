@@ -240,11 +240,18 @@
     });
   });
 
-  /* ---------- formular (demo — sender ikke) ---------- */
+  /* ---------- formular ---------- */
+  // Modtager-endpoint (fx Formspree-URL). Tom = formularen er skjult og siden viser mail/telefon.
+  var ENDPOINT = '';
   var form = document.getElementById('form');
   if (!form) return;
 
   var kvit = document.getElementById('kvittering');
+  var fejlNote = document.getElementById('form-fejl');
+  var fallback = document.getElementById('form-fallback');
+  if (!ENDPOINT) return; // ingen modtager valgt: fallback med mailto/tlf forbliver synlig
+  form.hidden = false;
+  fallback.hidden = true;
 
   var regler = {
     navn: function (v) { return v.trim().length >= 2 ? '' : 'Skriv dit navn, så vi ved hvem vi ringer til.'; },
@@ -296,9 +303,27 @@
       if (foerste) foerste.focus();
       return;
     }
-    form.querySelector('.btn').hidden = true;
-    form.querySelector('.form-note').hidden = true;
-    kvit.hidden = false;
-    kvit.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+    var knap = form.querySelector('.btn');
+    var data = { medie: [] };
+    Array.prototype.forEach.call(form.elements, function (f) {
+      if (!f.name) return;
+      if (f.name === 'medie') { if (f.checked) data.medie.push(f.value); }
+      else data[f.name] = f.value;
+    });
+    knap.disabled = true;
+    fejlNote.hidden = true;
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      knap.hidden = true;
+      kvit.hidden = false;
+      kvit.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+    }).catch(function () {
+      knap.disabled = false;
+      fejlNote.hidden = false;
+    });
   });
 })();
