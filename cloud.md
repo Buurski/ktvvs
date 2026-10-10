@@ -60,17 +60,16 @@ som env-var. Læg aldrig nøglen i repoet.
 
 ## Deploy
 
-Vercel er koblet til GitHub. Push til `main` udløser en produktions-deploy på ~30 sekunder.
+Vercel er koblet til GitHub: push til `main` = produktion (~30 sek). Derfor: aldrig `main` uden Lucas.
 
 ```bash
-git add -A && git commit -m "besked" && git push
+git switch -c <gren>
+git add <sti>            # eksplicit, aldrig -A
+git commit -m "besked"
+git push -u origin <gren>   # giver Vercel-preview; Lucas merger
 ```
 
-Manuelt via CLI:
-
-```bash
-vercel deploy --prod
-```
+`vercel deploy --prod` kun efter Lucas' ja. Regler: `AGENTS.md`.
 
 ---
 
